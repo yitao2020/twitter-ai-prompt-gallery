@@ -196,8 +196,11 @@ a:hover { text-decoration:underline }
 
 /* Keyword Tag Bar */
 .tag-bar {
-  max-width:1800px; margin:0 auto; padding:12px 24px 0;
-  display:flex; gap:6px; flex-wrap:wrap; align-items:center
+  position:sticky; top:var(--header-h, 110px); z-index:90;
+  max-width:1800px; margin:0 auto; padding:10px 24px;
+  display:flex; gap:6px; flex-wrap:wrap; align-items:center;
+  background:rgba(13,17,23,0.95); backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--border)
 }
 .tag-bar .tag-label {
   font-size:.78em; color:var(--text-dim); white-space:nowrap; margin-right:4px
@@ -388,6 +391,7 @@ function render() {
         </div>
       </div>`;
   }).join('');
+  if (typeof syncToTop === 'function') syncToTop();
 }
 
 function openLB(globalIdx) {
@@ -473,12 +477,25 @@ document.addEventListener('keydown', e => {
 
 // Back to top
 const toTopBtn = document.getElementById('toTop');
+function getScrollTop() {
+  return window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+}
 function syncToTop() {
   const lbOpen = document.getElementById('lbOverlay').classList.contains('show');
   if (lbOpen) { toTopBtn.classList.remove('show'); return; }
-  toTopBtn.classList.toggle('show', window.scrollY > 400);
+  toTopBtn.classList.toggle('show', getScrollTop() > 250);
 }
 window.addEventListener('scroll', syncToTop, { passive: true });
+window.addEventListener('resize', () => { fixTagBarTop(); syncToTop(); });
+
+// Keep tag bar stuck right below the sticky header
+function fixTagBarTop() {
+  const h = document.querySelector('.header').offsetHeight;
+  document.documentElement.style.setProperty('--header-h', h + 'px');
+  const tb = document.querySelector('.tag-bar');
+  if (tb) tb.style.top = h + 'px';
+}
+fixTagBarTop();
 syncToTop();
 
 // Init
