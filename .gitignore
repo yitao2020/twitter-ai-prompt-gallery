@@ -1,0 +1,9 @@
+node_modules/
+*.py
+*.json
+*.txt
+*.md
+!gallery.html
+!README.md
+.workbuddy/
+_page_replaced.md
