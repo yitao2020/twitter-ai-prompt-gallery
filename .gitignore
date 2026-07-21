@@ -7,3 +7,11 @@ node_modules/
 !README.md
 .workbuddy/
 _page_replaced.md
+
+# 图片已全量迁移至 R2 自定义域名 img.trilightlabs.com，本地图不再入仓
+tweet-images/
+prompt-images/
+__pycache__/
+*.log
+gallery_output.html
+gallery_v3.html
