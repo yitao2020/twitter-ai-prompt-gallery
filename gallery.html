@@ -213,10 +213,13 @@ a:hover { text-decoration:underline }
   text-overflow:ellipsis; white-space:nowrap; margin-top:2px
 }
 
-/* Keyword Tag Bar */
+/* Keyword Tag Bar - sticky below header */
 .tag-bar {
-  max-width:1800px; margin:0 auto; padding:12px 24px 0;
-  display:flex; gap:6px; flex-wrap:wrap; align-items:center
+  position:sticky; top:98px; z-index:90;
+  max-width:1800px; margin:0 auto; padding:10px 24px;
+  display:flex; gap:6px; flex-wrap:wrap; align-items:center;
+  background:rgba(13,17,23,0.95); backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--border)
 }
 .tag-bar .tag-label {
   font-size:.78em; color:var(--text-dim); white-space:nowrap; margin-right:4px
@@ -229,6 +232,19 @@ a:hover { text-decoration:underline }
 .tag-btn:hover { border-color:var(--accent); color:var(--text) }
 .tag-btn.active { background:var(--accent); border-color:var(--accent); color:#fff }
 .tag-btn .tag-count { opacity:.6; font-size:.85em; margin-left:2px }
+
+/* Back to top */
+#toTop {
+  position:fixed; right:24px; bottom:24px; z-index:200;
+  width:44px; height:44px; border-radius:50%;
+  background:var(--accent); color:#0d1117; border:none;
+  font-size:20px; line-height:44px; text-align:center;
+  cursor:pointer; box-shadow:0 4px 16px rgba(0,0,0,.4);
+  opacity:0; visibility:hidden; transform:translateY(12px);
+  transition:opacity .25s,visibility .25s,transform .25s,background .2s
+}
+#toTop:hover { background:var(--accent3) }
+#toTop.show { opacity:1; visibility:visible; transform:translateY(0) }
 </style>
 </head>
 <body>
@@ -296,6 +312,8 @@ a:hover { text-decoration:underline }
   </div>
 </section>
 </div><!-- /viewAbout -->
+
+<button id="toTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="返回顶部">↑</button>
 
 <div class="lb-overlay" id="lbOverlay" onclick="if(event.target===this)closeLB()">
   <button class="lb-close" onclick="closeLB()">&times;</button>
@@ -472,6 +490,11 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeLB();
   if (e.key === 'ArrowLeft') navLB(-1);
   if (e.key === 'ArrowRight') navLB(1);
+});
+
+// Back to top
+window.addEventListener('scroll',function(){
+  document.getElementById('toTop').classList.toggle('show', window.scrollY > 400);
 });
 
 // Init
