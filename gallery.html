@@ -37,10 +37,10 @@ a:hover { text-decoration:underline }
 .topnav .brand-link { font-size:1.05em; font-weight:700; color:var(--text); white-space:nowrap }
 .topnav .brand-link:hover { text-decoration:none }
 .topnav .home-logo {
-  font-size:1.0em; font-weight:800; letter-spacing:.3px; color:var(--accent);
-  white-space:nowrap; padding:3px 10px; border:1px solid var(--border);
-  border-radius:6px; transition:all .2s
+  display:inline-flex; align-items:center; padding:3px 8px;
+  border:1px solid var(--border); border-radius:6px; transition:all .2s
 }
+.topnav .home-logo img { height:24px; width:auto; display:block }
 .topnav .home-logo:hover { border-color:var(--accent); background:rgba(88,166,255,.1); text-decoration:none }
 .nav-links { display:flex; gap:6px; align-items:center; flex-wrap:wrap }
 .nav-links a {
@@ -275,7 +275,7 @@ a:hover { text-decoration:underline }
 <div class="header">
   <nav class="topnav">
     <div class="brand">
-      <a class="home-logo" href="https://trilightlab.com" target="_blank" rel="noopener" title="TrilightLab 博客">TrilightLab</a>
+      <a class="home-logo" href="https://trilightlab.com" target="_blank" rel="noopener" title="TrilightLab 博客"><img src="https://trilightlab.com/wp-content/uploads/2026/06/trilightlabs_logo_small-1.png" alt="TrilightLab"></a>
       <a class="brand-link" href="#" onclick="showView('gallery');return false;">🐦 推特提示词合集</a>
     </div>
     <div class="nav-links">
