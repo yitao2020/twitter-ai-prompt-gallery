@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>推特热点 — AI 提示词趋势</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg:#0d1117; --bg-card:#161b22; --border:#30363d; --text:#e6edf3;
+  --text-dim:#8b949e; --accent:#58a6ff; --accent2:#3fb950;
+}
+* { margin:0; padding:0; box-sizing:border-box }
+body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  background:var(--bg); color:var(--text); line-height:1.5 }
+a { color:var(--accent); text-decoration:none }
+a:hover { text-decoration:underline }
+.header { position:sticky; top:0; z-index:100; background:rgba(13,17,23,0.92);
+  backdrop-filter:blur(12px); border-bottom:1px solid var(--border); padding:0 24px }
+.topnav { display:flex; align-items:center; justify-content:space-between;
+  height:50px; border-bottom:1px solid var(--border); max-width:1800px; margin:0 auto }
+.topnav .brand { display:flex; align-items:center; gap:10px; margin-right:18px }
+.topnav .brand-link { font-size:1.05em; font-weight:700; color:var(--text); white-space:nowrap }
+.topnav .home-logo img { height:96px; width:auto; display:block }
+.nav-links { display:flex; gap:6px; align-items:center; flex-wrap:wrap }
+.nav-links a { font-size:.85em; color:var(--text-dim); padding:5px 12px; border-radius:6px;
+  transition:all .2s; white-space:nowrap }
+.nav-links a:hover { color:var(--text); background:var(--bg-card); text-decoration:none }
+.nav-links a.active { color:var(--text); background:var(--bg-card); font-weight:600 }
+
+.wrap { max-width:1600px; margin:0 auto; padding:24px }
+.page-head { margin-bottom:18px }
+.page-head h1 { font-size:1.5em; margin-bottom:6px }
+.page-head .meta { font-size:.85em; color:var(--text-dim) }
+.page-head .desc { font-size:.9em; color:var(--text-dim); margin-top:10px; max-width:900px }
+
+.chart-panel { width:1600px; max-width:100%; background:var(--bg-card);
+  border:1px solid var(--border); border-radius:12px; padding:22px 26px 26px; margin-bottom:24px }
+.chart-panel h2 { font-size:1.05em; margin-bottom:4px; border-left:3px solid var(--accent);
+  padding-left:10px }
+.chart-panel .sub { font-size:.82em; color:var(--text-dim); margin:6px 0 16px 13px }
+.chart-box { position:relative; width:100%; height:640px }
+
+.summary { width:1600px; max-width:100%; background:var(--bg-card);
+  border:1px solid var(--border); border-radius:12px; padding:22px 26px }
+.summary h2 { font-size:1.05em; margin-bottom:14px; border-left:3px solid var(--accent2);
+  padding-left:10px }
+.summary .cards { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:18px }
+.summary .card { background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:16px }
+.summary .card h3 { font-size:.92em; color:var(--accent2); margin-bottom:8px }
+.summary .card p { font-size:.9em; color:var(--text-dim); line-height:1.7 }
+table { width:100%; border-collapse:collapse; font-size:.88em }
+th, td { text-align:left; padding:9px 12px; border-bottom:1px solid var(--border) }
+th { color:var(--text-dim); font-weight:600; font-size:.85em }
+td.kw { font-weight:600; color:var(--text) }
+.up { color:#f85149; font-weight:600 }
+.down { color:#3fb950; font-weight:600 }
+.flat { color:var(--text-dim) }
+.foot { text-align:center; color:var(--text-dim); font-size:.8em; padding:26px 0 40px }
+@media(max-width:900px){ .summary .cards { grid-template-columns:1fr } }
+</style>
+</head>
+<body>
+<div class="header">
+  <nav class="topnav">
+    <div class="brand">
+      <a class="home-logo" href="https://trilightlab.com" target="_blank" rel="noopener" title="TrilightLab 博客"><img src="https://trilightlab.com/wp-content/uploads/2026/06/trilightlabs_logo_small-1.png" alt="TrilightLab"></a>
+      <a class="brand-link" href="gallery.html">🐦 推特提示词合集</a>
+    </div>
+    <div class="nav-links">
+      <a href="trends.html" class="active">📈 推特热点</a>
+      <a href="gallery.html">画廊</a>
+      <a href="gallery.html#about" onclick="location.href='gallery.html';">说明</a>
+    </div>
+  </nav>
+</div>
+
+<div class="wrap">
+  <div class="page-head">
+    <h1>📈 推特热点 · AI 提示词趋势</h1>
+    <div class="meta">数据区间 2026-07-10 ~ 2026-07-23 · 每日自动更新 · 数据源 twitterapi.io · 更新于 2026-07-24 02:02 UTC</div>
+    <div class="desc">追踪 X/Twitter 上 AI 图像生成生态的<b>热门关键词</b>——按天统计各模型、风格与技法在公开推文中的提及热度，反映当前创作者社区的关注趋势。取近期提及量最高的关键词绘制曲线。</div>
+  </div>
+
+  <div class="chart-panel">
+    <h2>关键词热度趋势曲线</h2>
+    <div class="sub">纵轴 = 每日相关推文提及次数（采样） · 横轴 = 日期（UTC） · 悬停查看具体数值 · 点击图例可显隐曲线</div>
+    <div class="chart-box"><canvas id="trendChart"></canvas></div>
+  </div>
+
+  <div class="summary">
+    <h2>📊 今日趋势总结</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>🔥 热度最高</h3>
+        <p><b>Midjourney</b>（108）、<b>Flux</b>（106）、<b>cinematic</b>（78）</p>
+      </div>
+      <div class="card">
+        <h3>🚀 上升最快（环比昨日）</h3>
+        <p><b>GPT Image 2</b>（▲300%）、<b>LoRA</b>（▲100%）、<b>Midjourney</b>（▲33%）</p>
+      </div>
+    </div>
+    <table>
+      <thead><tr><th>关键词</th><th>区间总提及</th><th>最新一日</th><th>环比</th></tr></thead>
+      <tbody>
+      <tr><td class="kw">Midjourney</td><td>108</td><td>8</td><td><span class="up">▲ 33%</span></td></tr>
+<tr><td class="kw">Flux</td><td>106</td><td>13</td><td><span class="flat">0%</span></td></tr>
+<tr><td class="kw">cinematic</td><td>78</td><td>0</td><td><span class="down">▼ 100%</span></td></tr>
+<tr><td class="kw">GPT Image 2</td><td>50</td><td>8</td><td><span class="up">▲ 300%</span></td></tr>
+<tr><td class="kw">anime</td><td>48</td><td>2</td><td><span class="flat">0%</span></td></tr>
+<tr><td class="kw">Nano Banana Pro</td><td>44</td><td>1</td><td><span class="down">▼ 80%</span></td></tr>
+<tr><td class="kw">photorealistic</td><td>43</td><td>1</td><td><span class="flat">—</span></td></tr>
+<tr><td class="kw">prompt engineering</td><td>40</td><td>4</td><td><span class="down">▼ 20%</span></td></tr>
+<tr><td class="kw">ComfyUI</td><td>37</td><td>1</td><td><span class="flat">—</span></td></tr>
+<tr><td class="kw">LoRA</td><td>31</td><td>2</td><td><span class="up">▲ 100%</span></td></tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <div class="foot">页面由 build_trends.py 自动生成于 2026-07-24 10:02 · 提及计数为采样统计，仅反映相对趋势</div>
+</div>
+
+<script>
+const LABELS = ["2026-07-10", "2026-07-11", "2026-07-12", "2026-07-13", "2026-07-14", "2026-07-15", "2026-07-16", "2026-07-17", "2026-07-18", "2026-07-19", "2026-07-20", "2026-07-21", "2026-07-22", "2026-07-23"];
+const DATASETS = [{"label": "Midjourney", "data": [5, 9, 4, 18, 7, 9, 7, 12, 8, 4, 9, 2, 6, 8], "borderColor": "#58a6ff", "backgroundColor": "#58a6ff22", "borderWidth": 2.5, "tension": 0.35, "pointRadius": 2, "pointHoverRadius": 5, "fill": false}, {"label": "Flux", "data": [4, 3, 4, 3, 5, 11, 4, 8, 9, 8, 16, 5, 13, 13], "borderColor": "#f78166", "backgroundColor": "#f7816622", "borderWidth": 2.5, "tension": 0.35, "pointRadius": 2, "pointHoverRadius": 5, "fill": false}, {"label": "cinematic", "data": [10, 9, 2, 21, 6, 2, 6, 0, 1, 0, 3, 2, 16, 0], "borderColor": "#7ee787", "backgroundColor": "#7ee78722", "borderWidth": 2.5, "tension": 0.35, "pointRadius": 2, "pointHoverRadius": 5, "fill": false}, {"label": "GPT Image 2", "data": [2, 5, 2, 15, 0, 3, 3, 2, 0, 2, 2, 4, 2, 8], "borderColor": "#d2a8ff", "backgroundColor": "#d2a8ff22", "borderWidth": 2.5, "tension": 0.35, "pointRadius": 2, "pointHoverRadius": 5, "fill": false}, {"label": "anime", "data": [0, 5, 1, 3, 8, 5, 4, 3, 9, 1, 0, 5, 2, 2], "borderColor": "#e3b341", "backgroundColor": "#e3b34122", "borderWidth": 2.5, "tension": 0.35, "pointRadius": 2, "pointHoverRadius": 5, "fill": false}, {"label": "Nano Banana Pro", "data": [2, 7, 0, 9, 3, 2, 3, 1, 3, 2, 3, 3, 5, 1], "borderColor": "#ff7b72", "backgroundColor": "#ff7b7222", "borderWidth": 2.5, "tension": 0.35, "pointRadius": 2, "pointHoverRadius": 5, "fill": false}, {"label": "photorealistic", "data": [4, 4, 0, 17, 4, 1, 1, 0, 2, 1, 4, 4, 0, 1], "borderColor": "#79c0ff", "backgroundColor": "#79c0ff22", "borderWidth": 2.5, "tension": 0.35, "pointRadius": 2, "pointHoverRadius": 5, "fill": false}, {"label": "prompt engineering", "data": [2, 1, 1, 4, 2, 0, 4, 2, 4, 8, 1, 2, 5, 4], "borderColor": "#56d364", "backgroundColor": "#56d36422", "borderWidth": 2.5, "tension": 0.35, "pointRadius": 2, "pointHoverRadius": 5, "fill": false}, {"label": "ComfyUI", "data": [1, 6, 0, 0, 2, 4, 0, 2, 2, 3, 1, 15, 0, 1], "borderColor": "#ffa657", "backgroundColor": "#ffa65722", "borderWidth": 2.5, "tension": 0.35, "pointRadius": 2, "pointHoverRadius": 5, "fill": false}, {"label": "LoRA", "data": [2, 3, 0, 3, 0, 0, 1, 2, 0, 11, 3, 3, 1, 2], "borderColor": "#bc8cff", "backgroundColor": "#bc8cff22", "borderWidth": 2.5, "tension": 0.35, "pointRadius": 2, "pointHoverRadius": 5, "fill": false}];
+const ctx = document.getElementById('trendChart').getContext('2d');
+new Chart(ctx, {
+  type: 'line',
+  data: { labels: LABELS, datasets: DATASETS },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      legend: { labels: { color: '#e6edf3', usePointStyle: true, padding: 14, font: { size: 12 } } },
+      tooltip: { backgroundColor: '#161b22', borderColor: '#30363d', borderWidth: 1,
+        titleColor: '#e6edf3', bodyColor: '#8b949e' }
+    },
+    scales: {
+      x: { grid: { color: '#21262d' }, ticks: { color: '#8b949e' } },
+      y: { grid: { color: '#21262d' }, ticks: { color: '#8b949e' }, beginAtZero: true }
+    }
+  }
+});
+</script>
+</body>
+</html>
