@@ -57,6 +57,27 @@ td.kw { font-weight:600; color:var(--text) }
 .down { color:#3fb950; font-weight:600 }
 .flat { color:var(--text-dim) }
 .foot { text-align:center; color:var(--text-dim); font-size:.8em; padding:26px 0 40px }
+
+.related { width:1600px; max-width:100%; background:var(--bg-card);
+  border:1px solid var(--border); border-radius:12px; padding:22px 26px; margin-top:24px }
+.related h2 { font-size:1.05em; margin-bottom:16px; border-left:3px solid var(--accent);
+  padding-left:10px }
+.rel-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:16px }
+.rel-card { background:var(--bg); border:1px solid var(--border); border-radius:8px;
+  overflow:hidden; display:flex; flex-direction:column; transition:border-color .2s }
+.rel-card:hover { border-color:var(--accent) }
+.rel-thumb { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; background:#0d1117 }
+.rel-body { padding:10px 12px 14px }
+.rel-tag { display:inline-block; font-size:.72em; color:var(--accent);
+  background:rgba(88,166,255,.12); border:1px solid rgba(88,166,255,.3);
+  border-radius:20px; padding:1px 9px; margin-bottom:7px }
+.rel-title { font-size:.86em; font-weight:600; color:var(--text); margin-bottom:3px; line-height:1.35 }
+.rel-title a { color:var(--text) }
+.rel-meta { font-size:.76em; color:var(--text-dim); margin-bottom:7px }
+.rel-text { font-size:.78em; color:var(--text-dim); line-height:1.55;
+  display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden }
+@media(max-width:1200px){ .rel-grid { grid-template-columns:repeat(3,1fr) } }
+@media(max-width:700px){ .rel-grid { grid-template-columns:repeat(2,1fr) } }
 @media(max-width:900px){ .summary .cards { grid-template-columns:1fr } }
 </style>
 </head>
@@ -116,6 +137,57 @@ td.kw { font-weight:600; color:var(--text) }
 
       </tbody>
     </table>
+  </div>
+
+  <div class="related">
+    <h2>🔗 相关话题</h2>
+    <div class="rel-grid">
+            <div class="rel-card">
+        <a href="https://x.com/pictsbyai/status/2078390567185105209" target="_blank" rel="noopener"><img class="rel-thumb" src="https://img.trilightlabs.com/tweet-images/nano-banana/pictsbyai_pictsbyai_2.jpg" alt="Created With Gemini Nano Banana 2 On @Geminiapp" loading="lazy"></a>
+        <div class="rel-body">
+          <span class="rel-tag">Flux</span>
+          <div class="rel-title"><a href="https://x.com/pictsbyai/status/2078390567185105209" target="_blank" rel="noopener">Created With Gemini Nano Banana 2 On @Geminiapp</a></div>
+          <div class="rel-meta">@pictsbyai</div>
+          <div class="rel-text">Created with Gemini Nano Banana 2 on @GeminiApp Prompt 👇 A confident adult male in his thirties stan…</div>
+        </div>
+      </div>
+      <div class="rel-card">
+        <a href="https://x.com/TanLuAI/status/2073314905973981317" target="_blank" rel="noopener"><img class="rel-thumb" src="https://img.trilightlabs.com/tweet-images/nano-banana/TanLuAI_cinematic_character_scene_fusion_1.jpg" alt="Cinematic Character Scene Fusion" loading="lazy"></a>
+        <div class="rel-body">
+          <span class="rel-tag">Midjourney</span>
+          <div class="rel-title"><a href="https://x.com/TanLuAI/status/2073314905973981317" target="_blank" rel="noopener">Cinematic Character Scene Fusion</a></div>
+          <div class="rel-meta">@TanLuAI</div>
+          <div class="rel-text">将自己已经创建好的角色 融到Midjourney 生成的场景图片当中，解决MJ无法处理人物一致性的方法。 先用MJ生成一张服装颜色差不多的人物场景图，再用nano banana pro 进行替换人脸和…</div>
+        </div>
+      </div>
+      <div class="rel-card">
+        <a href="https://x.com/auqibhabib/status/2073451701089320968" target="_blank" rel="noopener"><img class="rel-thumb" src="https://img.trilightlabs.com/tweet-images/gpt-image2/auqibhabib_mysterious_portrait_floral.jpg" alt="Mysterious Portrait Floral" loading="lazy"></a>
+        <div class="rel-body">
+          <span class="rel-tag">cinematic</span>
+          <div class="rel-title"><a href="https://x.com/auqibhabib/status/2073451701089320968" target="_blank" rel="noopener">Mysterious Portrait Floral</a></div>
+          <div class="rel-meta">@auqibhabib</div>
+          <div class="rel-text">GPT Image 2.0 on ChatGPT. Prompt: Ultra-realistic portrait photography of a young woman with long wa…</div>
+        </div>
+      </div>
+      <div class="rel-card">
+        <a href="https://x.com/Fati_092/status/2076547421765857781" target="_blank" rel="noopener"><img class="rel-thumb" src="https://img.trilightlabs.com/tweet-images/nano-banana/Fati_092_cinematic_runway_giant.jpg" alt="Cinematic Runway Giant" loading="lazy"></a>
+        <div class="rel-body">
+          <span class="rel-tag">cinematic</span>
+          <div class="rel-title"><a href="https://x.com/Fati_092/status/2076547421765857781" target="_blank" rel="noopener">Cinematic Runway Giant</a></div>
+          <div class="rel-meta">@Fati_092</div>
+          <div class="rel-text">1. Open Gemini / Grok / GPT Image 2.0 2. Upload your photo 3. Copy the prompt 4. Generate the image👇…</div>
+        </div>
+      </div>
+      <div class="rel-card">
+        <a href="https://x.com/auqibhabib/status/2073340994817589307" target="_blank" rel="noopener"><img class="rel-thumb" src="https://img.trilightlabs.com/tweet-images/gpt-image2/auqibhabib_cozy_library_portrait.jpg" alt="Cozy Library Portrait" loading="lazy"></a>
+        <div class="rel-body">
+          <span class="rel-tag">cinematic</span>
+          <div class="rel-title"><a href="https://x.com/auqibhabib/status/2073340994817589307" target="_blank" rel="noopener">Cozy Library Portrait</a></div>
+          <div class="rel-meta">@auqibhabib</div>
+          <div class="rel-text">GPT Image 2.0 on ChatGPT Prompt: Ultra-realistic portrait photography of a beautiful young East Asia…</div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="foot">提及计数为采样统计，仅反映相对趋势</div>
