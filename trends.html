@@ -60,25 +60,32 @@ td.kw { font-weight:600; color:var(--text) }
 
 .related { width:1600px; max-width:100%; background:var(--bg-card);
   border:1px solid var(--border); border-radius:12px; padding:22px 26px; margin-top:24px }
-.related h2 { font-size:1.05em; margin-bottom:16px; border-left:3px solid var(--accent);
+.related h2 { font-size:1.05em; margin-bottom:8px; border-left:3px solid var(--accent);
   padding-left:10px }
-.rel-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:16px }
-.rel-card { background:var(--bg); border:1px solid var(--border); border-radius:8px;
-  overflow:hidden; display:flex; flex-direction:column; transition:border-color .2s }
-.rel-card:hover { border-color:var(--accent) }
-.rel-thumb { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; background:#0d1117 }
-.rel-body { padding:10px 12px 14px }
+.rel-list { display:flex; flex-direction:column }
+.rel-tweet { display:flex; gap:12px; padding:14px 6px; border-bottom:1px solid var(--border);
+  transition:background .15s; border-radius:6px }
+.rel-tweet:last-child { border-bottom:none }
+.rel-tweet:hover { background:rgba(255,255,255,.02) }
+.rel-avatar { width:46px; height:46px; border-radius:50%; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center; color:#fff;
+  font-weight:800; font-size:1.15em; margin-top:2px }
+.rel-main { flex:1; min-width:0 }
+.rel-head { display:flex; align-items:center; gap:6px; flex-wrap:wrap; font-size:.9em }
+.rel-name { font-weight:700; color:var(--text) }
+.rel-handle { color:var(--text-dim); font-size:.88em }
+.rel-dot { color:var(--text-dim) }
 .rel-tag { display:inline-block; font-size:.72em; color:var(--accent);
   background:rgba(88,166,255,.12); border:1px solid rgba(88,166,255,.3);
-  border-radius:20px; padding:1px 9px; margin-bottom:7px }
-.rel-title { font-size:.86em; font-weight:600; color:var(--text); margin-bottom:3px; line-height:1.35 }
-.rel-title a { color:var(--text) }
-.rel-meta { font-size:.76em; color:var(--text-dim); margin-bottom:7px }
-.rel-text { font-size:.78em; color:var(--text-dim); line-height:1.55;
-  display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden }
-@media(max-width:1200px){ .rel-grid { grid-template-columns:repeat(3,1fr) } }
-@media(max-width:700px){ .rel-grid { grid-template-columns:repeat(2,1fr) } }
+  border-radius:20px; padding:1px 9px; margin-left:2px }
+.rel-text { font-size:.9em; color:var(--text); line-height:1.6; margin:7px 0 9px }
+.rel-media { display:block; border-radius:14px; overflow:hidden;
+  border:1px solid var(--border); max-width:440px }
+.rel-media img { width:100%; max-height:260px; object-fit:cover; display:block;
+  background:#0d1117; transition:opacity .2s }
+.rel-media:hover img { opacity:.9 }
 @media(max-width:900px){ .summary .cards { grid-template-columns:1fr } }
+@media(max-width:560px){ .rel-media { max-width:100% } .rel-avatar { width:40px; height:40px; font-size:1em } }
 </style>
 </head>
 <body>
@@ -140,51 +147,136 @@ td.kw { font-weight:600; color:var(--text) }
   </div>
 
   <div class="related">
-    <h2>🔗 相关话题</h2>
-    <div class="rel-grid">
-            <div class="rel-card">
-        <a href="https://x.com/pictsbyai/status/2078390567185105209" target="_blank" rel="noopener"><img class="rel-thumb" src="https://img.trilightlabs.com/tweet-images/nano-banana/pictsbyai_pictsbyai_2.jpg" alt="Created With Gemini Nano Banana 2 On @Geminiapp" loading="lazy"></a>
-        <div class="rel-body">
-          <span class="rel-tag">Flux</span>
-          <div class="rel-title"><a href="https://x.com/pictsbyai/status/2078390567185105209" target="_blank" rel="noopener">Created With Gemini Nano Banana 2 On @Geminiapp</a></div>
-          <div class="rel-meta">@pictsbyai</div>
-          <div class="rel-text">Created with Gemini Nano Banana 2 on @GeminiApp Prompt 👇 A confident adult male in his thirties stan…</div>
+    <h2>🔗 相关话题 · 10 条精选推文</h2>
+    <div class="rel-list">
+            <div class="rel-tweet">
+        <div class="rel-avatar" style="background:#1d9bf0">P</div>
+        <div class="rel-main">
+          <div class="rel-head">
+            <span class="rel-name">Created With Gemini Nano Banana 2 On @Geminiapp</span>
+            <span class="rel-handle">@pictsbyai</span>
+            <span class="rel-dot">·</span>
+            <span class="rel-tag">Flux</span>
+          </div>
+          <div class="rel-text">Created with Gemini Nano Banana 2 on @GeminiApp Prompt 👇 A confident adult male in his thirties stands in a medium waist-up framing, facing the camera…</div>
+          <a class="rel-media" href="https://x.com/pictsbyai/status/2078390567185105209" target="_blank" rel="noopener"><img src="https://img.trilightlabs.com/tweet-images/nano-banana/pictsbyai_pictsbyai_2.jpg" alt="Created With Gemini Nano Banana 2 On @Geminiapp" loading="lazy"></a>
         </div>
       </div>
-      <div class="rel-card">
-        <a href="https://x.com/TanLuAI/status/2073314905973981317" target="_blank" rel="noopener"><img class="rel-thumb" src="https://img.trilightlabs.com/tweet-images/nano-banana/TanLuAI_cinematic_character_scene_fusion_1.jpg" alt="Cinematic Character Scene Fusion" loading="lazy"></a>
-        <div class="rel-body">
-          <span class="rel-tag">Midjourney</span>
-          <div class="rel-title"><a href="https://x.com/TanLuAI/status/2073314905973981317" target="_blank" rel="noopener">Cinematic Character Scene Fusion</a></div>
-          <div class="rel-meta">@TanLuAI</div>
-          <div class="rel-text">将自己已经创建好的角色 融到Midjourney 生成的场景图片当中，解决MJ无法处理人物一致性的方法。 先用MJ生成一张服装颜色差不多的人物场景图，再用nano banana pro 进行替换人脸和…</div>
+      <div class="rel-tweet">
+        <div class="rel-avatar" style="background:#ffd400">T</div>
+        <div class="rel-main">
+          <div class="rel-head">
+            <span class="rel-name">Cinematic Character Scene Fusion</span>
+            <span class="rel-handle">@TanLuAI</span>
+            <span class="rel-dot">·</span>
+            <span class="rel-tag">Midjourney</span>
+          </div>
+          <div class="rel-text">将自己已经创建好的角色 融到Midjourney 生成的场景图片当中，解决MJ无法处理人物一致性的方法。 先用MJ生成一张服装颜色差不多的人物场景图，再用nano banana pro 进行替换人脸和融图。 融图提示词： 实现无缝的电影级融合。将图片1的女子完美地融入图片2。必须完全保留角色图1的面…</div>
+          <a class="rel-media" href="https://x.com/TanLuAI/status/2073314905973981317" target="_blank" rel="noopener"><img src="https://img.trilightlabs.com/tweet-images/nano-banana/TanLuAI_cinematic_character_scene_fusion_1.jpg" alt="Cinematic Character Scene Fusion" loading="lazy"></a>
         </div>
       </div>
-      <div class="rel-card">
-        <a href="https://x.com/auqibhabib/status/2073451701089320968" target="_blank" rel="noopener"><img class="rel-thumb" src="https://img.trilightlabs.com/tweet-images/gpt-image2/auqibhabib_mysterious_portrait_floral.jpg" alt="Mysterious Portrait Floral" loading="lazy"></a>
-        <div class="rel-body">
-          <span class="rel-tag">cinematic</span>
-          <div class="rel-title"><a href="https://x.com/auqibhabib/status/2073451701089320968" target="_blank" rel="noopener">Mysterious Portrait Floral</a></div>
-          <div class="rel-meta">@auqibhabib</div>
-          <div class="rel-text">GPT Image 2.0 on ChatGPT. Prompt: Ultra-realistic portrait photography of a young woman with long wa…</div>
+      <div class="rel-tweet">
+        <div class="rel-avatar" style="background:#00ba7c">A</div>
+        <div class="rel-main">
+          <div class="rel-head">
+            <span class="rel-name">Mysterious Portrait Floral</span>
+            <span class="rel-handle">@auqibhabib</span>
+            <span class="rel-dot">·</span>
+            <span class="rel-tag">cinematic</span>
+          </div>
+          <div class="rel-text">GPT Image 2.0 on ChatGPT. Prompt: Ultra-realistic portrait photography of a young woman with long wavy dark brown hair, wearing an oversized vintage b…</div>
+          <a class="rel-media" href="https://x.com/auqibhabib/status/2073451701089320968" target="_blank" rel="noopener"><img src="https://img.trilightlabs.com/tweet-images/gpt-image2/auqibhabib_mysterious_portrait_floral.jpg" alt="Mysterious Portrait Floral" loading="lazy"></a>
         </div>
       </div>
-      <div class="rel-card">
-        <a href="https://x.com/Fati_092/status/2076547421765857781" target="_blank" rel="noopener"><img class="rel-thumb" src="https://img.trilightlabs.com/tweet-images/nano-banana/Fati_092_cinematic_runway_giant.jpg" alt="Cinematic Runway Giant" loading="lazy"></a>
-        <div class="rel-body">
-          <span class="rel-tag">cinematic</span>
-          <div class="rel-title"><a href="https://x.com/Fati_092/status/2076547421765857781" target="_blank" rel="noopener">Cinematic Runway Giant</a></div>
-          <div class="rel-meta">@Fati_092</div>
-          <div class="rel-text">1. Open Gemini / Grok / GPT Image 2.0 2. Upload your photo 3. Copy the prompt 4. Generate the image👇…</div>
+      <div class="rel-tweet">
+        <div class="rel-avatar" style="background:#e0245e">F</div>
+        <div class="rel-main">
+          <div class="rel-head">
+            <span class="rel-name">Cinematic Runway Giant</span>
+            <span class="rel-handle">@Fati_092</span>
+            <span class="rel-dot">·</span>
+            <span class="rel-tag">cinematic</span>
+          </div>
+          <div class="rel-text">1. Open Gemini / Grok / GPT Image 2.0 2. Upload your photo 3. Copy the prompt 4. Generate the image👇 Ultra-realistic IMAX-level Netflix-style cinemati…</div>
+          <a class="rel-media" href="https://x.com/Fati_092/status/2076547421765857781" target="_blank" rel="noopener"><img src="https://img.trilightlabs.com/tweet-images/nano-banana/Fati_092_cinematic_runway_giant.jpg" alt="Cinematic Runway Giant" loading="lazy"></a>
         </div>
       </div>
-      <div class="rel-card">
-        <a href="https://x.com/auqibhabib/status/2073340994817589307" target="_blank" rel="noopener"><img class="rel-thumb" src="https://img.trilightlabs.com/tweet-images/gpt-image2/auqibhabib_cozy_library_portrait.jpg" alt="Cozy Library Portrait" loading="lazy"></a>
-        <div class="rel-body">
-          <span class="rel-tag">cinematic</span>
-          <div class="rel-title"><a href="https://x.com/auqibhabib/status/2073340994817589307" target="_blank" rel="noopener">Cozy Library Portrait</a></div>
-          <div class="rel-meta">@auqibhabib</div>
-          <div class="rel-text">GPT Image 2.0 on ChatGPT Prompt: Ultra-realistic portrait photography of a beautiful young East Asia…</div>
+      <div class="rel-tweet">
+        <div class="rel-avatar" style="background:#00ba7c">A</div>
+        <div class="rel-main">
+          <div class="rel-head">
+            <span class="rel-name">Cozy Library Portrait</span>
+            <span class="rel-handle">@auqibhabib</span>
+            <span class="rel-dot">·</span>
+            <span class="rel-tag">cinematic</span>
+          </div>
+          <div class="rel-text">GPT Image 2.0 on ChatGPT Prompt: Ultra-realistic portrait photography of a beautiful young East Asian woman sitting indoors in a cozy library, wearing…</div>
+          <a class="rel-media" href="https://x.com/auqibhabib/status/2073340994817589307" target="_blank" rel="noopener"><img src="https://img.trilightlabs.com/tweet-images/gpt-image2/auqibhabib_cozy_library_portrait.jpg" alt="Cozy Library Portrait" loading="lazy"></a>
+        </div>
+      </div>
+      <div class="rel-tweet">
+        <div class="rel-avatar" style="background:#ff7a00">M</div>
+        <div class="rel-main">
+          <div class="rel-head">
+            <span class="rel-name">Golden Hour City Portrait</span>
+            <span class="rel-handle">@Maercihh</span>
+            <span class="rel-dot">·</span>
+            <span class="rel-tag">cinematic</span>
+          </div>
+          <div class="rel-text">GPT image 2.0 on ChatGPT. Prompt: { "reference_image": "uploaded_image", "prompt": "Recreate the uploaded image while preserving the subject's identit…</div>
+          <a class="rel-media" href="https://x.com/Maercihh/status/2073416492134383831" target="_blank" rel="noopener"><img src="https://img.trilightlabs.com/tweet-images/gpt-image2/Maercihh_golden_hour_city_portrait.jpg" alt="Golden Hour City Portrait" loading="lazy"></a>
+        </div>
+      </div>
+      <div class="rel-tweet">
+        <div class="rel-avatar" style="background:#00ba7c">S</div>
+        <div class="rel-main">
+          <div class="rel-head">
+            <span class="rel-name">Chat Gpt Image 2 Works Very Well 🔥Prompt： A Stunning 18</span>
+            <span class="rel-handle">@Shinning1010</span>
+            <span class="rel-dot">·</span>
+            <span class="rel-tag">cinematic</span>
+          </div>
+          <div class="rel-text">Chat GPT Image 2 works very well 🔥Prompt： A stunning 18-year-old Chinese girl with a youthful, pure face and realistic skin texture, sitting on a cozy…</div>
+          <a class="rel-media" href="https://x.com/Shinning1010/status/2045002808903020962" target="_blank" rel="noopener"><img src="https://img.trilightlabs.com/tweet-images/gpt-image2/Shinning1010_2045002808903020962_1.jpg" alt="Chat Gpt Image 2 Works Very Well 🔥Prompt： A Stunning 18" loading="lazy"></a>
+        </div>
+      </div>
+      <div class="rel-tweet">
+        <div class="rel-avatar" style="background:#00ba7c">M</div>
+        <div class="rel-main">
+          <div class="rel-head">
+            <span class="rel-name">Gpt Image 2 On Chatgpt</span>
+            <span class="rel-handle">@mehvishs25</span>
+            <span class="rel-dot">·</span>
+            <span class="rel-tag">cinematic</span>
+          </div>
+          <div class="rel-text">GPT Image 2 on ChatGPT Prompt: Create an ultra-photorealistic image using the attached reference image as the identity reference. Ensure the subject c…</div>
+          <a class="rel-media" href="https://x.com/mehvishs25/status/2079452011947610398" target="_blank" rel="noopener"><img src="https://img.trilightlabs.com/tweet-images/gpt-image2/mehvishs25_GPT_Image_2_on_ChatGPT_Prompt_Create_an_ultra-photorealis_1.jpg" alt="Gpt Image 2 On Chatgpt" loading="lazy"></a>
+        </div>
+      </div>
+      <div class="rel-tweet">
+        <div class="rel-avatar" style="background:#ffd400">C</div>
+        <div class="rel-main">
+          <div class="rel-head">
+            <span class="rel-name">Modern Shopping Mall Portrait</span>
+            <span class="rel-handle">@CyberTotal2026</span>
+            <span class="rel-dot">·</span>
+            <span class="rel-tag">cinematic</span>
+          </div>
+          <div class="rel-text">Modern Shopping Mall Portrait</div>
+          <a class="rel-media" href="https://x.com/CyberTotal2026/status/2074330563893477646" target="_blank" rel="noopener"><img src="https://img.trilightlabs.com/tweet-images/gpt-image2/CyberTotal2026_Modern_Shopping_Mall_Portrait.jpg" alt="Modern Shopping Mall Portrait" loading="lazy"></a>
+        </div>
+      </div>
+      <div class="rel-tweet">
+        <div class="rel-avatar" style="background:#17bf63">J</div>
+        <div class="rel-main">
+          <div class="rel-head">
+            <span class="rel-name">Authentic Smartphone Selfie</span>
+            <span class="rel-handle">@j_smeaton99</span>
+            <span class="rel-dot">·</span>
+            <span class="rel-tag">cinematic</span>
+          </div>
+          <div class="rel-text">GPT Image 2 on ChatGPT and Nano Banana Pro on Gemini Prompt: Ultra-realistic smartphone selfie portrait, genuinely photographed on a modern mobile pho…</div>
+          <a class="rel-media" href="https://x.com/j_smeaton99/status/2077261705462112304" target="_blank" rel="noopener"><img src="https://img.trilightlabs.com/tweet-images/gpt-image2/j_smeaton99_authentic_smartphone_selfie.jpg" alt="Authentic Smartphone Selfie" loading="lazy"></a>
         </div>
       </div>
     </div>
