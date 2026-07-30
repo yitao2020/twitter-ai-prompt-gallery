@@ -16,6 +16,7 @@
   --accent3: #d2a8ff;
   --nbp-color: #f78166;
   --gpt2-color: #7ee787;
+  --mj-color: #bc8cff;
 }
 * { margin:0; padding:0; box-sizing:border-box }
 body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.5 }
@@ -81,6 +82,8 @@ a:hover { text-decoration:underline }
 .btn.nbp.active { background:var(--nbp-color); color:#fff }
 .btn.gpt2 { border-color:var(--gpt2-color); color:var(--gpt2-color) }
 .btn.gpt2.active { background:var(--gpt2-color); color:#0d1117 }
+.btn.mj { border-color:var(--mj-color); color:var(--mj-color) }
+.btn.mj.active { background:var(--mj-color); color:#0d1117 }
 
 /* Count badge */
 .count-badge { font-size:.78em; color:var(--text-dim); margin-left:4px }
@@ -296,13 +299,14 @@ a:hover { text-decoration:underline }
   </nav>
   <div class="header-inner" id="headerTools">
     <div>
-      <div class="stats">Nano Banana Pro + GPT Image 2 · 共 <span id="totalCount">1589</span> 条目 · 最近更新: 2026-07-30 · 最新在前</div>
+      <div class="stats">Nano Banana Pro · GPT Image 2 · Midjourney · 共 <span id="totalCount">1589</span> 条目 · 最近更新: 2026-07-30 · 最新在前</div>
     </div>
     <div class="toolbar">
       <input type="text" id="searchInput" placeholder="搜索标题/作者/提示词..." oninput="filter()">
       <button class="btn active" onclick="setFilter('all',this)" id="btnAll">全部<span class="count-badge">1589</span></button>
       <button class="btn nbp" onclick="setFilter('nano-banana',this)" id="btnNBP">Nano Banana Pro<span class="count-badge">470</span></button>
       <button class="btn gpt2" onclick="setFilter('gpt-image2',this)" id="btnGPT2">GPT Image 2<span class="count-badge">1227</span></button>
+      <button class="btn mj" onclick="setFilter('midjourney',this)" id="btnMJ">Midjourney<span class="count-badge">0</span></button>
     </div>
   </div>
 </div>
