@@ -150,14 +150,15 @@ a:hover { text-decoration:underline }
 }
 .card .img-wrap .card-copy {
   position:absolute; top:6px; left:6px; z-index:3;
-  display:flex; align-items:center; justify-content:center;
-  width:30px; height:30px; padding:0;
+  display:flex; align-items:center; justify-content:center; gap:4px;
+  height:26px; padding:0 8px;
   background:var(--accent); color:#fff; border:none; border-radius:6px;
-  font-size:.85em; font-weight:600; cursor:pointer;
-  font-family:inherit; transition:all .2s; box-shadow:0 1px 4px rgba(0,0,0,.35)
+  font-size:.72em; font-weight:600; cursor:pointer;
+  font-family:inherit; transition:all .2s; white-space:nowrap;
+  box-shadow:0 1px 4px rgba(0,0,0,.35)
 }
 .card .img-wrap .card-copy:hover { background:#4493f8 }
-.card .img-wrap .card-copy:active { transform:scale(.94) }
+.card .img-wrap .card-copy:active { transform:scale(.96) }
 .card .img-wrap .card-copy.copied { background:var(--accent2) }
 .card .meta { padding:8px 10px; flex:1; display:flex; flex-direction:column; gap:2px }
 .card .meta .card-title {
@@ -508,7 +509,7 @@ function render() {
     return `
       <div class="card" onclick="openLB(${globalIdx})" data-idx="${globalIdx}">
         <div class="img-wrap">
-          <button class="card-copy" onclick="event.stopPropagation();copyCard(${globalIdx}, this)" title="复制提示词">📋</button>
+          <button class="card-copy" onclick="event.stopPropagation();copyCard(${globalIdx}, this)" title="复制提示词">📋 复制</button>
           ${thumbHTML}
           ${imgCount}
         </div>
@@ -558,7 +559,7 @@ function copyCard(globalIdx, btn) {
   if (!text) return;
   const done = () => {
     const old = btn.innerHTML;
-    btn.innerHTML = '✓';
+    btn.innerHTML = '✓ 已复制';
     btn.classList.add('copied');
     setTimeout(() => { btn.innerHTML = old; btn.classList.remove('copied'); }, 1500);
   };
