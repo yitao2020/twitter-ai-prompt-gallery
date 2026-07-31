@@ -160,6 +160,16 @@ a:hover { text-decoration:underline }
 .card .img-wrap .card-copy:hover { background:#1c2230; border-color:#58a6ff }
 .card .img-wrap .card-copy:active { transform:scale(.96) }
 .card .img-wrap .card-copy.copied { border-color:#3fb950; color:#3fb950 }
+.card .meta .card-copy-btn {
+  display:flex; align-items:center; justify-content:center; gap:6px;
+  width:100%; max-width:500px; height:48px; margin:10px auto 0;
+  background:#161b22; color:#fff; border:1px solid #30363d; border-radius:6px;
+  font-size:.9em; font-weight:600; cursor:pointer;
+  font-family:inherit; transition:all .2s; white-space:nowrap
+}
+.card .meta .card-copy-btn:hover { background:#1c2230; border-color:#58a6ff }
+.card .meta .card-copy-btn:active { transform:scale(.98) }
+.card .meta .card-copy-btn.copied { border-color:#3fb950; color:#3fb950 }
 .card .meta { padding:8px 10px; flex:1; display:flex; flex-direction:column; gap:2px }
 .card .meta .card-title {
   font-size:.82em; font-weight:600; color:var(--text);
@@ -520,6 +530,7 @@ function render() {
           <div class="card-num">#${e.num}</div>
           ${promptPreview ? `<div class="prompt-preview">${promptPreview}</div>` : ''}
           ${statsHTML}
+          <button class="card-copy-btn" onclick="event.stopPropagation();copyCard(${globalIdx}, this)">📋 复制提示词</button>
         </div>
       </div>`;
   }).join('');
