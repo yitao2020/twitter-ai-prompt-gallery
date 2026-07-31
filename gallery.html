@@ -530,7 +530,7 @@ function render() {
           <div class="card-num">#${e.num}</div>
           ${promptPreview ? `<div class="prompt-preview">${promptPreview}</div>` : ''}
           ${statsHTML}
-          <button class="card-copy-btn" onclick="event.stopPropagation();copyCard(${globalIdx}, this)">📋 复制提示词</button>
+          <button class="card-copy-btn" onclick="event.stopPropagation();copyCard(${globalIdx}, this)">复制提示词</button>
         </div>
       </div>`;
   }).join('');
@@ -631,7 +631,7 @@ function showLBItem() {
   const promptHTML = displayPrompt 
     ? `<div class="lb-prompt" id="lbPromptText">${displayPrompt.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>
        <div class="lb-prompt-foot">
-         <button class="copy-prompt-btn" onclick="copyLB(this)">📋 复制提示词</button>
+         <button class="copy-prompt-btn" onclick="copyLB(this)">复制提示词</button>
          ${hasOriginal ? '<button class="copy-prompt-btn" onclick="toggleLBOriginal()" id="lbToggleOrig" style="margin-left:8px">🌐 查看原文</button>' : ''}
        </div>`
     : '<div class="lb-prompt" style="color:var(--text-dim);font-style:italic">（提示词未收录）</div>';
