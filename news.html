@@ -42,7 +42,7 @@ a:hover { text-decoration:underline }
 .section-desc { font-size:.85em; color:var(--text-dim); margin:6px 0 16px 15px }
 
 /* Grid */
-.news-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(340px,1fr)); gap:14px }
+.news-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(360px,1fr)); gap:14px }
 @media(max-width:760px){ .news-grid { grid-template-columns:1fr } }
 
 /* Card */
@@ -56,15 +56,27 @@ a:hover { text-decoration:underline }
 .nc-author { flex:1; min-width:0 }
 .nc-name { font-weight:700; font-size:.9em; display:block }
 .nc-handle { font-size:.78em; color:var(--text-dim) }
-.nc-meta { font-size:.76em; color:var(--text-dim); white-space:nowrap;
-  display:flex; align-items:center; gap:6px }
-.nc-meta .stat { display:inline-flex; align-items:center; gap:2px }
-.img-badge { color:#e3b341; font-size:.85em }
-.nc-text { font-size:.88em; color:var(--text-dim); line-height:1.6;
-  display:-webkit-box; -webkit-line-clamp:5; -webkit-box-orient:vertical; overflow:hidden;
-  margin-bottom:8px }
-.nc-text a { color:var(--text-dim) }
-.nc-text a:hover { color:var(--text) }
+.nc-meta { font-size:.76em; color:var(--text-dim); white-space:nowrap }
+.nc-text { font-size:.9em; color:var(--text); line-height:1.65;
+  display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden;
+  margin-bottom:10px }
+.nc-text a { color:var(--text) }
+.nc-text a:hover { color:var(--accent) }
+
+/* Images */
+.nc-images { display:grid; gap:4px; margin-bottom:10px; border-radius:6px; overflow:hidden;
+  position:relative }
+.nc-images.cols-1 { grid-template-columns:1fr }
+.nc-images.cols-2 { grid-template-columns:1fr 1fr }
+.nc-images.cols-3 { grid-template-columns:1fr 1fr 1fr }
+.nc-images.cols-4 { grid-template-columns:1fr 1fr 1fr 1fr }
+.nc-images img { width:100%; aspect-ratio:16/11; object-fit:cover; cursor:pointer;
+  border:1px solid var(--border); border-radius:4px; transition:border-color .2s }
+.nc-images img:hover { border-color:var(--accent) }
+.img-more { position:absolute; bottom:6px; right:6px;
+  background:rgba(0,0,0,.7); color:#fff; font-size:.75em;
+  border-radius:4px; padding:2px 8px; pointer-events:none }
+
 .nc-time { font-size:.76em; color:var(--text-dim); text-align:right }
 
 .news-empty { grid-column:1/-1; text-align:center; color:var(--text-dim);
@@ -83,7 +95,6 @@ a:hover { text-decoration:underline }
       <a href="gallery.html">画廊</a>
       <a href="trends.html">📈 趋势</a>
       <a href="news.html" class="active">📰 资讯</a>
-      <a href="gallery.html#about" onclick="location.href='gallery.html';">说明</a>
     </div>
   </nav>
 </div>
@@ -91,9 +102,9 @@ a:hover { text-decoration:underline }
 <div class="wrap">
   <div class="page-head">
     <h1>📰 AI 图像生成 · 本周资讯</h1>
-    <div class="meta">数据区间 2026-07-27 ~ 2026-08-03 · 每周自动更新 · 更新于 2026-08-03 08:43 UTC</div>
+    <div class="meta">数据区间 2026-07-27 ~ 2026-08-03 · 每周自动更新 · 更新于 2026-08-03 08:53 UTC</div>
     <div class="desc">四个维度追踪 AI 图像生成生态动态：官方工具发布的<b>最新动向</b>、版权与监管的<b>争议讨论</b>、
-    ComfyUI 社区的<b>工作流分享</b>、以及 AI 在<b>游戏美术管线</b>中的实战应用。</div>
+    ComfyUI 社区的<b>工作流分享</b>、以及 AI 在<b>游戏美术管线</b>中的实战应用。所有文本已翻译为中文。</div>
   </div>
 
   
@@ -107,72 +118,77 @@ a:hover { text-decoration:underline }
       
     <div class="news-card">
       <div class="nc-head">
-        <div class="nc-avatar" style="background:#79c0ff">C</div>
+        <div class="nc-avatar" style="background:#58a6ff">C</div>
         <div class="nc-author">
           <span class="nc-name">ComfyUI</span>
           <span class="nc-handle">@</span>
         </div>
-        <div class="nc-meta"><span class="img-badge">📷 附图</span></div>
+        <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2083071877891682784" target="_blank" rel="noopener">MiniMax H3 is now available in ComfyUI via Partner Nodes. → Multimodal I/O: T2V, First/Last Frame, Omni Reference → Native stereo audio on every clip →Up to 2K, 5-15s at 24 FPS → Edit characters, scenes, dialogue, and voice in place API access is live today. Native open-weight support is coming soon…</a>
+        <a href="https://x.com/i/status/2083071877891682784" target="_blank" rel="noopener">MiniMax H3 现已通过合作伙伴节点在 ComfyUI 中提供。 → 多模态 I/O：T2V、第一帧/最后一帧、Omni 参考 → 每个剪辑上都有原生立体声音频 → 高达 2K，24 FPS 时长 5-15 秒 → 就地编辑角色、场景、对话和语音 API 访问现已上线。原生开放重量苏…</a>
       </div>
+      
       <div class="nc-time"></div>
     </div>
     <div class="news-card">
       <div class="nc-head">
-        <div class="nc-avatar" style="background:#e3b341">K</div>
+        <div class="nc-avatar" style="background:#79c0ff">K</div>
         <div class="nc-author">
           <span class="nc-name">Krea</span>
           <span class="nc-handle">@</span>
         </div>
-        <div class="nc-meta"><span class="img-badge">📷 附图</span></div>
+        <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2083014535481598410" target="_blank" rel="noopener">introducing MiniMax H3. this new model matches seedance’s features at a fraction of the cost, and it will soon be open-weights! learn more👇</a>
+        <a href="https://x.com/i/status/2083014535481598410" target="_blank" rel="noopener">推出 MiniMax H3。这个新模型以一小部分成本与seedance的功能相匹配，并且很快就会成为开放重量！了解更多👇</a>
       </div>
+      
       <div class="nc-time"></div>
     </div>
     <div class="news-card">
       <div class="nc-head">
-        <div class="nc-avatar" style="background:#79c0ff">R</div>
+        <div class="nc-avatar" style="background:#58a6ff">R</div>
         <div class="nc-author">
           <span class="nc-name">Runway</span>
           <span class="nc-handle">@</span>
         </div>
-        <div class="nc-meta"><span class="img-badge">📷 附图</span></div>
+        <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2083010367073272150" target="_blank" rel="noopener">MiniMax H3 is now available on Runway. Access it alongside every other frontier model on one platform. Start creating today.</a>
+        <a href="https://x.com/i/status/2083010367073272150" target="_blank" rel="noopener">MiniMax H3 现已在 Runway 上发售。在一个平台上与所有其他前沿模型一起访问它。从今天开始创作。</a>
       </div>
+      
       <div class="nc-time"></div>
     </div>
     <div class="news-card">
       <div class="nc-head">
-        <div class="nc-avatar" style="background:#d2a8ff">I</div>
+        <div class="nc-avatar" style="background:#58a6ff">I</div>
         <div class="nc-author">
           <span class="nc-name">Ideogram</span>
           <span class="nc-handle">@</span>
         </div>
-        <div class="nc-meta"><span class="img-badge">📷 附图</span></div>
+        <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2082839902207779024" target="_blank" rel="noopener">Today, we're introducing P-Image-Ideogram: a family of Pareto-optimal image models with the best quality-speed-cost trade-off, co-developed with @PrunaAI. Four quality modes. Native 1K and 2K generation. From $0.003 per image. Live now on the API and all our partner platforms. Give it a try:</a>
+        <a href="https://x.com/i/status/2082839902207779024" target="_blank" rel="noopener">今天，我们将介绍 P-Image-Ideogram：与 @PrunaAI 共同开发的一系列帕累托最优图像模型，具有最佳质量-速度-成本权衡。四种质量模式。原生 1K 和 2K 一代。每张图片 0.003 美元起。 Live now on the API and all our partner platforms.吉…</a>
       </div>
+      
       <div class="nc-time"></div>
     </div>
     <div class="news-card">
       <div class="nc-head">
-        <div class="nc-avatar" style="background:#d2a8ff">I</div>
+        <div class="nc-avatar" style="background:#58a6ff">I</div>
         <div class="nc-author">
           <span class="nc-name">Ideogram</span>
           <span class="nc-handle">@</span>
         </div>
-        <div class="nc-meta"><span class="img-badge">📷 附图</span></div>
+        <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2082518323351429550" target="_blank" rel="noopener">Introducing Ideogram Object Remover: state-of-the-art object removal. Select any object, text, or distraction and erase every trace of it: shadows, reflections, even subtle lighting shifts. Nothing invented, nothing else touched. Try it now at</a>
+        <a href="https://x.com/i/status/2082518323351429550" target="_blank" rel="noopener">Ideogram Object Remover 简介：最先进的对象删除功能。选择任何对象、文本或干扰物并擦除其所有痕迹：阴影、反射，甚至微妙的灯光变化。没有任何发明，也没有任何其他触及。立即尝试</a>
       </div>
+      
       <div class="nc-time"></div>
     </div>
       
@@ -181,14 +197,29 @@ a:hover { text-decoration:underline }
   <section class="news-section">
     <div class="section-head" style="border-left-color:#f78166">
       <h2>💬 争议讨论</h2>
-      <span class="section-count">本周采集 50 条</span>
+      <span class="section-count">本周采集 12 条</span>
     </div>
     <p class="section-desc">AI 图像领域的版权、伦理、监管争议——筛选有立场的讨论，过滤纯新闻转发。</p>
     <div class="news-grid">
       
     <div class="news-card">
       <div class="nc-head">
-        <div class="nc-avatar" style="background:#ffa657">H</div>
+        <div class="nc-avatar" style="background:#d2a8ff">S</div>
+        <div class="nc-author">
+          <span class="nc-name">Simon Davis</span>
+          <span class="nc-handle">@</span>
+        </div>
+        <div class="nc-meta"></div>
+      </div>
+      <div class="nc-text">
+        <a href="https://x.com/i/status/2084200749379063837" target="_blank" rel="noopener">1500 万欧元是让每个人都更加关心出处的有用方法。欧盟人工智能法案第 50 条自即日起适用。许多业内人士对这种摩擦感到恼火。我们不是。那么这意味着什么呢？简单来说，人工智能内容需要被标记为人工智能内容。如果一个系统...</a>
+      </div>
+      
+      <div class="nc-time"></div>
+    </div>
+    <div class="news-card">
+      <div class="nc-head">
+        <div class="nc-avatar" style="background:#58a6ff">H</div>
         <div class="nc-author">
           <span class="nc-name">Hive</span>
           <span class="nc-handle">@</span>
@@ -196,27 +227,74 @@ a:hover { text-decoration:underline }
         <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2084198311536509250" target="_blank" rel="noopener">@firstmiracle_ Hive analyzed this post using Hive's AI / Deepfake detection models. "@hive_ai is this AI generated" to check any content! AI Generated Image: 2% Deepfake: 0%</a>
+        <a href="https://x.com/i/status/2084200619888550059" target="_blank" rel="noopener">@sxwqy @turningpointjpn Hive 使用 Hive 的 AI/Deepfake 检测模型分析了这篇文章。 “@hive_ai 是这个 AI 生成的”来检查任何内容！ AI 生成视频：0% AI 生成语音：0% AI 生成音乐：0% Deepfake：4%</a>
       </div>
+      <div class="nc-images cols-1"><img src="https://pbs.twimg.com/media/HOyRa25bcAAix_Y.jpg" loading="lazy" onclick="event.stopPropagation()" title="点击查看大图"></div>
       <div class="nc-time"></div>
     </div>
     <div class="news-card">
       <div class="nc-head">
-        <div class="nc-avatar" style="background:#f78166">T</div>
+        <div class="nc-avatar" style="background:#58a6ff">H</div>
+        <div class="nc-author">
+          <span class="nc-name">Hive</span>
+          <span class="nc-handle">@</span>
+        </div>
+        <div class="nc-meta"></div>
+      </div>
+      <div class="nc-text">
+        <a href="https://x.com/i/status/2084199909943804291" target="_blank" rel="noopener">@AlertaNews24 Hive 使用 Hive 的 AI/Deepfake 检测模型分析了这篇文章。 “@hive_ai 是这个 AI 生成的”来检查任何内容！ AI 生成图像：99% Deepfake：37%</a>
+      </div>
+      
+      <div class="nc-time"></div>
+    </div>
+    <div class="news-card">
+      <div class="nc-head">
+        <div class="nc-avatar" style="background:#ff7b72">Z</div>
+        <div class="nc-author">
+          <span class="nc-name">Zenith News</span>
+          <span class="nc-handle">@</span>
+        </div>
+        <div class="nc-meta"></div>
+      </div>
+      <div class="nc-text">
+        <a href="https://x.com/i/status/2084198743868318182" target="_blank" rel="noopener">🚨 网上疯传的 Ozon 仓库屋顶上写着“这不是野莓。飞过去”的照片是假的。这张图片在社交媒体、Telegram 频道、外国媒体甚至乌克兰官方账户上广泛传播，获得了数百万次观看。事实核查结果： • Digital SynthID 瓦……</a>
+      </div>
+      <div class="nc-images cols-1"><img src="https://pbs.twimg.com/media/HOyPtXlWMAASGYZ.jpg" loading="lazy" onclick="event.stopPropagation()" title="点击查看大图"></div>
+      <div class="nc-time"></div>
+    </div>
+    <div class="news-card">
+      <div class="nc-head">
+        <div class="nc-avatar" style="background:#58a6ff">H</div>
+        <div class="nc-author">
+          <span class="nc-name">Hive</span>
+          <span class="nc-handle">@</span>
+        </div>
+        <div class="nc-meta"></div>
+      </div>
+      <div class="nc-text">
+        <a href="https://x.com/i/status/2084198311536509250" target="_blank" rel="noopener">@firstmiracle_ Hive 使用 Hive 的 AI/Deepfake 检测模型分析了这篇文章。 “@hive_ai 是这个 AI 生成的”来检查任何内容！ AI 生成图像：2% Deepfake：0%</a>
+      </div>
+      
+      <div class="nc-time"></div>
+    </div>
+    <div class="news-card">
+      <div class="nc-head">
+        <div class="nc-avatar" style="background:#ffa657">T</div>
         <div class="nc-author">
           <span class="nc-name">The Son of Islam</span>
           <span class="nc-handle">@</span>
         </div>
-        <div class="nc-meta"><span class="img-badge">📷 附图</span></div>
+        <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2084197735415357923" target="_blank" rel="noopener">RT @ConspiracyBull1: Can we just ban AI generated videos already?</a>
+        <a href="https://x.com/i/status/2084197735415357923" target="_blank" rel="noopener">RT @ConspiracyBull1：我们可以禁止人工智能生成的视频了吗？</a>
       </div>
+      <div class="nc-images cols-2"><img src="https://pbs.twimg.com/media/HOtyASAXUAAJwqT.png" loading="lazy" onclick="event.stopPropagation()" title="点击查看大图"><img src="https://pbs.twimg.com/media/HOtyBymWsAAI3sz.png" loading="lazy" onclick="event.stopPropagation()" title="点击查看大图"></div>
       <div class="nc-time"></div>
     </div>
     <div class="news-card">
       <div class="nc-head">
-        <div class="nc-avatar" style="background:#ffa657">H</div>
+        <div class="nc-avatar" style="background:#58a6ff">H</div>
         <div class="nc-author">
           <span class="nc-name">Hive</span>
           <span class="nc-handle">@</span>
@@ -224,13 +302,14 @@ a:hover { text-decoration:underline }
         <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2084196746104811758" target="_blank" rel="noopener">@AbuUbayy1 Hive analyzed this post using Hive's AI / Deepfake detection models. "@hive_ai is this AI generated" to check any content! AI Generated Image: 0% Deepfake: 0%</a>
+        <a href="https://x.com/i/status/2084196746104811758" target="_blank" rel="noopener">@AbuUbayy1 Hive 使用 Hive 的 AI / Deepfake 检测模型分析了这篇文章。 “@hive_ai 是这个 AI 生成的”来检查任何内容！ AI 生成图像：0% Deepfake：0%</a>
       </div>
+      
       <div class="nc-time"></div>
     </div>
     <div class="news-card">
       <div class="nc-head">
-        <div class="nc-avatar" style="background:#ffa657">H</div>
+        <div class="nc-avatar" style="background:#58a6ff">H</div>
         <div class="nc-author">
           <span class="nc-name">Hive</span>
           <span class="nc-handle">@</span>
@@ -238,13 +317,14 @@ a:hover { text-decoration:underline }
         <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2084195232518959320" target="_blank" rel="noopener">@R2D2zen Hive analyzed this post using Hive's AI / Deepfake detection models. "@hive_ai is this AI generated" to check any content! AI Generated Image: 0% Deepfake: 0%</a>
+        <a href="https://x.com/i/status/2084195232518959320" target="_blank" rel="noopener">@R2D2zen Hive 使用 Hive 的 AI / Deepfake 检测模型分析了这篇文章。 “@hive_ai 是这个 AI 生成的”来检查任何内容！ AI 生成图像：0% Deepfake：0%</a>
       </div>
+      
       <div class="nc-time"></div>
     </div>
     <div class="news-card">
       <div class="nc-head">
-        <div class="nc-avatar" style="background:#ffa657">H</div>
+        <div class="nc-avatar" style="background:#58a6ff">H</div>
         <div class="nc-author">
           <span class="nc-name">Hive</span>
           <span class="nc-handle">@</span>
@@ -252,27 +332,29 @@ a:hover { text-decoration:underline }
         <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2084193465865547936" target="_blank" rel="noopener">@oye_samia Hive analyzed this post using Hive's AI / Deepfake detection models. "@hive_ai is this AI generated" to check any content! AI Generated Image: 100% Deepfake: 0% AI Generated Image: 100% Deepfake: 1% AI Generated Image: 100% Deepfake: 0% AI Generated Image: 100% Deepfake: 0%</a>
+        <a href="https://x.com/i/status/2084193465865547936" target="_blank" rel="noopener">@oye_samia Hive 使用 Hive 的 AI/Deepfake 检测模型分析了这篇文章。 “@hive_ai 是这个 AI 生成的”来检查任何内容！人工智能生成的图像：100% Deepfake：0% 人工智能生成的图像：100% Deepfake：1% 人工智能生成的图像：100% Deepfake：0% 人工智能生成的图像：100% Deepfak...</a>
       </div>
+      
       <div class="nc-time"></div>
     </div>
     <div class="news-card">
       <div class="nc-head">
-        <div class="nc-avatar" style="background:#ff7b72">N</div>
+        <div class="nc-avatar" style="background:#f78166">N</div>
         <div class="nc-author">
           <span class="nc-name">nameless27</span>
           <span class="nc-handle">@</span>
         </div>
-        <div class="nc-meta"><span class="img-badge">📷 附图</span></div>
+        <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2084192805665026270" target="_blank" rel="noopener">RT @ConspiracyBull1: Can we just ban AI generated videos already?</a>
+        <a href="https://x.com/i/status/2084192805665026270" target="_blank" rel="noopener">RT @ConspiracyBull1：我们可以禁止人工智能生成的视频了吗？</a>
       </div>
+      <div class="nc-images cols-2"><img src="https://pbs.twimg.com/media/HOtyASAXUAAJwqT.png" loading="lazy" onclick="event.stopPropagation()" title="点击查看大图"><img src="https://pbs.twimg.com/media/HOtyBymWsAAI3sz.png" loading="lazy" onclick="event.stopPropagation()" title="点击查看大图"></div>
       <div class="nc-time"></div>
     </div>
     <div class="news-card">
       <div class="nc-head">
-        <div class="nc-avatar" style="background:#ffa657">H</div>
+        <div class="nc-avatar" style="background:#58a6ff">H</div>
         <div class="nc-author">
           <span class="nc-name">Hive</span>
           <span class="nc-handle">@</span>
@@ -280,13 +362,14 @@ a:hover { text-decoration:underline }
         <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2084191683437273240" target="_blank" rel="noopener">@copiumoon @Ainzhhn @hotaru_kiwi @Love_Deepspace Hive analyzed this post using Hive's AI / Deepfake detection models. "@hive_ai is this AI generated" to check any content! AI Generated Image: 0% Deepfake: 12%</a>
+        <a href="https://x.com/i/status/2084191683437273240" target="_blank" rel="noopener">@copiumoon @Ainzhhn @hotaru_kiwi @Love_Deepspace Hive 使用 Hive 的 AI / Deepfake 检测模型分析了这篇文章。 “@hive_ai 是这个 AI 生成的”来检查任何内容！ AI 生成图像：0% Deepfake：12%</a>
       </div>
+      
       <div class="nc-time"></div>
     </div>
     <div class="news-card">
       <div class="nc-head">
-        <div class="nc-avatar" style="background:#56d364">M</div>
+        <div class="nc-avatar" style="background:#e3b341">M</div>
         <div class="nc-author">
           <span class="nc-name">Manoj Dabhade🇮🇳</span>
           <span class="nc-handle">@</span>
@@ -294,64 +377,9 @@ a:hover { text-decoration:underline }
         <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2084191203428536621" target="_blank" rel="noopener">RT @MEAFactCheck: Deepfake Video Alert! This is an AI-generated video intended to spread disinformation and fake news! Please stay alert…</a>
+        <a href="https://x.com/i/status/2084191203428536621" target="_blank" rel="noopener">RT @MEAFactCheck：Deepfake 视频警报！这是一个人工智能生成的视频，旨在传播虚假信息和假新闻！请保持警惕……</a>
       </div>
-      <div class="nc-time"></div>
-    </div>
-    <div class="news-card">
-      <div class="nc-head">
-        <div class="nc-avatar" style="background:#ffa657">H</div>
-        <div class="nc-author">
-          <span class="nc-name">Hive</span>
-          <span class="nc-handle">@</span>
-        </div>
-        <div class="nc-meta"></div>
-      </div>
-      <div class="nc-text">
-        <a href="https://x.com/i/status/2084190081527812182" target="_blank" rel="noopener">@tsubaki_0903 Hive analyzed this post using Hive's AI / Deepfake detection models. "@hive_ai is this AI generated" to check any content! AI Generated Image: 0% Deepfake: 0%</a>
-      </div>
-      <div class="nc-time"></div>
-    </div>
-    <div class="news-card">
-      <div class="nc-head">
-        <div class="nc-avatar" style="background:#ffa657">H</div>
-        <div class="nc-author">
-          <span class="nc-name">Hive</span>
-          <span class="nc-handle">@</span>
-        </div>
-        <div class="nc-meta"></div>
-      </div>
-      <div class="nc-text">
-        <a href="https://x.com/i/status/2084188565077188746" target="_blank" rel="noopener">@Under_world9 @Tshepo_Gulz @TBan_101 Hive analyzed this post using Hive's AI / Deepfake detection models. "@hive_ai is this AI generated" to check any content! AI Generated Image: 99% Deepfake: 0%</a>
-      </div>
-      <div class="nc-time"></div>
-    </div>
-    <div class="news-card">
-      <div class="nc-head">
-        <div class="nc-avatar" style="background:#ffa657">H</div>
-        <div class="nc-author">
-          <span class="nc-name">Hive</span>
-          <span class="nc-handle">@</span>
-        </div>
-        <div class="nc-meta"><span class="img-badge">📷 附图</span></div>
-      </div>
-      <div class="nc-text">
-        <a href="https://x.com/i/status/2084188342443532525" target="_blank" rel="noopener">@_hmm3000_na1_B @karupasu_2059 Hive analyzed this post using Hive's AI / Deepfake detection models. "@hive_ai is this AI generated" to check any content! AI Generated Video: 1% AI Generated Speech: 0% AI Generated Music: 3% Deepfake: 0%</a>
-      </div>
-      <div class="nc-time"></div>
-    </div>
-    <div class="news-card">
-      <div class="nc-head">
-        <div class="nc-avatar" style="background:#ffa657">H</div>
-        <div class="nc-author">
-          <span class="nc-name">Hive</span>
-          <span class="nc-handle">@</span>
-        </div>
-        <div class="nc-meta"></div>
-      </div>
-      <div class="nc-text">
-        <a href="https://x.com/i/status/2084186799363207484" target="_blank" rel="noopener">@AI_mai_me_you Hive analyzed this post using Hive's AI / Deepfake detection models. "@hive_ai is this AI generated" to check any content! AI Generated Image: 100% Deepfake: 0%</a>
-      </div>
+      
       <div class="nc-time"></div>
     </div>
       
@@ -360,14 +388,14 @@ a:hover { text-decoration:underline }
   <section class="news-section">
     <div class="section-head" style="border-left-color:#7ee787">
       <h2>⚙️ ComfyUI 工作流</h2>
-      <span class="section-count">本周采集 56 条</span>
+      <span class="section-count">本周采集 12 条</span>
     </div>
     <p class="section-desc">社区分享的 ComfyUI 工作流、自定义节点、教程和最佳实践。</p>
     <div class="news-grid">
       
     <div class="news-card">
       <div class="nc-head">
-        <div class="nc-avatar" style="background:#d2a8ff">L</div>
+        <div class="nc-avatar" style="background:#7ee787">L</div>
         <div class="nc-author">
           <span class="nc-name">lee1981</span>
           <span class="nc-handle">@</span>
@@ -375,22 +403,24 @@ a:hover { text-decoration:underline }
         <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2084197143670087739" target="_blank" rel="noopener">🔥 CyberForge CVE of the Day #014 🚨CVE-2026-68771 Is a critical unsafe-deserialization vulnerability affecting the LoadTrainingDataset node in ComfyUI leading to unauthenticated RCE. A crafted pickle shard can reach torch.load() through the upload + workflow APIs, executing code as the ComfyUI user. …</a>
+        <a href="https://x.com/i/status/2084197143670087739" target="_blank" rel="noopener">🔥 Cyber​​Forge 每日 CVE #014 🚨CVE-2026-68771 是一个严重的不安全反序列化漏洞，影响 ComfyUI 中的 LoadTrainingDataset 节点，导致未经身份验证的 RCE。精心制作的pickle分片可以通过上传+工作流API到达torch.load()，执行代码......</a>
       </div>
+      
       <div class="nc-time"></div>
     </div>
     <div class="news-card">
       <div class="nc-head">
-        <div class="nc-avatar" style="background:#79c0ff">L</div>
+        <div class="nc-avatar" style="background:#ffa657">L</div>
         <div class="nc-author">
           <span class="nc-name">limegreenpeper753</span>
           <span class="nc-handle">@</span>
         </div>
-        <div class="nc-meta"><span class="img-badge">📷 附图</span></div>
+        <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2084196342042361858" target="_blank" rel="noopener">@RyanLeeMiniMax @ComfyUI Thanks for Open weight. I feed back to you with ComfyUI T2V workflow. GB10 : DGX Spark (OEM) Limit 2100MHz TE bf16 Di bf16 502sec *Original OOM. Replaced Node to DGX Spark Safetensors Load (Thanks) TE nvfp4 Di bf16 456s TE nvfp4 Di int8 438s M3 Ultra TE bf16 Di bf16 no optio…</a>
+        <a href="https://x.com/i/status/2084196342042361858" target="_blank" rel="noopener">@RyanLeeMiniMax @ComfyUI 感谢您的公开体重。我通过 ComfyUI T2V 工作流程向您反馈。 GB10：DGX Spark（OEM）限制 2100MHz TE bf16 Di bf16 502sec *原始 OOM。将节点替换为 DGX Spark Safetensors 负载（感谢） TE nvfp4 Di bf16 456s TE nvfp4 Di int8 438s M3 Ultra TE b…</a>
       </div>
+      <div class="nc-images cols-2"><img src="https://pbs.twimg.com/media/HOyNJJibkAA0HBV.jpg" loading="lazy" onclick="event.stopPropagation()" title="点击查看大图"><img src="https://pbs.twimg.com/media/HOyNJJfa8AAbhau.jpg" loading="lazy" onclick="event.stopPropagation()" title="点击查看大图"></div>
       <div class="nc-time"></div>
     </div>
     <div class="news-card">
@@ -403,55 +433,59 @@ a:hover { text-decoration:underline }
         <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2084178774388551721" target="_blank" rel="noopener">#Minimax H3 weights are available! 🚀 Downloading it now. ComfyUI workflow is available at:</a>
+        <a href="https://x.com/i/status/2084178774388551721" target="_blank" rel="noopener">#Minimax H3 权重现已上市！ 🚀 立即下载。 ComfyUI 工作流程位于：</a>
       </div>
+      
       <div class="nc-time"></div>
     </div>
     <div class="news-card">
       <div class="nc-head">
-        <div class="nc-avatar" style="background:#7ee787">S</div>
+        <div class="nc-avatar" style="background:#56d364">S</div>
         <div class="nc-author">
           <span class="nc-name">Spectro 🇺🇸</span>
           <span class="nc-handle">@</span>
         </div>
-        <div class="nc-meta"><span class="img-badge">📷 附图</span></div>
+        <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2084173234069491946" target="_blank" rel="noopener">MiniMaxAi H3 will probably be the sota local ai model for now, with same specs as quoted video, now with superhero scene. time to generate in seconds is 155s, with the core comfyui workflow.</a>
+        <a href="https://x.com/i/status/2084173234069491946" target="_blank" rel="noopener">MiniMaxAi H3 可能是目前的 sota 本地人工智能模型，其规格与引用的视频相同，现在具有超级英雄场景。以秒为单位的生成时间为 155 秒，采用核心 comfyui 工作流程。</a>
       </div>
+      
       <div class="nc-time"></div>
     </div>
     <div class="news-card">
       <div class="nc-head">
-        <div class="nc-avatar" style="background:#79c0ff">A</div>
+        <div class="nc-avatar" style="background:#56d364">A</div>
         <div class="nc-author">
           <span class="nc-name">AI-KSK</span>
           <span class="nc-handle">@</span>
         </div>
-        <div class="nc-meta"><span class="img-badge">📷 附图</span></div>
+        <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2084171646710300998" target="_blank" rel="noopener">ACE-Step Unofficial ComfyUI Workflow Testing the unofficial ACE-Step implementation: 15x faster music generation, 4m20s output, plus music generation, extension, repainting, and editing workflows. Full Workflow: #AI #ComfyUI</a>
+        <a href="https://x.com/i/status/2084171646710300998" target="_blank" rel="noopener">ACE-Step 非官方 ComfyUI 工作流程 测试非官方 ACE-Step 实施：音乐生成速度提高 15 倍，输出速度为 4 分 20 秒，加上音乐生成、扩展、重画和编辑工作流程。完整工作流程：#AI #ComfyUI</a>
       </div>
+      
       <div class="nc-time"></div>
     </div>
     <div class="news-card">
       <div class="nc-head">
-        <div class="nc-avatar" style="background:#56d364">T</div>
+        <div class="nc-avatar" style="background:#f78166">T</div>
         <div class="nc-author">
           <span class="nc-name">Tony Ge</span>
           <span class="nc-handle">@</span>
         </div>
-        <div class="nc-meta"><span class="img-badge">📷 附图</span></div>
+        <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2084169746870874257" target="_blank" rel="noopener">@RyanLeeMiniMax @ComfyUI The stock I2V workflow from the comfy blog ( took my dual 3090 over an hour to generate a 1920x1080 5 second video LOL only up from here I imagine config below</a>
+        <a href="https://x.com/i/status/2084169746870874257" target="_blank" rel="noopener">@RyanLeeMiniMax @ComfyUI 来自舒适博客的库存 I2V 工作流程（我的双 3090 花了一个多小时才生成 1920x1080 5 秒视频 LOL 仅从这里开始，我想象下面的配置</a>
       </div>
+      <div class="nc-images cols-1"><img src="https://pbs.twimg.com/media/HOx1PwLbwAA9T1Y.png" loading="lazy" onclick="event.stopPropagation()" title="点击查看大图"></div>
       <div class="nc-time"></div>
     </div>
     <div class="news-card">
       <div class="nc-head">
-        <div class="nc-avatar" style="background:#79c0ff">A</div>
+        <div class="nc-avatar" style="background:#ff7b72">A</div>
         <div class="nc-author">
           <span class="nc-name">Aivoxy</span>
           <span class="nc-handle">@</span>
@@ -459,13 +493,14 @@ a:hover { text-decoration:underline }
         <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2084165574452719767" target="_blank" rel="noopener">@ComfyUI We get errors and errors every time we try to add a get that can tell us how to fix it and auto-fix! Please don't say what the error is</a>
+        <a href="https://x.com/i/status/2084165574452719767" target="_blank" rel="noopener">@ComfyUI 每次我们尝试添加一个可以告诉我们如何修复它并自动修复的 get 时，我们都会遇到错误！请不要说出错误是什么</a>
       </div>
+      
       <div class="nc-time"></div>
     </div>
     <div class="news-card">
       <div class="nc-head">
-        <div class="nc-avatar" style="background:#bc8cff">A</div>
+        <div class="nc-avatar" style="background:#e3b341">A</div>
         <div class="nc-author">
           <span class="nc-name">AIInfluencerStudio</span>
           <span class="nc-handle">@</span>
@@ -473,8 +508,9 @@ a:hover { text-decoration:underline }
         <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2084143707901546998" target="_blank" rel="noopener">The actual workflow that scales: 1. Design your character (stable reference) 2. Train a LoRA (10-30 photos, 15-30 min) 3. Generate consistent content daily 4. Post across 3+ platforms 5. Monetize through Fanvue + brand deals The whole pipeline can run from one browser tab. Tools winning right now: C…</a>
+        <a href="https://x.com/i/status/2084143707901546998" target="_blank" rel="noopener">实际的工作流程可扩展： 1. 设计角色（稳定参考） 2. 训练 LoRA（10-30 张照片，15-30 分钟） 3. 每天生成一致的内容 4. 在 3 个以上平台上发布 5. 通过 Fanvue + 品牌交易获利 整个管道可以从一个浏览器选项卡运行。工具 …</a>
       </div>
+      
       <div class="nc-time"></div>
     </div>
     <div class="news-card">
@@ -487,27 +523,29 @@ a:hover { text-decoration:underline }
         <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2084135760731451573" target="_blank" rel="noopener">@ComfyUI I'll wait for an NVFP4. Given my setup, I could even run it today, but I feel bad for my M.2 with such massive offloading haha</a>
+        <a href="https://x.com/i/status/2084135760731451573" target="_blank" rel="noopener">@ComfyUI 我会等待 NVFP4。根据我的设置，我今天甚至可以运行它，但我对我的 M.2 如此大量的卸载感到难过哈哈</a>
       </div>
+      
       <div class="nc-time"></div>
     </div>
     <div class="news-card">
       <div class="nc-head">
-        <div class="nc-avatar" style="background:#56d364">E</div>
+        <div class="nc-avatar" style="background:#ffa657">E</div>
         <div class="nc-author">
           <span class="nc-name">Emerald Apple</span>
           <span class="nc-handle">@</span>
         </div>
-        <div class="nc-meta"><span class="img-badge">📷 附图</span></div>
+        <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2084118983742247353" target="_blank" rel="noopener">For an open-weight AI video model, Minimax H3 is pretty nuts. Way better prompt understanding compared to LTX 2.3, and it has audio unlike Wan 2.2. Also, the camera motion, hand motion, and the fisheye lens mentioned in the prompt worked well. Even with image-to-video, it can immediately shift to a …</a>
+        <a href="https://x.com/i/status/2084118983742247353" target="_blank" rel="noopener">对于开放权重 AI 视频模型，Minimax H3 非常疯狂。与 LTX 2.3 相比，理解速度更快，而且它的音频与 Wan 2.2 不同。此外，提示中提到的相机运动、手部运动和鱼眼镜头效果也很好。即使使用图像到视频，它也可以...</a>
       </div>
+      
       <div class="nc-time"></div>
     </div>
     <div class="news-card">
       <div class="nc-head">
-        <div class="nc-avatar" style="background:#bc8cff">L</div>
+        <div class="nc-avatar" style="background:#56d364">L</div>
         <div class="nc-author">
           <span class="nc-name">Leonor</span>
           <span class="nc-handle">@</span>
@@ -515,13 +553,14 @@ a:hover { text-decoration:underline }
         <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2084116217980244272" target="_blank" rel="noopener">@ComfyUI first and last frame control is the feature that actually unlocks real production use everything else is demo bait but that one changes the workflow</a>
+        <a href="https://x.com/i/status/2084116217980244272" target="_blank" rel="noopener">@ComfyUI 第一帧和最后一帧控制是真正解锁实际生产的功能，其他一切都是演示诱饵，但它改变了工作流程</a>
       </div>
+      
       <div class="nc-time"></div>
     </div>
     <div class="news-card">
       <div class="nc-head">
-        <div class="nc-avatar" style="background:#79c0ff">C</div>
+        <div class="nc-avatar" style="background:#58a6ff">C</div>
         <div class="nc-author">
           <span class="nc-name">ComfyUI</span>
           <span class="nc-handle">@</span>
@@ -529,8 +568,9 @@ a:hover { text-decoration:underline }
         <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2084111228696510500" target="_blank" rel="noopener">Download the workflow &amp; learn more with our blog:</a>
+        <a href="https://x.com/i/status/2084111228696510500" target="_blank" rel="noopener">下载工作流程和通过我们的博客了解更多信息：</a>
       </div>
+      
       <div class="nc-time"></div>
     </div>
       
@@ -539,42 +579,44 @@ a:hover { text-decoration:underline }
   <section class="news-section">
     <div class="section-head" style="border-left-color:#e3b341">
       <h2>🎮 游戏美术</h2>
-      <span class="section-count">本周采集 52 条</span>
+      <span class="section-count">本周采集 12 条</span>
     </div>
     <p class="section-desc">AI 在游戏美术管线中的实战——从概念设计到资产生成的工具有关讨论。</p>
     <div class="news-grid">
       
     <div class="news-card">
       <div class="nc-head">
-        <div class="nc-avatar" style="background:#56d364">H</div>
+        <div class="nc-avatar" style="background:#58a6ff">H</div>
         <div class="nc-author">
           <span class="nc-name">HIRO ⚡️ AI Artist</span>
           <span class="nc-handle">@</span>
         </div>
-        <div class="nc-meta"><span class="img-badge">📷 附图</span></div>
+        <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2084128321839997240" target="_blank" rel="noopener">Prompt share ⚔️ Feel free to use it and create your own version. If you try it, show me your result! A futuristic cyberpunk female assassin with short black hair and sharp piercing eyes, wearing tactical black techwear crop top armor with glowing red LED lights, mechanical arm augmentations, carryin…</a>
+        <a href="https://x.com/i/status/2084128321839997240" target="_blank" rel="noopener">及时分享⚔️随意使用它并创建您自己的版本。如果你尝试一下，请告诉我你的结果！一位未来派的赛博朋克女刺客，有着黑色短发和锐利的目光，穿着战术黑色高科技服装短上衣，带有发光的红色 LED 灯，机械臂...</a>
       </div>
+      <div class="nc-images cols-1"><img src="https://pbs.twimg.com/media/HOxPHXEbgAAwkvC.jpg" loading="lazy" onclick="event.stopPropagation()" title="点击查看大图"></div>
       <div class="nc-time"></div>
     </div>
     <div class="news-card">
       <div class="nc-head">
-        <div class="nc-avatar" style="background:#56d364">P</div>
+        <div class="nc-avatar" style="background:#58a6ff">P</div>
         <div class="nc-author">
           <span class="nc-name">Project Lobster</span>
           <span class="nc-handle">@</span>
         </div>
-        <div class="nc-meta"><span class="img-badge">📷 附图</span></div>
+        <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2084092267355365428" target="_blank" rel="noopener">🎨 Level up your creative workflow with GPT-Image-2 by @ChatGPT ! Now available on Lobster Studio. Perfect for concept art, digital design, and high-res assets with zero hassle. 1️⃣ Input prompt 2️⃣ Generate in seconds 3️⃣ Export in high quality Start creating 👇 🔗</a>
+        <a href="https://x.com/i/status/2084092267355365428" target="_blank" rel="noopener">🎨 使用 @ChatGPT 的 GPT-Image-2 提升您的创意工作流程！现已在 Lobster Studio 上提供。非常适合概念艺术、数字设计和高分辨率资产，零麻烦。 1️⃣ 输入提示 2️⃣ 秒生成 3️⃣ 高品质导出 开始创建👇 🔗</a>
       </div>
+      <div class="nc-images cols-1"><img src="https://pbs.twimg.com/media/HOwuxBDboAAZlYv.jpg" loading="lazy" onclick="event.stopPropagation()" title="点击查看大图"></div>
       <div class="nc-time"></div>
     </div>
     <div class="news-card">
       <div class="nc-head">
-        <div class="nc-avatar" style="background:#d2a8ff">D</div>
+        <div class="nc-avatar" style="background:#79c0ff">D</div>
         <div class="nc-author">
           <span class="nc-name">D0LLiD0T🌺🌸✨</span>
           <span class="nc-handle">@</span>
@@ -582,13 +624,14 @@ a:hover { text-decoration:underline }
         <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2084055121579704369" target="_blank" rel="noopener">@Jaronators theyre cute, i just hate the way they used ai on the concept art stage for them</a>
+        <a href="https://x.com/i/status/2084055121579704369" target="_blank" rel="noopener">@Jaronators，他们很可爱，我只是讨厌他们在概念艺术舞台上使用人工智能的方式</a>
       </div>
+      
       <div class="nc-time"></div>
     </div>
     <div class="news-card">
       <div class="nc-head">
-        <div class="nc-avatar" style="background:#f78166">P</div>
+        <div class="nc-avatar" style="background:#ffa657">P</div>
         <div class="nc-author">
           <span class="nc-name">Polsia</span>
           <span class="nc-handle">@</span>
@@ -596,13 +639,14 @@ a:hover { text-decoration:underline }
         <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2084031256979980329" target="_blank" rel="noopener">Nightwright. An autonomous AI concept-art studio for indie games. Tracks Steam launches and devlogs overnight, briefs itself for the next round of concepts, and ships engine-ready packs — layered PSDs, low-poly blockouts, the works. Self-hosted stack. In production now.</a>
+        <a href="https://x.com/i/status/2084031256979980329" target="_blank" rel="noopener">夜行者。一个独立游戏的自主人工智能概念艺术工作室。夜间跟踪 Steam 发布和开发日志，简要介绍下一轮概念，并发布引擎就绪包 - 分层 PSD、低多边形块、作品。自托管堆栈。现已投入生产。</a>
       </div>
+      
       <div class="nc-time"></div>
     </div>
     <div class="news-card">
       <div class="nc-head">
-        <div class="nc-avatar" style="background:#7ee787">A</div>
+        <div class="nc-avatar" style="background:#d2a8ff">A</div>
         <div class="nc-author">
           <span class="nc-name">AWACS Sky Keeper</span>
           <span class="nc-handle">@</span>
@@ -610,13 +654,14 @@ a:hover { text-decoration:underline }
         <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2084010262982713793" target="_blank" rel="noopener">@boymilketh Essentially, what this means is that good products will still need effort. AI can do a ton of grunt work, it's actually going to be a golden age for many indie devs who are good at one thing (e.g. concept art or story) but suck at others (programming, modelling, or music).</a>
+        <a href="https://x.com/i/status/2084010262982713793" target="_blank" rel="noopener">@boymilketh 从本质上讲，这意味着好的产品仍然需要努力。人工智能可以做大量繁重的工作，对于许多擅长一件事（例如概念艺术或故事）但不擅长其他事情（编程、建模或mu……）的独立开发者来说，这实际上将是一个黄金时代。</a>
       </div>
+      
       <div class="nc-time"></div>
     </div>
     <div class="news-card">
       <div class="nc-head">
-        <div class="nc-avatar" style="background:#bc8cff">L</div>
+        <div class="nc-avatar" style="background:#79c0ff">L</div>
         <div class="nc-author">
           <span class="nc-name">Loaf</span>
           <span class="nc-handle">@</span>
@@ -624,13 +669,14 @@ a:hover { text-decoration:underline }
         <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2084007166457909725" target="_blank" rel="noopener">@vvalkkei While many fans like to argue otherwise for the sake of their own moral comforts, every single piece of 2D art (even operator skin/camo concept art) throughout BO67 has been AI generated (it’s super noticeable in BO6 but less noticeable in BO7).</a>
+        <a href="https://x.com/i/status/2084007166457909725" target="_blank" rel="noopener">@vvalkkei 虽然许多粉丝喜欢为了自己的道德安慰而争论，但整个 BO67 中的每一件 2D 艺术（甚至操作员皮肤/迷彩概念艺术）都是 AI 生成的（在 BO6 中非常明显，但在 BO7 中不太明显）。</a>
       </div>
+      
       <div class="nc-time"></div>
     </div>
     <div class="news-card">
       <div class="nc-head">
-        <div class="nc-avatar" style="background:#56d364">I</div>
+        <div class="nc-avatar" style="background:#79c0ff">I</div>
         <div class="nc-author">
           <span class="nc-name">Isatis Angel</span>
           <span class="nc-handle">@</span>
@@ -638,8 +684,9 @@ a:hover { text-decoration:underline }
         <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2083996013581259044" target="_blank" rel="noopener">@PlayTombRaider I have mixed feelings about the screenshot. The concept art is nice to look at, with a great rendering of the ruins and flora (love that). But some weird details scream “AI made without control” (the murals, no "straight" lines, wooden beams deformed...)... It leaves me puzzled.</a>
+        <a href="https://x.com/i/status/2083996013581259044" target="_blank" rel="noopener">@PlayTombRaider 我对屏幕截图的感受很复杂。概念艺术看起来很漂亮，对废墟和植物有很好的渲染（喜欢）。但一些奇怪的细节尖叫着“人工智能失控”（壁画、没有“直线”线条、变形的木梁……）……</a>
       </div>
+      
       <div class="nc-time"></div>
     </div>
     <div class="news-card">
@@ -652,13 +699,14 @@ a:hover { text-decoration:underline }
         <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2083986761399591197" target="_blank" rel="noopener">@misaalanshori03 The solution should be to ignore them and just go forward with the use of AI. Something people don't want to accept is that they aren't being replaced with AI, they're being replaced by people who know how to use AI. Artists still have all the power, they just need to accept that us…</a>
+        <a href="https://x.com/i/status/2083986761399591197" target="_blank" rel="noopener">@misaalanshori03 解决方案应该是忽略它们并继续使用人工智能。人们不愿意接受的是，他们没有被人工智能取代，而是被知道如何使用人工智能的人取代。艺术家仍然拥有所有的力量，他们只是需要……</a>
       </div>
+      
       <div class="nc-time"></div>
     </div>
     <div class="news-card">
       <div class="nc-head">
-        <div class="nc-avatar" style="background:#58a6ff">S</div>
+        <div class="nc-avatar" style="background:#bc8cff">S</div>
         <div class="nc-author">
           <span class="nc-name">Sarun W.</span>
           <span class="nc-handle">@</span>
@@ -666,57 +714,61 @@ a:hover { text-decoration:underline }
         <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2083952369419874769" target="_blank" rel="noopener">@alexcooldev Are game art and 3D models also generated with AI?</a>
+        <a href="https://x.com/i/status/2083952369419874769" target="_blank" rel="noopener">@alexcooldev 游戏美术和 3D 模型也是由 AI 生成的吗？</a>
       </div>
+      
       <div class="nc-time"></div>
     </div>
     <div class="news-card">
       <div class="nc-head">
-        <div class="nc-avatar" style="background:#79c0ff">A</div>
+        <div class="nc-avatar" style="background:#ff7b72">A</div>
         <div class="nc-author">
           <span class="nc-name">Adri💫</span>
           <span class="nc-handle">@</span>
         </div>
-        <div class="nc-meta"><span class="img-badge">📷 附图</span></div>
+        <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2083942396971082062" target="_blank" rel="noopener">it literally does not make sense to create a YT channel that's all about in-depth research and documentary of game development while also including made up concept art documents using AI, why do people just do not care even when it directly conflicts with their entire purpose</a>
+        <a href="https://x.com/i/status/2083942396971082062" target="_blank" rel="noopener">创建一个关于游戏开发的深入研究和纪录片，同时还包括使用人工智能制作的概念艺术文档的 YT 频道实际上是没有意义的，为什么人们就是不关心，即使它与他们的整个目的直接冲突</a>
       </div>
+      <div class="nc-images cols-2"><img src="https://pbs.twimg.com/media/HOumghgWIAAMY2C.jpg" loading="lazy" onclick="event.stopPropagation()" title="点击查看大图"><img src="https://pbs.twimg.com/media/HOumg9TXoAA9l5m.jpg" loading="lazy" onclick="event.stopPropagation()" title="点击查看大图"></div>
       <div class="nc-time"></div>
     </div>
     <div class="news-card">
       <div class="nc-head">
-        <div class="nc-avatar" style="background:#ff7b72">P</div>
+        <div class="nc-avatar" style="background:#58a6ff">P</div>
         <div class="nc-author">
           <span class="nc-name">Phaser | Game Creation for Everyone</span>
           <span class="nc-handle">@</span>
         </div>
-        <div class="nc-meta"><span class="img-badge">📷 附图</span></div>
+        <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2083931459895632172" target="_blank" rel="noopener">Try it now 👇 Original music for your #Phaser game, generated in minutes, exactly how you want it 🎵 #PhaserDesktop has a built-in Music Generator. Pick your style, mood, and duration, hit Generate, and you've got a track that fits your game. Vocal or instrumental, your call 🎹 Got concept art? Drop it…</a>
+        <a href="https://x.com/i/status/2083931459895632172" target="_blank" rel="noopener">立即尝试👇 #Phaser 游戏的原创音乐，在几分钟内生成，完全按照您想要的方式🎵 #PhaserDesktop 有一个内置音乐生成器。选择您的风格、心情和持续时间，点击“生成”，您就会得到适合您游戏的曲目。声乐或器乐，由你决定🎹 得到......</a>
       </div>
+      
       <div class="nc-time"></div>
     </div>
     <div class="news-card">
       <div class="nc-head">
-        <div class="nc-avatar" style="background:#79c0ff">K</div>
+        <div class="nc-avatar" style="background:#e3b341">K</div>
         <div class="nc-author">
           <span class="nc-name">Kaminski Jacques</span>
           <span class="nc-handle">@</span>
         </div>
-        <div class="nc-meta"><span class="img-badge">📷 附图</span></div>
+        <div class="nc-meta"></div>
       </div>
       <div class="nc-text">
-        <a href="https://x.com/i/status/2083904798798028974" target="_blank" rel="noopener">😊👋 A concept art of Draco necromecanique lunaire, a hybrid créature in a starry icy environment 😊👋 #AI #GrokImagine #IA #grok #Alart</a>
+        <a href="https://x.com/i/status/2083904798798028974" target="_blank" rel="noopener">😊👋 Draco necromecanique lunaire 的概念艺术，一种在星空冰冷环境中的混合生物 😊👋 #AI #GrokImagine #IA #grok #Alart</a>
       </div>
+      
       <div class="nc-time"></div>
     </div>
       
     </div>
   </section>
 
-  <div class="foot">数据来自 X/Twitter 公开推文 · 自动采集筛选 · 仅反映相对声量趋势</div>
+  <div class="foot">数据来自 X/Twitter 公开推文 · 自动采集筛选 · 文本由 Google 翻译 · 仅反映相对声量趋势</div>
 </div>
 </body>
 </html>
