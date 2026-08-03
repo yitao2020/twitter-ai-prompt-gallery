@@ -530,6 +530,8 @@ function openLB(globalIdx) {
 }
 
 function closeLB() {
+  const v = document.querySelector('#lbContent video');
+  if (v) { v.pause(); v.currentTime = 0; }
   document.getElementById('lbOverlay').classList.remove('show');
   document.body.style.overflow = '';
 }
