@@ -20,6 +20,9 @@ a:hover { text-decoration:underline }
 .topnav { display:flex; align-items:center; justify-content:space-between;
   height:50px; border-bottom:1px solid var(--border); max-width:1600px; margin:0 auto }
 .topnav .brand { display:flex; align-items:center; gap:10px }
+.topnav .home-logo { flex-shrink:0 }
+.topnav .home-logo img { height:32px; width:auto; display:block }
+.topnav .home-logo:hover { opacity:.8; text-decoration:none }
 .topnav .brand-link { font-size:1.05em; font-weight:700; color:var(--text); white-space:nowrap }
 .nav-links { display:flex; gap:6px; align-items:center; flex-wrap:wrap }
 .nav-links a { font-size:.85em; color:var(--text-dim); padding:5px 12px; border-radius:6px;
@@ -86,6 +89,7 @@ a:hover { text-decoration:underline }
 <div class="header">
   <nav class="topnav">
     <div class="brand">
+      <a class="home-logo" href="https://trilightlab.com" target="_blank" rel="noopener" title="TrilightLab 博客"><img src="https://trilightlab.com/wp-content/uploads/2026/06/trilightlabs_logo_small-1.png" alt="TrilightLab"></a>
       <a class="brand-link" href="gallery.html">🐦 推特提示词合集</a>
     </div>
     <div class="nav-links">
@@ -114,7 +118,7 @@ a:hover { text-decoration:underline }
     <div class="news-list">
       
     <div class="news-card">
-      <div class="nc-avatar" style="background:#79c0ff">C</div>
+      <div class="nc-avatar" style="background:#56d364">C</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">ComfyUI</span>
@@ -131,7 +135,7 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#bc8cff">K</div>
+      <div class="nc-avatar" style="background:#58a6ff">K</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Krea</span>
@@ -148,7 +152,7 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#ffa657">R</div>
+      <div class="nc-avatar" style="background:#7ee787">R</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Runway</span>
@@ -165,7 +169,7 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#ffa657">I</div>
+      <div class="nc-avatar" style="background:#79c0ff">I</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Ideogram</span>
@@ -182,7 +186,7 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#ffa657">I</div>
+      <div class="nc-avatar" style="background:#79c0ff">I</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Ideogram</span>
@@ -210,7 +214,7 @@ a:hover { text-decoration:underline }
     <div class="news-list">
       
     <div class="news-card">
-      <div class="nc-avatar" style="background:#7ee787">S</div>
+      <div class="nc-avatar" style="background:#d2a8ff">S</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Simon Davis</span>
@@ -227,7 +231,7 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#58a6ff">H</div>
+      <div class="nc-avatar" style="background:#79c0ff">H</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Hive</span>
@@ -244,7 +248,7 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#58a6ff">H</div>
+      <div class="nc-avatar" style="background:#79c0ff">H</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Hive</span>
@@ -261,7 +265,7 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#e3b341">Z</div>
+      <div class="nc-avatar" style="background:#79c0ff">Z</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Zenith News</span>
@@ -278,7 +282,7 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#58a6ff">H</div>
+      <div class="nc-avatar" style="background:#79c0ff">H</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Hive</span>
@@ -295,7 +299,7 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#f78166">T</div>
+      <div class="nc-avatar" style="background:#e3b341">T</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">The Son of Islam</span>
@@ -312,7 +316,7 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#58a6ff">H</div>
+      <div class="nc-avatar" style="background:#79c0ff">H</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Hive</span>
@@ -329,7 +333,7 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#58a6ff">H</div>
+      <div class="nc-avatar" style="background:#79c0ff">H</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Hive</span>
@@ -346,7 +350,7 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#58a6ff">H</div>
+      <div class="nc-avatar" style="background:#79c0ff">H</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Hive</span>
@@ -363,7 +367,7 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#ff7b72">N</div>
+      <div class="nc-avatar" style="background:#7ee787">N</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">nameless27</span>
@@ -380,7 +384,7 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#58a6ff">H</div>
+      <div class="nc-avatar" style="background:#79c0ff">H</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Hive</span>
@@ -442,7 +446,7 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#d2a8ff">L</div>
+      <div class="nc-avatar" style="background:#79c0ff">L</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">limegreenpeper753</span>
@@ -459,7 +463,7 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#79c0ff">T</div>
+      <div class="nc-avatar" style="background:#ffa657">T</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">TechPractice</span>
@@ -476,7 +480,7 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#f78166">S</div>
+      <div class="nc-avatar" style="background:#e3b341">S</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Spectro 🇺🇸</span>
@@ -493,7 +497,7 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#58a6ff">A</div>
+      <div class="nc-avatar" style="background:#79c0ff">A</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">AI-KSK</span>
@@ -510,7 +514,7 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#f78166">T</div>
+      <div class="nc-avatar" style="background:#d2a8ff">T</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Tony Ge</span>
@@ -527,7 +531,7 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#bc8cff">A</div>
+      <div class="nc-avatar" style="background:#ffa657">A</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Aivoxy</span>
@@ -544,7 +548,7 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#56d364">A</div>
+      <div class="nc-avatar" style="background:#e3b341">A</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">AIInfluencerStudio</span>
@@ -561,7 +565,7 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#f78166">A</div>
+      <div class="nc-avatar" style="background:#58a6ff">A</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Akhe🔺🇧🇷🇵🇹</span>
@@ -578,7 +582,7 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#d2a8ff">E</div>
+      <div class="nc-avatar" style="background:#f78166">E</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Emerald Apple</span>
@@ -595,7 +599,7 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#58a6ff">L</div>
+      <div class="nc-avatar" style="background:#56d364">L</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Leonor</span>
@@ -612,7 +616,7 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#79c0ff">C</div>
+      <div class="nc-avatar" style="background:#56d364">C</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">ComfyUI</span>
@@ -640,7 +644,7 @@ a:hover { text-decoration:underline }
     <div class="news-list">
       
     <div class="news-card">
-      <div class="nc-avatar" style="background:#7ee787">H</div>
+      <div class="nc-avatar" style="background:#58a6ff">H</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">HIRO ⚡️ AI Artist</span>
@@ -657,7 +661,7 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#d2a8ff">P</div>
+      <div class="nc-avatar" style="background:#58a6ff">P</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Project Lobster</span>
@@ -674,7 +678,7 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#7ee787">D</div>
+      <div class="nc-avatar" style="background:#58a6ff">D</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">D0LLiD0T🌺🌸✨</span>
@@ -708,7 +712,7 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#bc8cff">A</div>
+      <div class="nc-avatar" style="background:#56d364">A</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">AWACS Sky Keeper</span>
@@ -725,7 +729,7 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#d2a8ff">L</div>
+      <div class="nc-avatar" style="background:#ff7b72">L</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Loaf</span>
@@ -742,7 +746,7 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#ffa657">I</div>
+      <div class="nc-avatar" style="background:#f78166">I</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Isatis Angel</span>
@@ -759,7 +763,7 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#d2a8ff">_</div>
+      <div class="nc-avatar" style="background:#ff7b72">_</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">_GAi</span>
@@ -793,7 +797,7 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#d2a8ff">A</div>
+      <div class="nc-avatar" style="background:#58a6ff">A</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Adri💫</span>
@@ -810,7 +814,7 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#ffa657">P</div>
+      <div class="nc-avatar" style="background:#7ee787">P</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Phaser | Game Creation for Everyone</span>
@@ -827,7 +831,7 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#ff7b72">K</div>
+      <div class="nc-avatar" style="background:#79c0ff">K</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Kaminski Jacques</span>
