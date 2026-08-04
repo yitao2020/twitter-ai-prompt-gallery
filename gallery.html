@@ -132,6 +132,8 @@ a:hover { text-decoration:underline }
 .card .img-wrap img.loaded {
   opacity:1
 }
+/* Lazy images: keep stable min-height until src is set (prevents layout shift in waterfall) */
+img.lazy-img { min-height:160px }
 .card .img-wrap img.loaded + .img-count ~ ::before,
 .card .img-wrap:has(img.loaded)::before {
   animation:none; opacity:0
@@ -504,7 +506,7 @@ function render() {
         </div>` : '';
     const thumbHTML = isVideo
       ? `<video class="card-video" src="${e.videos[0]}" alt="${e.title.replace(/"/g,'&quot;')}" preload="metadata" muted playsinline onclick="openLB(${globalIdx})"></video>`
-      : `<img src="${e.thumbnail}" alt="${e.title.replace(/"/g,'&quot;')}" loading="lazy" onload="this.classList.add('loaded')" onerror="this.parentElement.innerHTML='<div class=no-img>🖼 加载失败</div>'">`;
+      : `<img data-src="${e.thumbnail}" alt="${e.title.replace(/"/g,'&quot;')}" class="lazy-img" onload="this.classList.add('loaded')" onerror="this.parentElement.innerHTML='<div class=no-img>🖼 加载失败</div>'">`;
     return `
       <div class="card" onclick="openLB(${globalIdx})" data-idx="${globalIdx}">
         <div class="img-wrap">
@@ -521,6 +523,7 @@ function render() {
         </div>
       </div>`;
   }).join('');
+  setupLazy();
 }
 
 function openLB(globalIdx) {
@@ -696,6 +699,25 @@ document.addEventListener('keydown', e => {
 window.addEventListener('scroll',function(){
   document.getElementById('toTop').classList.toggle('show', window.scrollY > 400);
 });
+
+// Intersection Observer lazy loader — only requests images within 200px of viewport.
+// More aggressive than native loading="lazy": fewer concurrent connections, faster above-fold paint.
+let _lazyIO = null;
+function setupLazy() {
+  if (_lazyIO) _lazyIO.disconnect();
+  _lazyIO = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var img = entry.target;
+        if (!img.dataset.src) return;
+        img.src = img.dataset.src;
+        img.removeAttribute('data-src');
+        _lazyIO.unobserve(img);
+      }
+    });
+  }, { rootMargin: '200px' });
+  document.querySelectorAll('img[data-src]').forEach(function(img) { _lazyIO.observe(img); });
+}
 
 // Init
 render();
