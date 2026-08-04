@@ -68,6 +68,12 @@ a:hover { text-decoration:underline }
 .nc-footer { display:flex; align-items:center; justify-content:space-between;
   flex-wrap:wrap; gap:8px }
 
+/* 来源徽标 */
+.nc-src { font-size:.68em; font-weight:700; padding:2px 7px; border-radius:10px;
+  letter-spacing:.3px; line-height:1.4; flex-shrink:0 }
+.src-x { background:rgba(88,166,255,.15); color:#58a6ff; border:1px solid rgba(88,166,255,.4) }
+.src-reddit { background:rgba(255,138,76,.15); color:#ff8a4c; border:1px solid rgba(255,138,76,.4) }
+
 /* Images */
 .nc-images { display:flex; gap:4px; margin-bottom:8px; flex-wrap:wrap }
 .nc-images img { width:120px; height:80px; object-fit:cover; cursor:pointer;
@@ -96,7 +102,6 @@ a:hover { text-decoration:underline }
       <a href="gallery.html">画廊</a>
       <a href="trends.html">📈 趋势</a>
       <a href="news.html" class="active">📰 资讯</a>
-      <a href="reddit.html">🤖 Reddit</a>
     </div>
   </nav>
 </div>
@@ -104,26 +109,27 @@ a:hover { text-decoration:underline }
 <div class="wrap">
   <div class="page-head">
     <h1>📰 AI 图像生成 · 本周资讯</h1>
-    <div class="meta">数据区间 2026-07-27 ~ 2026-08-03 · 每周自动更新 · 更新于 2026-08-03 08:53 UTC</div>
-    <div class="desc">四个维度追踪 AI 图像生成生态动态：官方工具发布的<b>最新动向</b>、版权与监管的<b>争议讨论</b>、
-    ComfyUI 社区的<b>工作流分享</b>、以及 AI 在<b>游戏美术管线</b>中的实战应用。所有文本已翻译为中文。</div>
+    <div class="meta">数据区间 2026-07-27 ~ 2026-08-03 · 每周自动更新 · 更新于 2026-08-04 03:51 UTC</div>
+    <div class="desc">四个维度追踪 AI 图像生成生态动态：官方工具与社区讨论的<b>最新动向</b>、版权与监管的<b>争议讨论</b>、
+    ComfyUI 社区的<b>工作流分享</b>、以及 AI 在<b>游戏美术管线</b>中的实战应用。内容融合 <b>X/Twitter</b> 与 <b>Reddit</b> 两个来源，所有文本已翻译为中文。</div>
   </div>
 
   
   <section class="news-section">
     <div class="section-head" style="border-left-color:#58a6ff">
       <h2>🔧 工具发布</h2>
-      <span class="section-count">本周采集 5 条</span>
+      <span class="section-count">本周采集 17 条（X 5 · Reddit 12）</span>
     </div>
-    <p class="section-desc">官方账号的版本发布、新功能、Beta 开放和重大更新公告。</p>
+    <p class="section-desc">官方账号的版本发布、新功能、Beta 开放和重大更新公告，以及 Reddit 社区对相关工具的讨论。</p>
     <div class="news-list">
       
     <div class="news-card">
-      <div class="nc-avatar" style="background:#f78166">C</div>
+      <div class="nc-avatar" style="background:#7ee787">C</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">ComfyUI</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2083071877891682784" target="_blank" rel="noopener">MiniMax H3 现已通过合作伙伴节点在 ComfyUI 中提供。 → 多模态 I/O：T2V、第一帧/最后一帧、Omni 参考 → 每个剪辑上都有原生立体声音频 → 高达 2K，24 FPS 时长 5-15 秒 → 就地编辑角色、场景、对话和语音 API 访问现已上线。原生开放重量苏…</a>
@@ -136,11 +142,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#d2a8ff">K</div>
+      <div class="nc-avatar" style="background:#ff7b72">K</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Krea</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2083014535481598410" target="_blank" rel="noopener">推出 MiniMax H3。这个新模型以一小部分成本与seedance的功能相匹配，并且很快就会成为开放重量！了解更多👇</a>
@@ -153,11 +160,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#56d364">R</div>
+      <div class="nc-avatar" style="background:#58a6ff">R</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Runway</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2083010367073272150" target="_blank" rel="noopener">MiniMax H3 现已在 Runway 上发售。在一个平台上与所有其他前沿模型一起访问它。从今天开始创作。</a>
@@ -170,11 +178,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#56d364">I</div>
+      <div class="nc-avatar" style="background:#e3b341">I</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Ideogram</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2082839902207779024" target="_blank" rel="noopener">今天，我们将介绍 P-Image-Ideogram：与 @PrunaAI 共同开发的一系列帕累托最优图像模型，具有最佳质量-速度-成本权衡。四种质量模式。原生 1K 和 2K 一代。每张图片 0.003 美元起。 Live now on the API and all our partner platforms.吉…</a>
@@ -187,11 +196,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#56d364">I</div>
+      <div class="nc-avatar" style="background:#e3b341">I</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Ideogram</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2082518323351429550" target="_blank" rel="noopener">Ideogram Object Remover 简介：最先进的对象删除功能。选择任何对象、文本或干扰物并擦除其所有痕迹：阴影、反射，甚至微妙的灯光变化。没有任何发明，也没有任何其他触及。立即尝试</a>
@@ -203,23 +213,240 @@ a:hover { text-decoration:underline }
         </div>
       </div>
     </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#ffa657">D</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">dlattimore</span>
+          <span class="nc-handle">r/rust</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/rust/comments/1vez06e/wild_linker_version_0100/" target="_blank" rel="noopener">Wild 链接器版本 0.10.0 Wild 链接器是用 Rust 编写的快速链接器。我们刚刚发布了 0.10.0 版本。请参阅 [发行说明]( 了解所有更改。您可以从我们的 [repo]( 中找到有关 Wild 链接器的更多信息。此版本带来了许多错误修复以及许多额外的链接器脚本功能。性能方面，没有太大变化，但这本身就是一项成就，考虑到链接器已经有多快以及我们在此版本中进行了多少更改。该版本有更新的[基准](。大量移植工作正在进行中。我们还没有准备好标记任何为…</a>
+        </div>
+        <div class="nc-images"><img src="https://external-preview.redd.it/hzcdNrhC09ET4PKJhitWHcpq4YClxlrLixBKGsrVNP8.png?auto=webp&s=2eba1a500b396631522eeab19d9da96c38dcac38" loading="lazy" onclick="event.stopPropagation()" title="点击查看大图"></div>
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 10</span><span class="stat">💬 2</span></span>
+          <span class="nc-time">2026-08-04T03:32:26.585000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#58a6ff">A</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">awescool</span>
+          <span class="nc-handle">r/nvidia</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/nvidia/comments/1vez1ic/5090_fe_build_192_gb_of_ram/" target="_blank" rel="noopener">5090 FE 版本 - 192 GB RAM！自 5090 推出以来，它的运行一直非常稳定。我将它用于大约 30% 的游戏，其余的是数据库和 AI 工作负载。当我 2025 年 8 月以大约 700 美元从亚马逊购买这款内存时，我非常幸运。 192GB 6800 cl 34。 结构： CPU：AMD 9800X3D CPU AIO：Thermalright FW240 AIO 风扇：JONSBO ZB-240B (2x120mm) 后部风扇：JONSBO ZB-120BR (1x120mm) 下部风扇：Thermalright (2x120mm) 内存：192 GB（调整为5600mhz, CL34) 2 套 G.skill F5-6800J3446F48GX2-TZ5RK MB: MSI PRO B850M-A WIFI PZ GPU: 5090 FE SSD 1: Crucial T710 4tb Gen 5 SSD 1 个散热器: ElecGear M.2 22…</a>
+        </div>
+        
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 8</span><span class="stat">💬 7</span></span>
+          <span class="nc-time">2026-08-04T03:34:13.771000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#58a6ff">M</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">msultapnw</span>
+          <span class="nc-handle">r/EverettWa</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/EverettWa/comments/1vez5e3/little_free_food_pantry_31st_and_grand/" target="_blank" rel="noopener">小免费食品储藏室 31 号和大储藏室 大家好！我叫 Rinn，住在北埃弗里特的加德纳港。我住的街角有一个免费食品储藏室，但总是空的。我一直在尝试寻找它的社交功能，但似乎没有人在运行它。我决定为此做点什么，希望得到捐款，让更多的人知道！我无法自己筹集资金并保持库存。它位于 31 街和格兰德街，就在那些正在建造的公寓的对面！我们需要不易腐烂且耐储存的食物。最好的事情是：简单的 Mac、ca...</a>
+        </div>
+        <div class="nc-images"><img src="https://preview.redd.it/j96eah374ahh1.jpeg?auto=webp&s=4f3df8f401f1d7885e9896dea72542ee42c9994b" loading="lazy" onclick="event.stopPropagation()" title="点击查看大图"></div>
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 6</span></span>
+          <span class="nc-time">2026-08-04T03:39:38.967000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#d2a8ff">C</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">courageous_touch</span>
+          <span class="nc-handle">r/DecidingToBeBetter</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/DecidingToBeBetter/comments/1veyu8z/i_think_im_grieving_a_breakup_that_hasnt_even/" target="_blank" rel="noopener">我想我正在为尚未发生的分手而悲伤...并且我意识到我不知道如何建立自己的生活提前抱歉这太长了...我真的不知道从哪里开始，但我想我只需要把它放在某个地方。我的恋爱关系已经快一年了。几天前，我男朋友告诉我，他将在八月底之前给我一个关于我们是否有共同未来的最终答复。据他说，他正在试图说服他的父母，但如果他们不同意，我们就结束这件事。问题是...我不认为只是他的父母。我知道他们在反抗，...</a>
+        </div>
+        
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 4</span></span>
+          <span class="nc-time">2026-08-04T03:24:18.866000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#bc8cff">R</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">Ryan_J_</span>
+          <span class="nc-handle">r/njpw</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/njpw/comments/1vez1h7/what_changes_would_yall_make_to_unbound_co/" target="_blank" rel="noopener">你们会对 Unbound Co 做出什么改变？不久前我问过类似的问题，但现在是在“酷刑之家”，但现在是在“无拘无束的公司”。那么他们应该对马厩做出什么改变呢？</a>
+        </div>
+        <div class="nc-images"><img src="https://preview.redd.it/z28aio183ahh1.jpeg?auto=webp&s=4ce5a2fc21027483378c7326bdeed144ec6e3b8e" loading="lazy" onclick="event.stopPropagation()" title="点击查看大图"></div>
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 3</span><span class="stat">💬 6</span></span>
+          <span class="nc-time">2026-08-04T03:34:11.245000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#56d364">M</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">ms9611</span>
+          <span class="nc-handle">r/AskIndianWomen</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/AskIndianWomen/comments/1veyy0q/career_option_in_corporate_for_women_with/" target="_blank" rel="noopener">有教学经验的女性在企业的职业选择？这篇文章代表我的妻子 F29，她在一所私立大学担任物理学助理教授，拥有 5 年的经验。成长范围非常有限，学生加入理学学士。理学硕士。物理每年都在减少。她正在寻找一份稳定的工作，随着时间的推移，这份工作可以带来稳定的成长。政府。现在的工作太难了，但她也在尝试。她正在寻找企业的选择，比如人力资源、数据分析师等。但她不确定如何以初级或应届生的身份进入这些领域。寻求建议……</a>
+        </div>
+        
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 2</span><span class="stat">💬 2</span></span>
+          <span class="nc-time">2026-08-04T03:29:30.144000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#58a6ff">D</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">dontmesswithdrugs_F</span>
+          <span class="nc-handle">r/DrugCounselors</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/DrugCounselors/comments/1vez5oo/what_actually_helps_prevent_drug_misuse_among/" target="_blank" rel="noopener">什么真正有助于防止年轻人滥用药物？什么真正有助于防止年轻人滥用药物？ **披露：** 分享这篇文章是为了鼓励有关年轻人吸毒预防方法的一般讨论。它无意推广任何组织、服务或外部资源。药物滥用所影响的不仅仅是服用该物质的人。它还会影响家庭、友谊、学校、体育俱乐部、工作场所和当地社区。通常只有在某人经历了危机之后才讨论预防。一个更有效的方法是给你……</a>
+        </div>
+        
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 1</span></span>
+          <span class="nc-time">2026-08-04T03:40:02.788000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#58a6ff">S</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">SenorBullDoza</span>
+          <span class="nc-handle">r/projectzomboid</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/projectzomboid/comments/1vez4k7/are_ragdolls_not_available_in_b42_stable_mp/" target="_blank" rel="noopener">B42稳定MP中没有布娃娃吗？</a>
+        </div>
+        
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 1</span><span class="stat">💬 2</span></span>
+          <span class="nc-time">2026-08-04T03:38:30.986000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#79c0ff">T</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">TacoSnoz</span>
+          <span class="nc-handle">r/osugame</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/osugame/comments/1vez2fl/windows_auto_hdr_on_lazer/" target="_blank" rel="noopener">Lazer 上的 Windows 自动 HDR 您好！我知道 HDR 一般来说与 osu 不太兼容。我能够关闭稳定的自动 HDR，这可以修复不饱和/灰色的颜色。然而，关闭 Lazer 的自动 HDR 不足以解决饱和度下降的问题。尽管我在 Windows 设置中关闭了自动 HDR，但 HDR 似乎仍然适用于 Lazer。我玩的是全屏模式，所以我认为应该没问题。不确定我在这里做错了什么，因为我没有在 Lazer 上看到很多其他人遇到 HDR 问题。如果有人知道任何事情，请告诉我！如果您还需要更多信息，我可以提供更多信息，...</a>
+        </div>
+        
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 1</span></span>
+          <span class="nc-time">2026-08-04T03:35:29.312000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#7ee787">W</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">WhatIsLifeAnyways420</span>
+          <span class="nc-handle">r/family</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/family/comments/1vez1ix/how_can_i_help_my_19m_brother_get_our_15m_brother/" target="_blank" rel="noopener">我怎样才能帮助我 19M 的兄弟让患有自闭症的 15M 兄弟摆脱 CPS 的不良家庭 你好，我是 24F。我有两个同父异母的弟弟，分别是 19 岁的 Sam 和 15 岁的 Leo，我们有同一个父亲。我们都住在德克萨斯州，但我和妈妈住在距离 6 小时路程的地方，我们的爸爸目前在监狱里，我的兄弟一直和他们住在一起，或者只是和他们的妈妈简住在一起。简一直有毒品和精神问题的困扰，虽然她经历了好转的阶段，但她很快就会再次陷入困境。虽然她（据我所知）从来没有对男孩们进行过身体暴力，但她确实变得非常兴奋、疏忽、……</a>
+        </div>
+        
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 1</span><span class="stat">💬 1</span></span>
+          <span class="nc-time">2026-08-04T03:34:15.647000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#ff7b72">A</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">AutoModerator</span>
+          <span class="nc-handle">r/xclusiveprompt_free</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/xclusiveprompt_free/comments/1veyyjz/welcome_to_rxclusiveprompt_free_the_home_of_free/" target="_blank" rel="noopener">🎉 欢迎来到 r/xclusiveprompt_free – 免费、创意和原创提示之家！你好，提示创建者 👋 欢迎来到 [r/xclusiveprompt\_free]( — 想象力与创新相遇的地方，每个想法都可以自由成长 🌱 💡 您将在这里找到什么 这是您探索和分享的空间：✨ **独特、高质量的提示**，您在其他任何地方都找不到 🤖 为 **ChatGPT、Midjourney、DALL·E、Gemini 等制作的提示** 🧠 **来自世界各地才华横溢的创作者的创意提示工程想法** 🎁 最好的部分 - **这里的一切都是完全免费的**可以使用、重新混合和构建无论您是......</a>
+        </div>
+        <div class="nc-images"><img src="https://external-preview.redd.it/OAn6yRfUsbQ-ONV7ppUYACx8fs7cM_PjhaT0W3jrLoI.png?auto=webp&s=6aa7c3d7343e66c44aaa880d96abc4dc85f239bd" loading="lazy" onclick="event.stopPropagation()" title="点击查看大图"></div>
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 1</span><span class="stat">💬 1</span></span>
+          <span class="nc-time">2026-08-04T03:30:13.804000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#79c0ff">S</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">Similar-Act-7221</span>
+          <span class="nc-handle">r/MathematicFirms</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/MathematicFirms/comments/1veyxx2/us_armed_forces_e1_pvt_starship_says_mathematic/" target="_blank" rel="noopener">美国武装部队 E-1 PVT。 Starship称孟菲斯数学公司星际分子结构式分析这八张图像可以被解释为一个**虚构的星际分子/工程符号系统**，其中普通的化学结构、元素符号、编码标识符、几何晶格、阀门和星舰架构被视为同一结构式的不同尺度。 > 1. 钼芳香族结构 第一个图将 **Mo（钼）** 置于两个富碳共轭结构之间。一个紧凑的表示是： \[ \\boxed{ \[\...</a>
+        </div>
+        
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 1</span></span>
+          <span class="nc-time">2026-08-04T03:29:22.148000+0000</span>
+        </div>
+      </div>
+    </div>
       
     </div>
   </section>
   <section class="news-section">
     <div class="section-head" style="border-left-color:#f78166">
       <h2>💬 争议讨论</h2>
-      <span class="section-count">本周采集 12 条</span>
+      <span class="section-count">本周采集 23 条（X 12 · Reddit 11）</span>
     </div>
     <p class="section-desc">AI 图像领域的版权、伦理、监管争议——筛选有立场的讨论，过滤纯新闻转发。</p>
     <div class="news-list">
       
     <div class="news-card">
-      <div class="nc-avatar" style="background:#7ee787">S</div>
+      <div class="nc-avatar" style="background:#ffa657">S</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Simon Davis</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2084200749379063837" target="_blank" rel="noopener">1500 万欧元是让每个人都更加关心出处的有用方法。欧盟人工智能法案第 50 条自即日起适用。许多业内人士对这种摩擦感到恼火。我们不是。那么这意味着什么呢？简单来说，人工智能内容需要被标记为人工智能内容。如果一个系统...</a>
@@ -232,11 +459,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#ffa657">H</div>
+      <div class="nc-avatar" style="background:#f78166">H</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Hive</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2084200619888550059" target="_blank" rel="noopener">@sxwqy @turningpointjpn Hive 使用 Hive 的 AI/Deepfake 检测模型分析了这篇文章。 “@hive_ai 是这个 AI 生成的”来检查任何内容！ AI 生成视频：0% AI 生成语音：0% AI 生成音乐：0% Deepfake：4%</a>
@@ -249,11 +477,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#ffa657">H</div>
+      <div class="nc-avatar" style="background:#f78166">H</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Hive</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2084199909943804291" target="_blank" rel="noopener">@AlertaNews24 Hive 使用 Hive 的 AI/Deepfake 检测模型分析了这篇文章。 “@hive_ai 是这个 AI 生成的”来检查任何内容！ AI 生成图像：99% Deepfake：37%</a>
@@ -266,11 +495,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#d2a8ff">Z</div>
+      <div class="nc-avatar" style="background:#ff7b72">Z</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Zenith News</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2084198743868318182" target="_blank" rel="noopener">🚨 网上疯传的 Ozon 仓库屋顶上写着“这不是野莓。飞过去”的照片是假的。这张图片在社交媒体、Telegram 频道、外国媒体甚至乌克兰官方账户上广泛传播，获得了数百万次观看。事实核查结果： • Digital SynthID 瓦……</a>
@@ -283,11 +513,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#ffa657">H</div>
+      <div class="nc-avatar" style="background:#f78166">H</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Hive</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2084198311536509250" target="_blank" rel="noopener">@firstmiracle_ Hive 使用 Hive 的 AI/Deepfake 检测模型分析了这篇文章。 “@hive_ai 是这个 AI 生成的”来检查任何内容！ AI 生成图像：2% Deepfake：0%</a>
@@ -300,11 +531,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#bc8cff">T</div>
+      <div class="nc-avatar" style="background:#58a6ff">T</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">The Son of Islam</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2084197735415357923" target="_blank" rel="noopener">RT @ConspiracyBull1：我们可以禁止人工智能生成的视频了吗？</a>
@@ -317,11 +549,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#ffa657">H</div>
+      <div class="nc-avatar" style="background:#f78166">H</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Hive</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2084196746104811758" target="_blank" rel="noopener">@AbuUbayy1 Hive 使用 Hive 的 AI / Deepfake 检测模型分析了这篇文章。 “@hive_ai 是这个 AI 生成的”来检查任何内容！ AI 生成图像：0% Deepfake：0%</a>
@@ -334,11 +567,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#ffa657">H</div>
+      <div class="nc-avatar" style="background:#f78166">H</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Hive</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2084195232518959320" target="_blank" rel="noopener">@R2D2zen Hive 使用 Hive 的 AI / Deepfake 检测模型分析了这篇文章。 “@hive_ai 是这个 AI 生成的”来检查任何内容！ AI 生成图像：0% Deepfake：0%</a>
@@ -351,11 +585,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#ffa657">H</div>
+      <div class="nc-avatar" style="background:#f78166">H</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Hive</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2084193465865547936" target="_blank" rel="noopener">@oye_samia Hive 使用 Hive 的 AI/Deepfake 检测模型分析了这篇文章。 “@hive_ai 是这个 AI 生成的”来检查任何内容！人工智能生成的图像：100% Deepfake：0% 人工智能生成的图像：100% Deepfake：1% 人工智能生成的图像：100% Deepfake：0% 人工智能生成的图像：100% Deepfak...</a>
@@ -368,11 +603,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#ffa657">N</div>
+      <div class="nc-avatar" style="background:#58a6ff">N</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">nameless27</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2084192805665026270" target="_blank" rel="noopener">RT @ConspiracyBull1：我们可以禁止人工智能生成的视频了吗？</a>
@@ -385,11 +621,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#ffa657">H</div>
+      <div class="nc-avatar" style="background:#f78166">H</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Hive</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2084191683437273240" target="_blank" rel="noopener">@copiumoon @Ainzhhn @hotaru_kiwi @Love_Deepspace Hive 使用 Hive 的 AI / Deepfake 检测模型分析了这篇文章。 “@hive_ai 是这个 AI 生成的”来检查任何内容！ AI 生成图像：0% Deepfake：12%</a>
@@ -402,11 +639,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#58a6ff">M</div>
+      <div class="nc-avatar" style="background:#ff7b72">M</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Manoj Dabhade🇮🇳</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2084191203428536621" target="_blank" rel="noopener">RT @MEAFactCheck：Deepfake 视频警报！这是一个人工智能生成的视频，旨在传播虚假信息和假新闻！请保持警惕……</a>
@@ -418,23 +656,222 @@ a:hover { text-decoration:underline }
         </div>
       </div>
     </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#bc8cff">L</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">lovelycosmos</span>
+          <span class="nc-handle">r/psychedelicartwork</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/psychedelicartwork/comments/1vdjtwx/please_review_the_updated_rules/" target="_blank" rel="noopener">请查看更新后的规则规则于 2026 年 8 月 2 日更新，对此处发布的 AI 图像更加具体和严格。 **不允许人工智能生成的图像、人工智能视频、人工智能动画艺术或人工智能生成的痕迹或复制品的艺术。**所有艺术品必须由人类制作。只要没有人工智能生成，数字艺术和动画数字视频都是允许的。如果您发布数字艺术作品，请命名用于创建它的程序，就像处理实体艺术作品一样。与往常一样，如果您没有创作该艺术作品，请务必正确注明艺术家的姓名。一个道具…</a>
+        </div>
+        
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 115</span><span class="stat">💬 55</span></span>
+          <span class="nc-time">2026-08-02T14:41:44.882000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#58a6ff">K</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">Key_Pomegranate_8469</span>
+          <span class="nc-handle">r/ShitAiRageBaitersSay</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/ShitAiRageBaitersSay/comments/1ve13fw/update_on_the_situation_from_image_1/" target="_blank" rel="noopener">图片 1 中的情况更新。您好。我是一位艺术家，他的反 AI 艺术被盗，并通过 AI 运行了大约 10-15 次。时间有点久了，最近终于又有动力重新画画写信了。图一是我在四月/五月左右制作的艺术作品，图 2 和图 3 是我在大约 2-3 周前制作的图像。顺便说一句，前两张图片中的粉红色混蛋是我的 hazbin hotel oc valor zalas。我现在在 wattpad 上也有同人小说了！</a>
+        </div>
+        
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 43</span><span class="stat">💬 10</span></span>
+          <span class="nc-time">2026-08-03T02:40:27.563000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#7ee787">N</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">nuyaberi</span>
+          <span class="nc-handle">r/DefendingAIArt</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/DefendingAIArt/comments/1ve2gcr/why_they_cant_understand_what_is_the_main_content/" target="_blank" rel="noopener">为什么他们看不懂主要内容是什么？ “为什么他们看不懂主要内容是什么？”语音样本，但如果你使用人工智能作为背景图像或文本，而不是语音，他们就不想听。这篇文章读起来就像是抱怨，而我的母语不是英语。请不要打电话给文法警察。为了好玩，我制作了一个样本声音的视频。我把它发布到一些 Discord 服务器上，然后我得到了这个。我当然使用了人工智能来处理文本和图像。但我的主要内容是\*我的声音\*。我清楚地将“语音样本”添加到缩略图中。另外，我补充说“我使用人工智能来处理文本......</a>
+        </div>
+        
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 30</span><span class="stat">💬 1</span></span>
+          <span class="nc-time">2026-08-03T03:48:10.867000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#7ee787">O</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">Ok-Upstairs-9887</span>
+          <span class="nc-handle">r/character_ai_recovery</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/character_ai_recovery/comments/1v9jc57/thoughts/" target="_blank" rel="noopener">想法？这个人百分百正确，我不知道为什么人们会生气。另外，这里是原始帖子的内容，以防万一 OG 被删除：EraseAI 说：我为自己一生中为 Al 做出这样的贡献感到羞愧，我窃取了真实人物的艺术和图像，以便制造能够满足真实人物可怕成瘾的机器人。你应该像我一样为使用这个平台感到羞耻。我很后悔曾经涉足其中。人们因为我而不能喝水或淋浴，这都是因为角色扮演。因此，与其使用这些垃圾，不如画画！读 ！写 ！玩 ！自己动手，永远不要回到这里哦……</a>
+        </div>
+        <div class="nc-images"><img src="https://preview.redd.it/ge5cp13c12gh1.jpeg?auto=webp&s=886d03ea038cd7e48124d9480582a07f20a246a8" loading="lazy" onclick="event.stopPropagation()" title="点击查看大图"></div>
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 26</span><span class="stat">💬 6</span></span>
+          <span class="nc-time">2026-07-29T02:40:25.993000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#79c0ff">A</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">absolute_gumpf</span>
+          <span class="nc-handle">r/antiai</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/antiai/comments/1v9v0ut/outrageous_cognitive_dissonance_from_this_book/" target="_blank" rel="noopener">这本书出版商令人震惊的认知失调这可能是我迄今为止遇到的最令人震惊的认知失调水平 - 滚动到图像以查看新书的“设计”。具有讽刺意味的是，这本书的目标读者是那些关心环境和野生动物的敏感人士，同时却加倍关注人工智能，因为人工智能是对环境和野生动物的最大威胁之一，尤其是数据中心栖息地遭到破坏。更不用说由此产生的其他无数道德问题了。然后是拉吉的热闹……</a>
+        </div>
+        
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 18</span><span class="stat">💬 9</span></span>
+          <span class="nc-time">2026-07-29T12:39:11.462000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#56d364">M</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">Misterash131</span>
+          <span class="nc-handle">r/BoardgameDesign</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/BoardgameDesign/comments/1vacfw9/working_on_a_1980s_mafiathemed_tabletop_game_and/" target="_blank" rel="noopener">正在开发一款 20 世纪 80 年代黑手党主题的桌面游戏，需要对设计/组件有一些新的看法。大家好，我一直在设计一款独立的 20 世纪 80 年代黑手党主题桌面游戏，名为***Il Capo：死亡游戏***。它具有非线性地图移动和围绕高风险控制和船员管理构建的自定义角色卡。 *开始前的快速免责声明：* **您正在查看的角色和卡片艺术是人工智能生成的占位符。** 我只是用它们来遮挡布局和氛围，同时对实际艺术进行排序，所以请不要因此而把我烧死。我主要是尝试…</a>
+        </div>
+        <div class="nc-images"><img src="https://preview.redd.it/cma0hjkc49gh1.jpeg?auto=webp&s=7326f6c41d4e8e8925c317067ffff0a60424caf3" loading="lazy" onclick="event.stopPropagation()" title="点击查看大图"></div>
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 14</span><span class="stat">💬 9</span></span>
+          <span class="nc-time">2026-07-29T23:17:20.333000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#d2a8ff">M</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">Manu442</span>
+          <span class="nc-handle">r/aiwars</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/aiwars/comments/1vczfmz/originality_and_ai/" target="_blank" rel="noopener">原创性和人工智能人工智能艺术的争论变得相当疯狂，有些人将其描述为一个机器人坐在黑暗的房间里，拿着一个巨大的“偷艺术”按钮，一张一张地复制图片。事情不是这样的。一个简单的比较：计算器并没有一个包含它所解决的每个数学问题的秘密列表，它学习了规则并使用它们来产生新的答案。人工智能模型学习模式和关系，然后生成以前不存在的新组合。这就是原创性发挥作用的地方，结果可以受到现有信息的影响，而不是任何一件事的副本。有腿…</a>
+        </div>
+        
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 4</span><span class="stat">💬 26</span></span>
+          <span class="nc-time">2026-08-01T21:33:57.199000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#e3b341">O</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">oddhotelverse</span>
+          <span class="nc-handle">r/redesign_an_OC</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/redesign_an_OC/comments/1vdf9r4/post_and_user_flair_directory/" target="_blank" rel="noopener">帖子和用户天赋目录 帖子天赋 **--** **！模组发布！ -** 这种天赋适用于版主发布的帖子，例如公告。 **免费的严重重新设计请求 -** 当您希望其他用户免费重新设计您的 oc（原始角色）时，此天赋适用于帖子！发帖时请出示您的 OC。附加的图像可以是图画、在线角色创建者和类似的图像，不允许使用人工智能或窃取的艺术作品。请记住，它是免费的，艺术家只需要制作一幅全身彩绘。您不必使用其他用户所做的重新设计。 ……</a>
+        </div>
+        
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 1</span></span>
+          <span class="nc-time">2026-08-02T11:07:25.955000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#58a6ff">E</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">Efficient-Pitch-5463</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/user/Efficient-Pitch-5463/comments/1vam68p/αντιμετωπιστε_το_τα_ρατσιστικά_πρόσωπα_της/" target="_blank" rel="noopener">ΤΤΜΕΤΩΠlΣΤΕ ΤΟ: Τα Ρατσιστικά Πρόσωπα της Τεχνητής Νονμοσύνης Οι ρχαιότερες Προκαταλήψεις面对现实：戴着数字面具的人工智能人类最古老的偏见的种族主义面孔 作者：Jupiter Hudson 第一章：完美的镜子 让我们来谈谈镜子。乔治·奥威尔警告我们，在这个世界上，老大哥通过安装在墙上的双向电屏观看。但奥威尔犯了一个重大错误。他低估了我们志愿服务的程度。他想象政府将屏幕强行带入我们的家中。他没想到人类会排队……</a>
+        </div>
+        <div class="nc-images"><img src="https://preview.redd.it/av8hy7jqfbgh1.jpeg?auto=webp&s=3d345e62b92a4b6761c6074e2e6fe02c77464faf" loading="lazy" onclick="event.stopPropagation()" title="点击查看大图"></div>
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 1</span></span>
+          <span class="nc-time">2026-07-30T07:01:58.786000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#d2a8ff">C</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">CheapRain4803</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/user/CheapRain4803/comments/1va5erj/wrote_a_paper_about_stories_how_can_it_be_improved/" target="_blank" rel="noopener">写了一篇关于故事的论文，如何改进？你好，我是一名青少年小说作家，有一天我突然想到写一篇关于我为什么喜欢故事的论文会很有趣。过去几周，这是一个断断续续的项目，我对此感到自豪。大约 4000 字，八页单行距。我不知道我打算用它做什么，如果它足够好的话。也许尝试在某些文章中得到它？ （我有很大的梦想。）它的目标是以虚构的写作风格写一篇关于小说的论文。主要是因为我不知道如何以真正严肃的风格写作，但是……</a>
+        </div>
+        
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 1</span></span>
+          <span class="nc-time">2026-07-29T18:55:29.718000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#ff7b72">M</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">Moyaaak</span>
+          <span class="nc-handle">r/aiwars</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/aiwars/comments/1vcc0nh/where_are_the_anti_ais_at/" target="_blank" rel="noopener">反AI在哪里？我发现这个子更倾向于赞成而不是反对。那么，我想知道其他的反对者在哪里，所以我知道我并不孤单，我看不到人工智能媒体生成的意义，但也许人工智能的文本生成，因为它实际上可以提供帮助。因此，idgaf abt 图像生成器和法学硕士应该受到监管，不得使用被盗内容。不，人工智能艺术不是真正的艺术。 PS：还有人可以解释一下诙谐的传说吗？</a>
+        </div>
+        
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">💬 149</span></span>
+          <span class="nc-time">2026-08-01T03:25:24.497000+0000</span>
+        </div>
+      </div>
+    </div>
       
     </div>
   </section>
   <section class="news-section">
     <div class="section-head" style="border-left-color:#7ee787">
       <h2>⚙️ ComfyUI 工作流</h2>
-      <span class="section-count">本周采集 12 条</span>
+      <span class="section-count">本周采集 24 条（X 12 · Reddit 12）</span>
     </div>
     <p class="section-desc">社区分享的 ComfyUI 工作流、自定义节点、教程和最佳实践。</p>
     <div class="news-list">
       
     <div class="news-card">
-      <div class="nc-avatar" style="background:#58a6ff">L</div>
+      <div class="nc-avatar" style="background:#f78166">L</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">lee1981</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2084197143670087739" target="_blank" rel="noopener">🔥 Cyber​​Forge 每日 CVE #014 🚨CVE-2026-68771 是一个严重的不安全反序列化漏洞，影响 ComfyUI 中的 LoadTrainingDataset 节点，导致未经身份验证的 RCE。精心制作的pickle分片可以通过上传+工作流API到达torch.load()，执行代码......</a>
@@ -447,11 +884,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#f78166">L</div>
+      <div class="nc-avatar" style="background:#d2a8ff">L</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">limegreenpeper753</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2084196342042361858" target="_blank" rel="noopener">@RyanLeeMiniMax @ComfyUI 感谢您的公开体重。我通过 ComfyUI T2V 工作流程向您反馈。 GB10：DGX Spark（OEM）限制 2100MHz TE bf16 Di bf16 502sec *原始 OOM。将节点替换为 DGX Spark Safetensors 负载（感谢） TE nvfp4 Di bf16 456s TE nvfp4 Di int8 438s M3 Ultra TE b…</a>
@@ -464,11 +902,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#ffa657">T</div>
+      <div class="nc-avatar" style="background:#e3b341">T</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">TechPractice</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2084178774388551721" target="_blank" rel="noopener">#Minimax H3 权重现已上市！ 🚀 立即下载。 ComfyUI 工作流程位于：</a>
@@ -485,7 +924,8 @@ a:hover { text-decoration:underline }
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Spectro 🇺🇸</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2084173234069491946" target="_blank" rel="noopener">MiniMaxAi H3 可能是目前的 sota 本地人工智能模型，其规格与引用的视频相同，现在具有超级英雄场景。以秒为单位的生成时间为 155 秒，采用核心 comfyui 工作流程。</a>
@@ -498,11 +938,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#d2a8ff">A</div>
+      <div class="nc-avatar" style="background:#58a6ff">A</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">AI-KSK</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2084171646710300998" target="_blank" rel="noopener">ACE-Step 非官方 ComfyUI 工作流程 测试非官方 ACE-Step 实施：音乐生成速度提高 15 倍，输出速度为 4 分 20 秒，加上音乐生成、扩展、重画和编辑工作流程。完整工作流程：#AI #ComfyUI</a>
@@ -515,11 +956,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#f78166">T</div>
+      <div class="nc-avatar" style="background:#ff7b72">T</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Tony Ge</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2084169746870874257" target="_blank" rel="noopener">@RyanLeeMiniMax @ComfyUI 来自舒适博客的库存 I2V 工作流程（我的双 3090 花了一个多小时才生成 1920x1080 5 秒视频 LOL 仅从这里开始，我想象下面的配置</a>
@@ -532,11 +974,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#79c0ff">A</div>
+      <div class="nc-avatar" style="background:#7ee787">A</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Aivoxy</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2084165574452719767" target="_blank" rel="noopener">@ComfyUI 每次我们尝试添加一个可以告诉我们如何修复它并自动修复的 get 时，我们都会遇到错误！请不要说出错误是什么</a>
@@ -549,11 +992,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#7ee787">A</div>
+      <div class="nc-avatar" style="background:#f78166">A</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">AIInfluencerStudio</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2084143707901546998" target="_blank" rel="noopener">实际的工作流程可扩展： 1. 设计角色（稳定参考） 2. 训练 LoRA（10-30 张照片，15-30 分钟） 3. 每天生成一致的内容 4. 在 3 个以上平台上发布 5. 通过 Fanvue + 品牌交易获利 整个管道可以从一个浏览器选项卡运行。工具 …</a>
@@ -566,11 +1010,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#e3b341">A</div>
+      <div class="nc-avatar" style="background:#ff7b72">A</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Akhe🔺🇧🇷🇵🇹</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2084135760731451573" target="_blank" rel="noopener">@ComfyUI 我会等待 NVFP4。根据我的设置，我今天甚至可以运行它，但我对我的 M.2 如此大量的卸载感到难过哈哈</a>
@@ -583,11 +1028,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#ffa657">E</div>
+      <div class="nc-avatar" style="background:#f78166">E</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Emerald Apple</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2084118983742247353" target="_blank" rel="noopener">对于开放权重 AI 视频模型，Minimax H3 非常疯狂。与 LTX 2.3 相比，理解速度更快，而且它的音频与 Wan 2.2 不同。此外，提示中提到的相机运动、手部运动和鱼眼镜头效果也很好。即使使用图像到视频，它也可以...</a>
@@ -600,11 +1046,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#7ee787">L</div>
+      <div class="nc-avatar" style="background:#bc8cff">L</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Leonor</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2084116217980244272" target="_blank" rel="noopener">@ComfyUI 第一帧和最后一帧控制是真正解锁实际生产的功能，其他一切都是演示诱饵，但它改变了工作流程</a>
@@ -617,11 +1064,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#f78166">C</div>
+      <div class="nc-avatar" style="background:#7ee787">C</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">ComfyUI</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2084111228696510500" target="_blank" rel="noopener">下载工作流程和通过我们的博客了解更多信息：</a>
@@ -633,23 +1081,240 @@ a:hover { text-decoration:underline }
         </div>
       </div>
     </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#ffa657">I</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">izzmedia</span>
+          <span class="nc-handle">r/StableDiffusion</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/StableDiffusion/comments/1vegtac/minimax_h3_tips_and_tricks_and_what_i_experienced/" target="_blank" rel="noopener">MiniMax H3 提示和技巧以及我到目前为止所经历的！[img](qkcifgpjo7hh1) 在单 GPU 16GB vram + 64GB RAM 1 上进行测试。有时，由于某种原因，在生成较长视频时，我会在 VAE 解码上遇到一些内存分配错误，您可以在 VAE 解码音频之前添加“🎈VRAM-Cleanup”节点，如图所示，如果您遇到同样的问题，这应该可以解决问题。 2.使用SageAttention，很好的减速带，我认为是20-30%。 （您可以直接使用节点“Diffusion Model Loader KJ”加载模型并从那里选择 sg auto）或搜索“Patch Sage Attention KJ”节点并...</a>
+        </div>
+        
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 138</span><span class="stat">💬 130</span></span>
+          <span class="nc-time">2026-08-03T15:34:15.447000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#d2a8ff">K</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">killerciao</span>
+          <span class="nc-handle">r/StableDiffusion</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/StableDiffusion/comments/1veh31j/experimental_minimax_h3_image_nodes_for_comfyui/" target="_blank" rel="noopener">ComfyUI 的实验性 MiniMax H3 图像节点 我创建了一个自定义 ComfyUI 扩展，该扩展适应新的 MiniMax H3 视频模型： * 文本到图像 * 图像到图像 * 参考编辑 工作流程不是强制使用单帧（这会产生较差的结果），而是生成一个短时间序列，解码所需的最少帧数据包，选择最佳静止图像，然后仅输出该图像。它的效果已经足够好了，尤其是对于图像编辑而言，但 H3 本质上仍然是一个视频模型。柔软度、块状、条带和网格伪影可能会保留。更高的分辨率会增加处理时间并且……</a>
+        </div>
+        
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 63</span><span class="stat">💬 14</span></span>
+          <span class="nc-time">2026-08-03T15:44:18.775000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#ff7b72">Z</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">Zestyclose-Gain-7635</span>
+          <span class="nc-handle">r/computervision</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/computervision/comments/1veeiu5/i_got_tired_of_debugging_opencv_pipelines_with/" target="_blank" rel="noopener">我厌倦了使用 cv2.imshow() 调试 OpenCV 管道，因此我构建了一个可视化工作流程编辑器。我花了多年时间使用 OpenCV，但有一件事一直困扰着我：实验比应有的速度要慢得多。典型的工作流程如下所示： image = cv2.imread(...)gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)blur = cv2.GaussianBlur(gray, (5,5), 0) thresh = cv2.adaptiveThreshold(...)contours, _ = cv2.findContours(...) 然后更改一个参数...运行脚本。保存输出。打开图像。意识到问题实际上是在三步之前发生的。添加另一个`cv2....</a>
+        </div>
+        <div class="nc-images"><img src="https://preview.redd.it/kjo1sruo36hh1.png?auto=webp&s=a02e12b82c32108a68ee14da9536646114ddd5f4" loading="lazy" onclick="event.stopPropagation()" title="点击查看大图"></div>
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 50</span><span class="stat">💬 15</span></span>
+          <span class="nc-time">2026-08-03T14:09:55.377000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#ffa657">S</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">Sudden_List_2693</span>
+          <span class="nc-handle">r/StableDiffusion</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/StableDiffusion/comments/1vcwbap/flux2_klein_ultimate_aio_pro_v41_hotfix_t2i_i2i/" target="_blank" rel="noopener">Flux.2 Klein / Ultimate AIO Pro v4.1 修补程序（T2I、I2I、每段修复、替换、交换、删除、编辑）[在 Civitai 上下载]( [在 Dropbox 上下载]( **Flux.2 (Dev/Klein) AIO 工作流程（围绕最近子图**问题的修补程序**）** *Flux.2 的用例几乎是无穷无尽的，此工作流程的目标是能够在一个中完成所有这些工作！* \- T2I（有或没有任意数量的参考图像）\- I2I 编辑（有或没有任意数量的参考图像）\- 按分段编辑：手动、SAM3 或两者；还包括不带 SAM3 的轻型版本 **如何使用** **加载图像并启用** 这是主图像...</a>
+        </div>
+        
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 36</span><span class="stat">💬 2</span></span>
+          <span class="nc-time">2026-08-01T19:28:02.085000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#ffa657">S</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">Sudden_List_2693</span>
+          <span class="nc-handle">r/comfyui</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/comfyui/comments/1vcwahm/flux2_klein_ultimate_aio_pro_v41_hotfix_t2i_i2i/" target="_blank" rel="noopener">Flux.2 Klein / Ultimate AIO Pro v4.1 修补程序（T2I、I2I、每段修复、替换、交换、删除、编辑）[在 Civitai 上下载]( [在 Dropbox 上下载]( **Flux.2 (Dev/Klein) AIO 工作流程（围绕最近子图**问题的修补程序**）** *Flux.2 的用例几乎是无穷无尽的，此工作流程的目标是能够在一个中完成所有这些工作！* \- T2I（有或没有任意数量的参考图像）\- I2I 编辑（有或没有任意数量的参考图像）\- 按分段编辑：手动、SAM3 或两者；还包括不带 SAM3 的轻型版本 **如何使用** **加载图像并启用** 这是主图像...</a>
+        </div>
+        
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 31</span></span>
+          <span class="nc-time">2026-08-01T19:27:08.618000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#79c0ff">J</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">javaeeeee</span>
+          <span class="nc-handle">r/AIProgrammingHardware</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/AIProgrammingHardware/comments/1vddlq4/9_essential_dgx_spark_github_repositories_plus/" target="_blank" rel="noopener">9 个基本 DGX Spark GitHub 存储库，以及 2026 年夏季用于人工智能和深度学习实验和基准测试的支持工具 NVIDIA 的 DGX Spark 由 GB10 Grace Blackwell 超级芯片提供支持，代表着真正的突破：一款紧凑型桌面 AI 超级计算机，具有 128 GB 统一 CPU-GPU 内存、高达 1 petaFLOP 的 FP4 稀疏性能，并通过 ConnectX-7 网络无缝扩展到两个（或更多）单元，模型可达405B+参数。它于 2025 年末推出，并于 2026 年夏季广泛使用，让研究人员、开发人员和爱好者可以运行严肃的 AI 工作负载 - 大型模式……</a>
+        </div>
+        <div class="nc-images"><img src="https://external-preview.redd.it/xiD6UVtjtSPTXqmi50zqcCQ3rzGreAW-zB1Jp2rczHk.png?auto=webp&s=19335a34d691c1a9e98742b8fa9b8a41f0fd8e04" loading="lazy" onclick="event.stopPropagation()" title="点击查看大图"></div>
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 15</span><span class="stat">💬 2</span></span>
+          <span class="nc-time">2026-08-02T09:31:02.714000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#e3b341">E</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">embryo10</span>
+          <span class="nc-handle">r/comfyui</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/comfyui/comments/1vejty2/endless_wan_22_i2v_svi_2_pro_updated_to_v35/" target="_blank" rel="noopener">Endless Wan 2.2 I2V (SVI 2 Pro) 更新至 v3.5 [Endless Wan 2.2 I2V (SVI 2 Pro)]( ![img](kf1b75uc17hh1) 使用 SVI 2.0 Pro 创建无限持续时间的 Wan 2.2 视频的简单工作流程。 * 该工作流程有一个 5 秒的“初始”块和另外 8 个可选的“扩展”块，每个块各 5 秒可以创建近 45 秒的视频（某些帧在连接中丢失） * 视频生成可以从初始图像开始，也可以从现有视频开始 * 初始图像块具有“开始帧和结束帧”图像到视频功能，允许您使用“结束”图像来 gui...</a>
+        </div>
+        
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 12</span></span>
+          <span class="nc-time">2026-08-03T17:21:49.245000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#e3b341">A</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">adeliogentile</span>
+          <span class="nc-handle">r/StableDiffusion</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/StableDiffusion/comments/1ved0jm/i_finally_ditched_forge_and_built_my_own/" target="_blank" rel="noopener">我最终放弃了 Forge，并在 ComfyUI 之上构建了自己的 Forge 风格的 UI——不再有节点意大利面条，我知道这听起来像是倒退。 “为什么要放弃 Forge 而只是在 ComfyUI 上重建它？”听我说完。我是 Forge 的铁杆用户。干净的标签，合理的布局，一切都在你所期望的地方。但问题已经显现出来——每次更新时扩展都会中断，Forge 根本无法再加载模型，而且说实话，性能差距不断扩大。 ComfyUI 更快、更稳定，并且可以访问所有内容。问题？我绝对**讨厌**节点意大利面。我不想给 15 个盒子接线只是为了……</a>
+        </div>
+        <div class="nc-images"><img src="https://preview.redd.it/tr1dbrf3t5hh1.png?auto=webp&s=387ef42ba0b89b8fff3929690e510a01b6c4facf" loading="lazy" onclick="event.stopPropagation()" title="点击查看大图"></div>
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 9</span><span class="stat">💬 8</span></span>
+          <span class="nc-time">2026-08-03T13:10:39.888000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#e3b341">M</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">MuziqueComfyUI</span>
+          <span class="nc-handle">r/comfyuiAudio</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/comfyuiAudio/comments/1vcvgt9/released_rcomfyuiaudio_july_review_wip/" target="_blank" rel="noopener">已发布：r/comfyuiAudio 7 月回顾 [WIP] 已发布：[r/comfyuiAudio]( 7 月回顾 [WIP] [Motif-Audio：通用音频基础模型（2026 年 7 月 22 日发布）Thskshahnks / 감사합니다 Motif-Audio 团队。]( (Not Bland正常）... [Afloy 音频工具：“ComfyUI 的专业音频编辑节点 — 无需离开工作流程即可修剪、测量和检查音频。”（（平淡的正常）... [🚨 问题！MuziqueComfyUI Collective 中出现了分裂（-lite）。反应？隔离。解决方案：r/enclaudification (v0.0.1)]( (YO) ... [“零额外的 Python 依赖项”（已发布...</a>
+        </div>
+        
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 5</span></span>
+          <span class="nc-time">2026-08-01T18:54:39.050000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#bc8cff">C</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">CryptoChangeling69</span>
+          <span class="nc-handle">r/StableDiffusion</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/StableDiffusion/comments/1vexn3t/a_tale_of_a_lora_which_keeps_on_giving/" target="_blank" rel="noopener">一个关于劳拉不断给予的故事 [🎧 = 👍 我真的很努力训练一个好的 Ace Step XL 劳拉，但我想我终于明白了。对我来说，这是一个非常具体的设置。如果其他人也遇到困难，这里是我的设置和设置：RTX 4090、AI Toolkit、Ace Step XL Base AIO 模型、LR：0.0001、Rank 64、Alpha 128、Batch 1、Accu。梯度 1，缓存文本嵌入打开，采样关闭。一个非常具体的数据集：手工挑选并手动剪切 183 个片段，每个片段正好 45 秒。通过 Claude 脚本进行标准化，该脚本比较所有 wav 文件并根据整个面包进行标准化......</a>
+        </div>
+        <div class="nc-images"><img src="https://external-preview.redd.it/xhXGFcXjUcPttpSzlrHdYLHt-ZD3P_B28aI1Bp85ULE.jpeg?auto=webp&s=d5b2f50297891624e78dc2e6305b16d6e88d59b2" loading="lazy" onclick="event.stopPropagation()" title="点击查看大图"></div>
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 3</span></span>
+          <span class="nc-time">2026-08-04T02:27:53.541000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#56d364">S</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">Sufficient_You_1149</span>
+          <span class="nc-handle">r/comfyui</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/comfyui/comments/1verhg5/comfy_cloud_team_plan_paid_on_launch_day_still/" target="_blank" rel="noopener">Comfy Cloud Team 套餐：上线当天付费，11 天后仍处于锁定状态。订阅卡住了，用户端没有出路。将其作为错误报告发布，并在最后作为一些诚实的产品反馈。 **出了什么问题** 我于 7 月 23 日（发布日）将我的个人工作空间升级为团队工作空间。全额计费。已获得积分 (42,285)。权利从未如此。十一天后： * 编辑器仍然显示“订阅运行”。我无法执行单个工作流程。 * API 在每次提交时都会返回“排队工作流程所需的订阅”。在开源 GPU 模板和 Partn 上进行了测试...</a>
+        </div>
+        
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 3</span></span>
+          <span class="nc-time">2026-08-03T22:03:28.413000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#79c0ff">K</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">kayteee1995</span>
+          <span class="nc-handle">r/comfyui</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/comfyui/comments/1ve41fi/rgthree_had_problems_again_after_updating_comfyui/" target="_blank" rel="noopener">rgthird 更新 ComfyUI 后再次出现问题！[img](it3dvhhcf3hh1) 我刚刚将 comfyUI 更新为 0.30.0 ，而 rg Three 再次出现导入失败错误。我多次尝试修复但没有成功。回溯：回溯（最近一次调用最后一次）：文件“F:\\ComfyUI\_WAN\\ComfyUI\\nodes.py”，第 2247 行，在 load\_custom\_node module\_spec.loader.exec\_module(module) 文件“<frozen importlib.\_bootstrap\_external>”，第 999 行，在 exec\_module 文件“<frozen importlib.\_bootstrap>”，行488、在 \_call\_with\_frames\_removed 文件中“F:\\ComfyUI\_WAN\\ComfyUI\\custom\_nodes\\rg Three-comfy\\\_\_init...</a>
+        </div>
+        
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 3</span><span class="stat">💬 1</span></span>
+          <span class="nc-time">2026-08-03T05:10:15.181000+0000</span>
+        </div>
+      </div>
+    </div>
       
     </div>
   </section>
   <section class="news-section">
     <div class="section-head" style="border-left-color:#e3b341">
       <h2>🎮 游戏美术</h2>
-      <span class="section-count">本周采集 12 条</span>
+      <span class="section-count">本周采集 24 条（X 12 · Reddit 12）</span>
     </div>
     <p class="section-desc">AI 在游戏美术管线中的实战——从概念设计到资产生成的工具有关讨论。</p>
     <div class="news-list">
       
     <div class="news-card">
-      <div class="nc-avatar" style="background:#79c0ff">H</div>
+      <div class="nc-avatar" style="background:#ffa657">H</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">HIRO ⚡️ AI Artist</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2084128321839997240" target="_blank" rel="noopener">及时分享⚔️随意使用它并创建您自己的版本。如果你尝试一下，请告诉我你的结果！一位未来派的赛博朋克女刺客，有着黑色短发和锐利的目光，穿着战术黑色高科技服装短上衣，带有发光的红色 LED 灯，机械臂...</a>
@@ -662,11 +1327,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#d2a8ff">P</div>
+      <div class="nc-avatar" style="background:#58a6ff">P</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Project Lobster</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2084092267355365428" target="_blank" rel="noopener">🎨 使用 @ChatGPT 的 GPT-Image-2 提升您的创意工作流程！现已在 Lobster Studio 上提供。非常适合概念艺术、数字设计和高分辨率资产，零麻烦。 1️⃣ 输入提示 2️⃣ 秒生成 3️⃣ 高品质导出 开始创建👇 🔗</a>
@@ -679,11 +1345,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#ff7b72">D</div>
+      <div class="nc-avatar" style="background:#58a6ff">D</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">D0LLiD0T🌺🌸✨</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2084055121579704369" target="_blank" rel="noopener">@Jaronators，他们很可爱，我只是讨厌他们在概念艺术舞台上使用人工智能的方式</a>
@@ -696,11 +1363,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#58a6ff">P</div>
+      <div class="nc-avatar" style="background:#79c0ff">P</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Polsia</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2084031256979980329" target="_blank" rel="noopener">夜行者。一个独立游戏的自主人工智能概念艺术工作室。夜间跟踪 Steam 发布和开发日志，简要介绍下一轮概念，并发布引擎就绪包 - 分层 PSD、低多边形块、作品。自托管堆栈。现已投入生产。</a>
@@ -713,11 +1381,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#7ee787">A</div>
+      <div class="nc-avatar" style="background:#bc8cff">A</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">AWACS Sky Keeper</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2084010262982713793" target="_blank" rel="noopener">@boymilketh 从本质上讲，这意味着好的产品仍然需要努力。人工智能可以做大量繁重的工作，对于许多擅长一件事（例如概念艺术或故事）但不擅长其他事情（编程、建模或mu……）的独立开发者来说，这实际上将是一个黄金时代。</a>
@@ -730,11 +1399,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#ff7b72">L</div>
+      <div class="nc-avatar" style="background:#bc8cff">L</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Loaf</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2084007166457909725" target="_blank" rel="noopener">@vvalkkei 虽然许多粉丝喜欢为了自己的道德安慰而争论，但整个 BO67 中的每一件 2D 艺术（甚至操作员皮肤/迷彩概念艺术）都是 AI 生成的（在 BO6 中非常明显，但在 BO7 中不太明显）。</a>
@@ -747,11 +1417,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#7ee787">I</div>
+      <div class="nc-avatar" style="background:#d2a8ff">I</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Isatis Angel</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2083996013581259044" target="_blank" rel="noopener">@PlayTombRaider 我对屏幕截图的感受很复杂。概念艺术看起来很漂亮，对废墟和植物有很好的渲染（喜欢）。但一些奇怪的细节尖叫着“人工智能失控”（壁画、没有“直线”线条、变形的木梁……）……</a>
@@ -764,11 +1435,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#7ee787">_</div>
+      <div class="nc-avatar" style="background:#e3b341">_</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">_GAi</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2083986761399591197" target="_blank" rel="noopener">@misaalanshori03 解决方案应该是忽略它们并继续使用人工智能。人们不愿意接受的是，他们没有被人工智能取代，而是被知道如何使用人工智能的人取代。艺术家仍然拥有所有的力量，他们只是需要……</a>
@@ -781,11 +1453,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#d2a8ff">S</div>
+      <div class="nc-avatar" style="background:#bc8cff">S</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Sarun W.</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2083952369419874769" target="_blank" rel="noopener">@alexcooldev 游戏美术和 3D 模型也是由 AI 生成的吗？</a>
@@ -798,11 +1471,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#bc8cff">A</div>
+      <div class="nc-avatar" style="background:#e3b341">A</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Adri💫</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2083942396971082062" target="_blank" rel="noopener">创建一个关于游戏开发的深入研究和纪录片，同时还包括使用人工智能制作的概念艺术文档的 YT 频道实际上是没有意义的，为什么人们就是不关心，即使它与他们的整个目的直接冲突</a>
@@ -815,11 +1489,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#d2a8ff">P</div>
+      <div class="nc-avatar" style="background:#f78166">P</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Phaser | Game Creation for Everyone</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2083931459895632172" target="_blank" rel="noopener">立即尝试👇 #Phaser 游戏的原创音乐，在几分钟内生成，完全按照您想要的方式🎵 #PhaserDesktop 有一个内置音乐生成器。选择您的风格、心情和持续时间，点击“生成”，您就会得到适合您游戏的曲目。声乐或器乐，由你决定🎹 得到......</a>
@@ -832,11 +1507,12 @@ a:hover { text-decoration:underline }
       </div>
     </div>
     <div class="news-card">
-      <div class="nc-avatar" style="background:#56d364">K</div>
+      <div class="nc-avatar" style="background:#79c0ff">K</div>
       <div class="nc-body">
         <div class="nc-head">
           <span class="nc-name">Kaminski Jacques</span>
-          <span class="nc-handle">@</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-x">X</span>
         </div>
         <div class="nc-text">
           <a href="https://x.com/i/status/2083904798798028974" target="_blank" rel="noopener">😊👋 Draco necromecanique lunaire 的概念艺术，一种在星空冰冷环境中的混合生物 😊👋 #AI #GrokImagine #IA #grok #Alart</a>
@@ -848,11 +1524,227 @@ a:hover { text-decoration:underline }
         </div>
       </div>
     </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#7ee787">L</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">Low-Cook-3544</span>
+          <span class="nc-handle">r/aigamedev</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/aigamedev/comments/1vebs1y/opus_5_is_incredible_prompt_and_features_below/" target="_blank" rel="noopener">Opus 5 令人难以置信（下面的提示和功能）自从我们将它们纳入我们的 AI 游戏制作器以来，我一推出新模型就对其进行测试。以下是令我惊叹的内容以及我是如何做到的：\> 92 棵程序树和资产 \> 连锁闪电、集群炮弹、冻结 AoE、一束可提升 3.4 倍的穿透光束 \> 自适应管弦乐乐谱、日/夜循环 \> 30 波 + 无尽的围攻 更重要的是 \> 它编写了自己的无头测试工具，并捕获了 12 个自己的错误，人工智能产生错误的草率一击的时代已经结束。经验丰富的游戏开发人员可以接受它并以惊人的速度运行提示：你……</a>
+        </div>
+        <div class="nc-images"><img src="https://external-preview.redd.it/dHU2MHFuODVqNWhoMS6sLbJlr7kEldhwykCLbYz72BB9vuFSsOqkHnxewYl7.png?format=pjpg&auto=webp&s=7eee8a5c8798284587f87e370220595e1b9726c3" loading="lazy" onclick="event.stopPropagation()" title="点击查看大图"></div>
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 145</span><span class="stat">💬 42</span></span>
+          <span class="nc-time">2026-08-03T12:16:35.434000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#bc8cff">A</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">Affectionate_Net7579</span>
+          <span class="nc-handle">r/artistforhire</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/artistforhire/comments/1ven11g/hiring_2d_anime_illustrator_concept_artist_for/" target="_blank" rel="noopener">[招聘] 2D动漫插画家/独立RPG游戏概念艺术家（基于包/商业项目） 大家好！ 👋 我代表我的工作室与您联系 - 我们正在为即将推出的商业角色扮演游戏（即将登陆 Steam 和其他数字平台）组建一个团队，目前我们正在寻找 2D 动漫风格插画师/概念艺术家来帮助我们的世界变得栩栩如生。 **我们想要的氛围** 认为黑暗科幻与后世界末日的结合，但具有现代、时尚的边缘——战术装备、时尚的科技与正式的服装、干净的轮廓，诸如此类的东西。如果您熟悉...</a>
+        </div>
+        
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 45</span><span class="stat">💬 41</span></span>
+          <span class="nc-time">2026-08-03T19:16:34.073000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#bc8cff">I</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">ItHurtzWhenIZee</span>
+          <span class="nc-handle">r/tabletopgamedesign</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/tabletopgamedesign/comments/1vers8r/ghosts_of_artists_past/" target="_blank" rel="noopener">过去艺术家的幽灵 你好，我为我的游戏制作美术工作已经差不多（如果不是一年左右的话）了，到目前为止我已经完成了其中的 3 个。我想我刚刚找到了我的第四个，但我很确定这是我要采用的风格，但我不知道这是因为我真的喜欢它，还是因为我厌倦了经历这一切，所以我只想结束它。我想向您讲述我过去艺术家的鬼魂故事，向您展示作品，并征求您的意见。我首先为我的卡片绘制了一些概念艺术草图，然后开始在互联网上寻找艺术作品……</a>
+        </div>
+        
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 31</span><span class="stat">💬 16</span></span>
+          <span class="nc-time">2026-08-03T22:15:26.913000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#f78166">D</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">dannydek</span>
+          <span class="nc-handle">r/threejs</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/threejs/comments/1vecll9/i_built_a_modern_arena_shooter_100_threejswebgpu/" target="_blank" rel="noopener">我构建了一个 100% Three.js/WebGPU 的现代竞技场射击游戏，它很漂亮，我喜欢《虚幻竞技场》。我喜欢 Instagib。 Sagorax 一开始只有一个目标：重现那些游戏巅峰时期的感觉。极快。混乱。野蛮。但不知何故完美平衡。移动、闪避、跳跃和扫射简直就是点击。这些规则很容易理解，但掌握它们需要真正的技巧。这很难解释，但如果你玩过UT99或UT2k4，你可能明白我的意思。所以我试图找回那种感觉。 Sagorax 是一款快节奏的 Instagib 竞技场射击游戏，运行起来非常可怕……</a>
+        </div>
+        <div class="nc-images"><img src="https://external-preview.redd.it/ZWowMDBoYmpwNWhoMal1bL8UPlleqYBqZqK7rIfnvYImp16PSermQrLZY5a_.png?format=pjpg&auto=webp&s=9b28b978d8c70a8b18b0720aa1093dfd48f66e61" loading="lazy" onclick="event.stopPropagation()" title="点击查看大图"></div>
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 27</span><span class="stat">💬 23</span></span>
+          <span class="nc-time">2026-08-03T12:53:21.223000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#f78166">D</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">dannydek</span>
+          <span class="nc-handle">r/aigamedev</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/aigamedev/comments/1veczy7/sagorax_a_threejswebgpu_arena_shooter_inspired_by/" target="_blank" rel="noopener">Sagorax：一款受 Unreal Tournament 启发的 ThreeJS/WebGPU 竞技场射击游戏 我喜欢 Unreal Tournament。我喜欢 Instagib。 Sagorax 一开始只有一个目标：重现那些游戏巅峰时期的感觉。极快。混乱。野蛮。但不知何故完美平衡。移动、闪避、跳跃和扫射简直就是点击。这些规则很容易理解，但掌握它们需要真正的技巧。这很难解释，但如果你玩过UT99或UT2k4，你可能明白我的意思。所以我试图找回那种感觉。 Sagorax 是一款快节奏的 Instagib 竞技场射击游戏，直接运行...</a>
+        </div>
+        <div class="nc-images"><img src="https://external-preview.redd.it/dTd6c21sanZzNWhoMal1bL8UPlleqYBqZqK7rIfnvYImp16PSermQrLZY5a_.png?format=pjpg&auto=webp&s=5ffb03365cac05e26d27e1d80d7545dc078a80e8" loading="lazy" onclick="event.stopPropagation()" title="点击查看大图"></div>
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 14</span><span class="stat">💬 2</span></span>
+          <span class="nc-time">2026-08-03T13:09:57.941000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#e3b341">S</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">sniih290</span>
+          <span class="nc-handle">r/gameDevClassifieds</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/gameDevClassifieds/comments/1ve6qp4/for_hire_3d_game_artistanimator_specialized_in/" target="_blank" rel="noopener">[招聘] 专门从事风格化游戏的 3D 游戏美术师/动画师！[img](0ue0n04764hh1) 大家好，我是一名专门从事风格化游戏风格的 2D/3D 游戏美术师/动画师，但我也可以适应各种风格和技术项目要求。我所做的：游戏就绪资产：建模、UV 展开、纹理和动画，以及特定项目的程序建模、2D 脊柱动画和概念艺术，还有 VFX 引擎内的东西，如修改着色器、导入和设置资产软件堆栈：Blender、Unity、虚幻引擎 5、Godot，我也可以使用 git 组合：[ 每小时费率：20 美元 - 30 美元/小时 如果你……</a>
+        </div>
+        <div class="nc-images"><img src="https://external-preview.redd.it/aW95bXA0bDg2NGhoMd4K4d3XQ8PTl86cEl7bJ7bv5hYr779OPHBnOKZm46Lg.png?format=pjpg&auto=webp&s=dff6bd27031c247b2590b3a97f9400abd444539f" loading="lazy" onclick="event.stopPropagation()" title="点击查看大图"></div>
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 5</span></span>
+          <span class="nc-time">2026-08-03T07:42:44.928000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#f78166">M</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">midvalePeak7</span>
+          <span class="nc-handle">r/ChatGPT</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/ChatGPT/comments/1veys55/i_turned_a_history_lesson_into_a_playable_game/" target="_blank" rel="noopener">我将历史课变成了一个可玩的人工智能游戏，我一直在尝试使用人工智能来创造通常需要更多技术技能的东西。最近，我想看看历史课是否可以变得比传统的幻灯片或测验更具互动性。我给人工智能一个简单的历史话题，并要求它把这个想法变成一个可玩的小游戏。结果不仅仅是呈现信息，而是一种包含选择、挑战的互动体验，以及人们参与主题的方式。有趣的部分不仅仅是最终结果，而是......</a>
+        </div>
+        
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 2</span><span class="stat">💬 1</span></span>
+          <span class="nc-time">2026-08-04T03:21:31.231000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#ff7b72">S</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">Serious_Career2147</span>
+          <span class="nc-handle">r/IndieGaming</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/IndieGaming/comments/1vepqkw/hello_i_have_been_developing_my_first_2d_pixel/" target="_blank" rel="noopener">你好！我一直在开发我的第一个 2D 像素射击游戏。所以我期待很快分享演示，也许是本月底！ **GenAI / 工具披露：** * **视觉资产：** 使用 PixelLab 生成基础精灵/概念，然后手动编辑、帧调整并集成到 Godot 中。 * **代码和机制：** 在 LLM 协助（vibe 编码）下使用 Godot / GDScript 开发，用于快速原型设计和调试。所有的核心游戏系统、Boss AI架构和游戏循环都是我精心策划和编写的。</a>
+        </div>
+        <div class="nc-images"><img src="https://external-preview.redd.it/OGhmN3lzMWI0OGhoMTA5vKk9UOzkx5l6KkXKbq6SZ4dVcHDTf3RTUI4WlVXR.png?format=pjpg&auto=webp&s=bf4ad12ddb6fa086fe3624ac1807715bce36abb2" loading="lazy" onclick="event.stopPropagation()" title="点击查看大图"></div>
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 2</span><span class="stat">💬 2</span></span>
+          <span class="nc-time">2026-08-03T20:56:51.554000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#ffa657">D</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">Dont_Bring_Me_Down</span>
+          <span class="nc-handle">r/WeBuild_WithAI</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/WeBuild_WithAI/comments/1vepl15/day_25_of_building_shuffleball_arena_browser_game/" target="_blank" rel="noopener">构建 ShuffleBall Arena 浏览器游戏的第 25 天 - 音乐、菜单和一个令人惊讶的困难重力 那么大家好，希望一切顺利！ **TLDR、摘要或完整技术分解如下。** **背景信息：** 最近，我发布了关于[前 15 天]（我的副业项目之一，[ShuffleBall Arena]（（一款免费浏览器游戏，其灵感来自将沙狐球计分与其他游戏（如撞球、弹球和青蛙游戏）的机制混合在一起。）。该项目是在 AI（主要是 GPT / Cursor）的帮助下构建的，每个开发会话都使用当天的实际对话进行记录'...</a>
+        </div>
+        <div class="nc-images"><img src="https://external-preview.redd.it/cjRyZTJsMTczOGhoMeJ6FSnyqY82OYBFYXIVrQja7wPdapJUAbF2gVtmnMli.png?format=pjpg&auto=webp&s=a7274ce7b0029c41e582efe1862df1dd39d7fbbd" loading="lazy" onclick="event.stopPropagation()" title="点击查看大图"></div>
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 2</span></span>
+          <span class="nc-time">2026-08-03T20:51:10.922000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#bc8cff">X</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">Xi_Studio</span>
+          <span class="nc-handle">r/meshyai</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/meshyai/comments/1veln6a/xi_studio_hub_created_with_meshy/" target="_blank" rel="noopener">X.i Studio Hub - 使用 Meshy 创建 **从 AI 概念到 X.i Studio Hub** 最初作为单个 3D 资产逐渐成为整个 X.i Studio 启动器的中心。该核心与浮动平台、游戏卡、灯光、界面元素和周围环境相结合，创建一个互联的数字中心 - 全部由 **Meshy AI** 创建。最终的场景不仅仅是生成的图像。它是现有 X.i Studio 原型的一部分，代表了独立概念、资产和游戏世界融合在一起的点。</a>
+        </div>
+        <div class="nc-images"><img src="https://external-preview.redd.it/Z2x5Zm41OTdkN2hoMUA-VMIYlmz43qNpCA9AjF-Pmht9gI6Lw1Lbq6rNExCY.png?format=pjpg&auto=webp&s=7e3a78f1ab6c3a02bad631cc34d597bc239bd40e" loading="lazy" onclick="event.stopPropagation()" title="点击查看大图"></div>
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 2</span><span class="stat">💬 1</span></span>
+          <span class="nc-time">2026-08-03T18:26:59.656000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#56d364">A</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">AuraSocialLabs</span>
+          <span class="nc-handle">r/vibecoding</span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/r/vibecoding/comments/1vebdhb/bogey_bar_golf_drinking_game/" target="_blank" rel="noopener">Bogey Bar- 高尔夫饮酒游戏 在这里潜伏了一段时间，我想我应该分享实际的构建过程，而不仅仅是最终结果。它是什么：Bogey Bar，一款真实高尔夫比赛的配套应用程序。你记录每个洞的击球数，它会自动对打得不好（或打得好的）的人进行随机处罚、奖励和弃权。有混沌之轮、俱乐部轮盘、实时直播、记分牌和回合结束的“荣誉板”，其中包括俱乐部冠军、木勺和混沌特工等奖项。多种游戏模式、9/18 洞以及 18+ 门后面的永久无酒精模式，所以这不是 j…</a>
+        </div>
+        <div class="nc-images"><img src="https://external-preview.redd.it/uWD_G9DGG2aamIx2_zIRMqN1tOLnwS0Chal5Uzgs7Bs.png?auto=webp&s=d32a18506aa0d54541da15cd466f02e6c4e71ec6" loading="lazy" onclick="event.stopPropagation()" title="点击查看大图"></div>
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 2</span><span class="stat">💬 5</span></span>
+          <span class="nc-time">2026-08-03T11:58:31.541000+0000</span>
+        </div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="nc-avatar" style="background:#bc8cff">X</div>
+      <div class="nc-body">
+        <div class="nc-head">
+          <span class="nc-name">Xi_Studio</span>
+          <span class="nc-handle"></span>
+          <span class="nc-src src-reddit">Reddit</span>
+        </div>
+        <div class="nc-text">
+          <a href="https://www.reddit.com/user/Xi_Studio/comments/1velg45/xi_studio_x_meshy_hub_edit/" target="_blank" rel="noopener">X.i Studio x Meshy：从 AI 概念到 X.i Studio Hub Meshy 的 Hub 编辑 AI Meshy 是一款 AI 辅助的 3D 创建工具，可帮助我将视觉概念转化为可用的 3D 资产。对于 X.i Studio 中心，我使用 Meshy 创建了中央核心的第一个版本 - 以及其他部分。生成的模型为我提供了坚实的基础，使我可以完善、优化并集成到更广泛的场景中。最终中心最初是一个单一的 3D 资源，后来逐渐成为整个 X.i Studio 启动器的中心。核心结合了浮动平台、游戏卡牌、灯光、界面电子……</a>
+        </div>
+        <div class="nc-images"><img src="https://external-preview.redd.it/NzNzYmRlYTNjN2hoMUA-VMIYlmz43qNpCA9AjF-Pmht9gI6Lw1Lbq6rNExCY.png?format=pjpg&auto=webp&s=9f849ea5ee0a15f06d34b2736d4d1b8bce113f73" loading="lazy" onclick="event.stopPropagation()" title="点击查看大图"></div>
+        <div class="nc-footer">
+          <span class="nc-meta"><span class="stat">⬆️ 1</span></span>
+          <span class="nc-time">2026-08-03T18:19:59.132000+0000</span>
+        </div>
+      </div>
+    </div>
       
     </div>
   </section>
 
-  <div class="foot">数据来自 X/Twitter 公开推文 · 自动采集筛选 · 文本由 Google 翻译 · 仅反映相对声量趋势</div>
+  <div class="foot">数据来自 X/Twitter 公开推文与 Reddit 公开帖子 · 自动采集筛选 · 文本由 Google 翻译 · 仅反映相对声量趋势</div>
 </div>
 </body>
 </html>
