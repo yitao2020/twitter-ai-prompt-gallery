@@ -305,8 +305,26 @@ img.lazy-img { min-height:160px }
 #toTop:hover { background:var(--accent3) }
 #toTop.show { opacity:1; visibility:visible; transform:translateY(0) }
 </style>
+
+<style>
+  /* Color Bends + DotField 动态背景（TrilightLab, 2026-08-24） */
+  html { background: #0d1117; color-scheme: dark; }
+  body { background: transparent; }
+  #color-bends-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
+  #color-bends-bg canvas { width: 100% !important; height: 100% !important; display: block; }
+  #dot-grid-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: 0.9; }
+  @supports (mask-image: linear-gradient(#000, #000)) or (-webkit-mask-image: linear-gradient(#000, #000)) {
+    #dot-grid-bg {
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.95) 15%, rgba(0,0,0,0.95) 85%, rgba(0,0,0,0.25) 100%);
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.95) 15%, rgba(0,0,0,0.95) 85%, rgba(0,0,0,0.25) 100%);
+    }
+  }
+</style>
 </head>
 <body>
+  <div id="color-bends-bg" aria-hidden="true"></div>
+  <div id="dot-grid-bg" aria-hidden="true"></div>
+
 
 <div class="header">
   <nav class="topnav">
@@ -732,5 +750,214 @@ function setupLazy() {
 render();
 </script>
 
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.159.0/build/three.min.js"></script>
+  <script>
+  /* Color Bends（reactbits 同款）—— 单一 #A855F7、细带、高亮度、顶部淡出 */
+  (function () {
+    if (!window.THREE) { console.warn('[ColorBends] THREE 未加载，跳过背景'); return; }
+    var CONFIG = {
+      colors: ['#A855F7'], rotation: 90, autoRotate: 0, speed: 0.2, scale: 1,
+      frequency: 1, warpStrength: 1, mouseInfluence: 1, parallax: 0.5,
+      noise: 0.15, iterations: 1, intensity: 1.3, bandWidth: 0.14, fadeTop: 0.3, transparent: true,
+      maxPixelRatio: 2
+    };
+    var MAX_COLORS = 8;
+    var frag = [
+      '#define MAX_COLORS ' + MAX_COLORS,
+      'uniform vec2 uCanvas;uniform float uTime;uniform float uSpeed;uniform vec2 uRot;',
+      'uniform int uColorCount;uniform vec3 uColors[MAX_COLORS];uniform int uTransparent;',
+      'uniform float uScale;uniform float uFrequency;uniform float uWarpStrength;',
+      'uniform vec2 uPointer;uniform float uMouseInfluence;uniform float uParallax;',
+      'uniform float uNoise;uniform int uIterations;uniform float uIntensity;uniform float uBandWidth;uniform float uFadeTop;',
+      'varying vec2 vUv;',
+      'void main() {',
+      '  float t = uTime * uSpeed;',
+      '  vec2 p = vUv * 2.0 - 1.0;',
+      '  p += uPointer * uParallax * 0.1;',
+      '  vec2 rp = vec2(p.x * uRot.x - p.y * uRot.y, p.x * uRot.y + p.y * uRot.x);',
+      '  vec2 q = vec2(rp.x * (uCanvas.x / uCanvas.y), rp.y);',
+      '  q /= max(uScale, 0.0001);',
+      '  q /= 0.5 + 0.2 * dot(q, q);',
+      '  q += 0.2 * cos(t) - 7.56;',
+      '  vec2 toward = (uPointer - rp);',
+      '  q += toward * uMouseInfluence * 0.2;',
+      '  for (int j = 0; j < 5; j++) {',
+      '    if (j >= uIterations - 1) break;',
+      '    vec2 rr = sin(1.5 * (q.yx * uFrequency) + 2.0 * cos(q * uFrequency));',
+      '    q += (rr - q) * 0.15;',
+      '  }',
+      '  vec3 col = vec3(0.0); float a = 1.0;',
+      '  if (uColorCount > 0) {',
+      '    vec2 s = q; vec3 sumCol = vec3(0.0); float cover = 0.0;',
+      '    for (int i = 0; i < MAX_COLORS; ++i) {',
+      '      if (i >= uColorCount) break;',
+      '      s -= 0.01;',
+      '      vec2 r = sin(1.5 * (s.yx * uFrequency) + 2.0 * cos(s * uFrequency));',
+      '      float m0 = length(r + sin(5.0 * r.y * uFrequency - 3.0 * t + float(i)) / 4.0);',
+      '      float kBelow = clamp(uWarpStrength, 0.0, 1.0);',
+      '      float kMix = pow(kBelow, 0.3);',
+      '      float gain = 1.0 + max(uWarpStrength - 1.0, 0.0);',
+      '      vec2 disp = (r - s) * kBelow; vec2 warped = s + disp * gain;',
+      '      float m1 = length(warped + sin(5.0 * warped.y * uFrequency - 3.0 * t + float(i)) / 4.0);',
+      '      float m = mix(m0, m1, kMix);',
+      '      float w = 1.0 - exp(-uBandWidth / exp(uBandWidth * m));',
+      '      sumCol += uColors[i] * w; cover = max(cover, w);',
+      '    }',
+      '    col = clamp(sumCol, 0.0, 1.0); a = uTransparent > 0 ? cover : 1.0;',
+      '  } else {',
+      '    vec2 s = q;',
+      '    for (int k = 0; k < 3; ++k) {',
+      '      s -= 0.01;',
+      '      vec2 r = sin(1.5 * (s.yx * uFrequency) + 2.0 * cos(s * uFrequency));',
+      '      float m0 = length(r + sin(5.0 * r.y * uFrequency - 3.0 * t + float(k)) / 4.0);',
+      '      float kBelow = clamp(uWarpStrength, 0.0, 1.0);',
+      '      float kMix = pow(kBelow, 0.3);',
+      '      float gain = 1.0 + max(uWarpStrength - 1.0, 0.0);',
+      '      vec2 disp = (r - s) * kBelow; vec2 warped = s + disp * gain;',
+      '      float m1 = length(warped + sin(5.0 * warped.y * uFrequency - 3.0 * t + float(k)) / 4.0);',
+      '      float m = mix(m0, m1, kMix);',
+      '      col[k] = 1.0 - exp(-uBandWidth / exp(uBandWidth * m));',
+      '    }',
+      '    a = uTransparent > 0 ? max(max(col.r, col.g), col.b) : 1.0;',
+      '  }',
+      '  col *= uIntensity;',
+      '  if (uNoise > 0.0001) {',
+      '    float n = fract(sin(dot(gl_FragCoord.xy + vec2(uTime), vec2(12.9898, 78.233))) * 43758.5453123);',
+      '    col += (n - 0.5) * uNoise; col = clamp(col, 0.0, 1.0);',
+      '  }',
+      '  vec3 rgb = (uTransparent > 0) ? col * a : col;',
+      '  if (uFadeTop > 0.0001) { float fade = smoothstep(1.0 - uFadeTop, 1.0, vUv.y); a *= (1.0 - fade); }',
+      '  gl_FragColor = vec4(rgb, a);',
+      '}'
+    ].join('\n');
+    var vert = 'varying vec2 vUv;void main(){vUv=uv;gl_Position=vec4(position,1.0);}';
+
+    var container = document.getElementById('color-bends-bg');
+    var scene = new THREE.Scene();
+    var camera = new THREE.OrthographicCamera(-1,1,1,-1,0,1);
+    var geometry = new THREE.PlaneGeometry(2,2);
+    var uColors = []; for (var i=0;i<MAX_COLORS;i++) uColors.push(new THREE.Vector3(0,0,0));
+    var material = new THREE.ShaderMaterial({
+      vertexShader: vert, fragmentShader: frag,
+      uniforms: {
+        uCanvas:{value:new THREE.Vector2(1,1)}, uTime:{value:0}, uSpeed:{value:CONFIG.speed},
+        uRot:{value:new THREE.Vector2(1,0)}, uColorCount:{value:0}, uColors:{value:uColors},
+        uTransparent:{value:CONFIG.transparent?1:0}, uScale:{value:CONFIG.scale},
+        uFrequency:{value:CONFIG.frequency}, uWarpStrength:{value:CONFIG.warpStrength},
+        uPointer:{value:new THREE.Vector2(0,0)}, uMouseInfluence:{value:CONFIG.mouseInfluence},
+        uParallax:{value:CONFIG.parallax}, uNoise:{value:CONFIG.noise},
+        uIterations:{value:CONFIG.iterations}, uIntensity:{value:CONFIG.intensity}, uBandWidth:{value:CONFIG.bandWidth}, uFadeTop:{value:CONFIG.fadeTop}
+      }, premultipliedAlpha:true, transparent:true
+    });
+    scene.add(new THREE.Mesh(geometry, material));
+    var renderer = new THREE.WebGLRenderer({antialias:false, powerPreference:'high-performance', alpha:true});
+    if (THREE.SRGBColorSpace) renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio||1, CONFIG.maxPixelRatio));
+    renderer.setClearColor(0x000000, CONFIG.transparent?0:1);
+    renderer.domElement.style.width='100%'; renderer.domElement.style.height='100%';
+    container.appendChild(renderer.domElement);
+    var clock = new THREE.Clock();
+    var pT = new THREE.Vector2(0,0), pC = new THREE.Vector2(0,0);
+    function resize(){var w=container.clientWidth||innerWidth,h=container.clientHeight||innerHeight;renderer.setSize(w,h,false);material.uniforms.uCanvas.value.set(w,h);}
+    resize(); if(window.ResizeObserver) new ResizeObserver(resize).observe(container); else addEventListener('resize',resize);
+    function loop(){var dt=clock.getDelta(),el=clock.elapsedTime;material.uniforms.uTime.value=el;
+      var deg=(CONFIG.rotation%360)+CONFIG.autoRotate*el, rad=deg*Math.PI/180;
+      material.uniforms.uRot.value.set(Math.cos(rad),Math.sin(rad));
+      pC.lerp(pT, Math.min(1,dt*8)); material.uniforms.uPointer.value.copy(pC);
+      renderer.render(scene,camera); requestAnimationFrame(loop);}
+    requestAnimationFrame(loop);
+    function toVec3(hex){var h=String(hex).replace('#','').trim();var r,g,b;
+      if(h.length===3){r=parseInt(h[0]+h[0],16);g=parseInt(h[1]+h[1],16);b=parseInt(h[2]+h[2],16);}
+      else{r=parseInt(h.slice(0,2),16);g=parseInt(h.slice(2,4),16);b=parseInt(h.slice(4,6),16);}
+      return new THREE.Vector3(r/255,g/255,b/255);}
+    var arr=(CONFIG.colors||[]).filter(Boolean).slice(0,MAX_COLORS).map(toVec3);
+    for(var c=0;c<MAX_COLORS;c++){if(c<arr.length)uColors[c].copy(arr[c]);else uColors[c].set(0,0,0);}
+    material.uniforms.uColorCount.value=arr.length;
+    addEventListener('pointermove', function(e){pT.set((e.clientX/innerWidth)*2-1, -((e.clientY/innerHeight)*2-1));}, {passive:true});
+  })();
+  </script>
+  <script>
+  /* DotField（reactbits 首页同款）—— 点半径=dotRadius/2，网格间距=dotRadius+dotSpacing */
+  (function () {
+    var container = document.getElementById('dot-grid-bg');
+    if (!container) return;
+    var CONFIG = { dotRadius:1.5, dotSpacing:14, cursorRadius:500, cursorForce:0.10,
+      bulgeOnly:true, bulgeStrength:67, glowRadius:160, sparkle:false, waveAmplitude:0,
+      dotColor:'255,255,255', baseAlpha:0.16, glowColor:'#120F17', maxPixelRatio:2 };
+    if (window.TRILIGHT_DOTFIELD) Object.assign(CONFIG, window.TRILIGHT_DOTFIELD);
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var canvas = document.createElement('canvas');
+    canvas.style.cssText = 'width:100%;height:100%;display:block';
+    container.appendChild(canvas);
+    var ctx = canvas.getContext('2d');
+    var dpr=1, W=0, H=0, dots=[], raf=null, running=false;
+    var mouse = { x:-9e4, y:-9e4, prevX:-9e4, prevY:-9e4, speed:0, active:false };
+    var eng = 0;
+
+    function rad() { return CONFIG.dotRadius / 2; }
+    function step() { return CONFIG.dotRadius + CONFIG.dotSpacing; }
+
+    function build(){
+      W = container.clientWidth||innerWidth; H = container.clientHeight||innerHeight;
+      dpr = Math.min(window.devicePixelRatio||1, CONFIG.maxPixelRatio);
+      canvas.width=Math.round(W*dpr); canvas.height=Math.round(H*dpr);
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      dots=[]; var st=step(), cols=Math.floor(W/st), rows=Math.floor(H/st);
+      var padX=(W%st)/2, padY=(H%st)/2;
+      for(var r=0;r<rows;r++) for(var c=0;c<cols;c++){
+        var ax=padX+c*st+st/2, ay=padY+r*st+st/2;
+        dots.push({ax:ax,ay:ay,sx:ax,sy:ay});
+      }
+    }
+    function drawField(){
+      ctx.clearRect(0,0,W,H);
+      ctx.fillStyle='rgba('+CONFIG.dotColor+','+CONFIG.baseAlpha+')';
+      var cr=CONFIG.cursorRadius, crSq=cr*cr, r=rad(), m=mouse, i,d,dx,dy,distSq,dist,t,push,ang;
+      ctx.beginPath();
+      for(i=0;i<dots.length;i++){
+        d=dots[i]; dx=m.x-d.ax; dy=m.y-d.ay; distSq=dx*dx+dy*dy;
+        if(distSq<crSq && eng>0.01){
+          dist=Math.sqrt(distSq); t=1-dist/cr; push=t*t*CONFIG.bulgeStrength*eng;
+          ang=Math.atan2(dy,dx);
+          d.sx+=(d.ax-Math.cos(ang)*push-d.sx)*0.15; d.sy+=(d.ay-Math.sin(ang)*push-d.sy)*0.15;
+        } else if(CONFIG.bulgeOnly){
+          d.sx+=(d.ax-d.sx)*0.1; d.sy+=(d.ay-d.sy)*0.1;
+        }
+        ctx.moveTo(d.sx+r, d.sy); ctx.arc(d.sx, d.sy, r, 0, Math.PI*2);
+      }
+      ctx.fill();
+      if(eng>0.01 && m.active){
+        var g=ctx.createRadialGradient(m.x,m.y,0,m.x,m.y,CONFIG.glowRadius);
+        g.addColorStop(0,CONFIG.glowColor); g.addColorStop(1,'transparent');
+        ctx.globalAlpha=Math.min(eng,1)*0.6; ctx.fillStyle=g;
+        ctx.beginPath(); ctx.arc(m.x,m.y,CONFIG.glowRadius,0,Math.PI*2); ctx.fill();
+        ctx.globalAlpha=1;
+      }
+    }
+    function render(){
+      var target=Math.min(mouse.speed/5,1); eng+=(target-eng)*0.06; mouse.speed*=0.9;
+      drawField();
+      if(mouse.active || eng>0.005){ raf=requestAnimationFrame(render); }
+      else { running=false; raf=null; }
+    }
+    function start(){ if(running)return; running=true; raf=requestAnimationFrame(render); }
+    function onMove(e){ var p=(e.touches&&e.touches[0])||e, rect=container.getBoundingClientRect();
+      var nx=p.clientX-rect.left, ny=p.clientY-rect.top;
+      if(mouse.prevX>-9e3){ var ddx=nx-mouse.prevX, ddy=ny-mouse.prevY;
+        mouse.speed+=(Math.sqrt(ddx*ddx+ddy*ddy)-mouse.speed)*0.5; }
+      mouse.prevX=nx; mouse.prevY=ny; mouse.x=nx; mouse.y=ny; mouse.active=true; start(); }
+    function onLeave(){ mouse.active=false; mouse.speed=0; if(!running) start(); }
+    function onResize(){ if(!window._rt)window._rt=null; if(window._rt)clearTimeout(window._rt);
+      window._rt=setTimeout(function(){build();drawField();},150); }
+    build();
+    if(reduce){ drawField(); }
+    else { drawField();
+      addEventListener('mousemove',onMove,{passive:true}); addEventListener('touchmove',onMove,{passive:true});
+      addEventListener('mouseout',onLeave,{passive:true}); addEventListener('touchend',onLeave,{passive:true});
+      addEventListener('resize',onResize); }
+  })();
+  </script>
 </body>
 </html>
