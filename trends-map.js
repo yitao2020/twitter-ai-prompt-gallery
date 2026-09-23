@@ -5,7 +5,7 @@
   let data = mode==='technique' ? snapshots.techniques : snapshots;
   const $ = id => document.getElementById(id);
   const svg = $('graph'), ns = 'http://www.w3.org/2000/svg';
-  const typeNames = {model:'模型 / MODEL', tool:'工具 / TOOL', style:'风格 / STYLE', concept:'概念 / IDEA', topic:'关联话题 / TOPIC',shot:'景别 / SHOT',composition:'构图 / FRAME',motion:'运镜 / MOTION',lighting:'光线 / LIGHT',color:'色彩质感 / COLOR',story:'叙事节奏 / RHYTHM',constraint:'画面约束 / CONTROL'};
+  const typeNames = {genre:'题材 / GENRE',model:'模型 / MODEL', tool:'工具 / TOOL', style:'风格 / STYLE', concept:'概念 / IDEA', topic:'关联话题 / TOPIC',shot:'景别 / SHOT',composition:'构图 / FRAME',motion:'运镜 / MOTION',lighting:'光线 / LIGHT',color:'色彩质感 / COLOR',story:'叙事节奏 / RHYTHM',constraint:'画面约束 / CONTROL'};
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const sum = values => values.reduce((a,b) => a + b, 0);
   const fmt = value => Number(value || 0).toLocaleString('zh-CN');
@@ -202,6 +202,7 @@
     $('node-count').textContent=visible.size;$('hot-count').textContent=primary.filter(n=>n.hot&&visible.has(n.id)).length;
     $('empty').hidden=visible.size>0;
     if(selected&&!visible.has(selected)) closePanel(false);
+    renderGenreOverview();
     wake();
   }
   function select(id) {
@@ -209,7 +210,18 @@
     const neighbors=new Set([id,...(node.parents||node.related)]);
     for(const n of nodes){n.element.classList.toggle('dim',!neighbors.has(n.id));n.element.classList.toggle('connected',neighbors.has(n.id));n.element.classList.toggle('selected',n.id===id);n.element.setAttribute('aria-pressed',String(n.id===id));}
     for(const edge of edges){const active=edge.source.id===id||edge.target.id===id;edge.element.classList.toggle('active',active);edge.element.classList.toggle('dim',!active);}
-    renderPanel(node);$('panel').hidden=false;
+    renderPanel(node);$('panel').hidden=false;$('genre-overview').hidden=true;
+  }
+  function renderGenreOverview() {
+    const box=$('genre-overview');
+    box.hidden=mode!=='technique'||filter!=='genre'||Boolean(selected);
+    if(box.hidden)return;
+    const total=sum(data.corpus.slice(-period)),covered=sum((data.genre_covered||[]).slice(-period));
+    const ranked=primary.filter(n=>n.type==='genre'&&visible.has(n.id)).sort((a,b)=>b.total-a.total);
+    box.innerHTML=`<div class="eyebrow">GENRE / 题材风向</div><h2>哪些故事被提到？</h2><p class="note">近 ${period} 天 ${total} 条样本中，${covered} 条命中明确题材词，${total-covered} 条未归类。占比以全部样本为分母，同一样本可有多个题材。</p><div class="genre-ranking">`+
+      ranked.map((n,i)=>`<button data-genre="${esc(n.id)}"><span class="rank-number">${String(i+1).padStart(2,'0')}</span><span>${esc(n.name)}<i style="width:${n.total/Math.max(1,ranked[0].total)*100}%"></i></span><b>${n.total} 条<small>${total?(n.total/total<.01?'&lt;1':Math.round(n.total/total*100)):0}%</small></b></button>`).join('')+
+      `</div><p class="note">这是本站提示词中的题材线索，包含单帧图像与片段描述，不等于已制作的影视剧数量或行业市场份额。${query?'当前榜单按搜索词筛选。':''}</p>`;
+    box.querySelectorAll('[data-genre]').forEach(button=>button.onclick=()=>select(button.dataset.genre));
   }
   function renderPanel(node) {
     if(mode==='technique'){renderTechnique(node);return;}
@@ -250,7 +262,7 @@
   function configureView() {
     const technique=mode==='technique';
     document.body.classList.toggle('technique-view',technique);
-    const categories=technique?['shot','composition','motion','lighting','color','story','constraint']:['model','tool','style','concept','topic'];
+    const categories=technique?['genre','shot','composition','motion','lighting','color','story','constraint']:['model','tool','style','concept','topic'];
     document.querySelector('.filters').innerHTML='<button data-filter="all" aria-pressed="true">全部</button>'+categories.map(key=>`<button data-filter="${key}" aria-pressed="false">${typeNames[key].split(' / ')[0]}</button>`).join('');
     document.querySelectorAll('[data-filter]').forEach(button=>button.onclick=()=>{filter=button.dataset.filter;syncFilters();applyFilter();});
     $('view-mode').value=mode;$('range').value=String(period);
@@ -268,6 +280,7 @@
     for(const node of nodes){node.element.classList.remove('dim','selected','connected');node.element.setAttribute('aria-pressed','false');}
     for(const edge of edges) edge.element.classList.remove('dim','active');
     if(focus&&previous)byId.get(previous).element.focus();
+    renderGenreOverview();
   }
   function syncFilters(){for(const button of document.querySelectorAll('[data-filter]'))button.setAttribute('aria-pressed',String(button.dataset.filter===filter));}
   function transform(){ $('scene').setAttribute('transform',`translate(${tx},${ty}) scale(${scale})`);$('zoom-label').textContent=Math.round(scale*100)+'%';}

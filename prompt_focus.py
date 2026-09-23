@@ -13,6 +13,19 @@ from pathlib import Path
 
 # id, Chinese label, dimension, aliases, editorial explanation
 FOCI = [
+    ('genre-scifi','科幻','genre',r'sci[- ]?fi|science fiction|科幻|星际战争','未来科技、太空探索等科幻题材线索；不据此推断成片类型。'),
+    ('genre-fantasy','奇幻 / 魔幻','genre',r'fantasy|奇幻|魔幻|魔法世界','魔法、异世界与超自然世界观的题材线索。'),
+    ('genre-wuxia','武侠 / 仙侠','genre',r'wuxia|xianxia|武侠|仙侠|修仙|江湖恩怨','武林、江湖、修仙等东方幻想叙事线索。'),
+    ('genre-action','动作 / 冒险','genre',r'action[- ]packed|action (?:film|movie|scene|sequence|thriller)|adventure (?:film|movie|story)|fight scene|martial arts|动作片|动作电影|打斗场景|格斗|冒险故事','打斗、追逐与冒险情节；不把普通人物动作归入动作片。'),
+    ('genre-mystery','悬疑 / 犯罪','genre',r'thriller|mystery (?:film|movie|story|drama)|crime (?:film|drama|scene|thriller)|detective (?:story|film|drama)|悬疑|犯罪片|犯罪剧|刑侦|侦探故事','谜案、调查、犯罪与惊悚叙事线索。'),
+    ('genre-horror','恐怖 / 灵异','genre',r'horror|ghost story|haunted house|恐怖片|恐怖电影|恐怖故事|灵异|鬼故事|丧尸','恐怖、灵异及怪物威胁相关线索。'),
+    ('genre-romance','爱情 / 情感','genre',r'romance|romantic (?:film|movie|drama|story|scene)|love story|爱情|言情|情感剧|恋爱故事','恋爱关系与情感叙事；单纯浪漫光线或色调不归入此类。'),
+    ('genre-period','历史 / 古装','genre',r'period drama|historical (?:drama|film|movie|epic)|costume drama|历史剧|历史电影|古装剧|古装电影|宫廷剧|民国剧','历史时代、古装与宫廷叙事线索；不只凭服饰判断。'),
+    ('genre-war','战争 / 军事','genre',r'war (?:film|movie|drama|scene)|military (?:film|drama|operation)|battlefield|战争片|战争电影|战争场景|军事题材|战场','战场、军事行动与战争叙事线索。'),
+    ('genre-comedy','喜剧','genre',r'comedy|comedic scene|喜剧|喜剧片','明确的喜剧或诙谐叙事类型表达。'),
+    ('genre-family','家庭 / 现实生活','genre',r'family drama|domestic drama|slice of life|家庭剧|家庭伦理|现实主义题材|生活流','家庭关系与日常生活叙事线索。'),
+    ('genre-superhero','超级英雄','genre',r'superhero|super hero|超级英雄','具有超级英雄设定的人物与故事线索。'),
+    ('genre-western','西部','genre',r'western (?:film|movie|genre)|wild west|西部片|西部电影','西部世界、边疆与牛仔故事的明确题材表达。'),
     ('close-up','特写','framing',r'close[- ]?up|特写','集中表现面部、手部或物体细节。'),
     ('wide-shot','远景 / 全景','framing',r'wide shot|long shot|establishing shot|远景|全景镜头|建立镜头','交代环境与主体的空间关系。'),
     ('medium-shot','中景','framing',r'medium shot|mid shot|中景','兼顾人物动作和周围环境。'),
@@ -106,6 +119,7 @@ def build_focus(gallery_path):
     pairs = defaultdict(lambda:[0]*30)
     examples = defaultdict(list)
     corpus = [0]*30
+    genre_covered = [0]*30
     for entry, day, text, translated in eligible:
         if day.isoformat() not in index:
             continue
@@ -126,6 +140,7 @@ def build_focus(gallery_path):
                 'excerpt':excerpt, 'matched':match.group(),
                 'source':'小红书' if 'xiaohongshu.com' in entry['tweet_url'] else 'Reddit' if 'reddit.com' in entry['tweet_url'] else 'X',
             })
+        if any(key.startswith('genre-') for key in found): genre_covered[idx] += 1
         for a,b in itertools.combinations(sorted(found), 2): pairs[(a,b)][idx] += 1
     # Do not invent nodes for techniques absent from this sample.
     active = {key for key,values in series.items() if sum(values)}
@@ -138,7 +153,7 @@ def build_focus(gallery_path):
         'aliases':{row[0]:row[3].replace('|',' / ') for row in FOCI},
         'keyword_related':{}, 'keyword_tweets':{},
         'graph_edges':[{'source':a,'target':b,'values':values} for (a,b),values in pairs.items() if sum(values)>=2],
-        'examples':dict(examples), 'corpus':corpus,
+        'examples':dict(examples), 'corpus':corpus, 'genre_covered':genre_covered,
         'archive_count':len(entries), 'eligible_count':sum(corpus),
         'method':'从本站收录的影视相关提示词文本（含描述）识别中英文技法表达；按原文链接及相同文本去重，每条样本对每项技法最多计一次。否定或排除语句也可能命中，提及不代表采用。',
     }

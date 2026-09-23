@@ -19,6 +19,15 @@ class FocusTests(unittest.TestCase):
         self.assertIsNone(dolly.search('QT your Dolly art RIP Dolly!'))
         self.assertIsNotNone(dolly.search('Slow dolly-in toward the actor'))
 
+    def test_genres_require_subject_not_just_visual_style(self):
+        genres={row[0]:pattern(row[3]) for row in FOCI if row[2]=='genre'}
+        for text in ['Cinematic portrait with romantic lighting and golden hour colors.',
+                     'Action pose in traditional costume with shallow depth of field.']:
+            self.assertFalse(any(rule.search(text) for rule in genres.values()))
+        self.assertIsNotNone(genres['genre-scifi'].search('A science fiction film scene'))
+        self.assertIsNotNone(genres['genre-romance'].search('A romantic drama about two travelers'))
+        self.assertIsNotNone(genres['genre-wuxia'].search('仙侠故事中的江湖恩怨'))
+
     def test_dedup_dates_counts_and_evidence(self):
         text = 'Cinematic close-up with soft lighting and shallow depth of field. ' * 2
         entries = [
@@ -36,6 +45,7 @@ class FocusTests(unittest.TestCase):
         self.assertEqual(result['eligible_count'], 2)
         self.assertEqual(sum(result['series']['close-up']),2)
         self.assertNotIn('dolly',result['series'])
+        self.assertEqual(sum(result['genre_covered']),0)
         self.assertTrue(all(sum(edge['values'])==2 for edge in result['graph_edges']))
         for examples in result['examples'].values():
             for example in examples:
