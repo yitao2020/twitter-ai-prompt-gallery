@@ -6,19 +6,19 @@
 <title>推特提示词合集 — Nano Banana Pro & GPT Image 2</title>
 <style>
 :root {
-  --bg: #0d1117;
-  --bg-card: #161b22;
-  --border: #30363d;
-  --text: #e6edf3;
-  --text-dim: #8b949e;
-  --accent: #58a6ff;
-  --accent2: #3fb950;
-  --accent3: #d2a8ff;
-  --nbp-color: #f78166;
-  --gpt2-color: #7ee787;
-  --mj-color: #bc8cff;
-  --reddit-color: #ff4500;
-  --xiaohongshu-color: #ff2442;
+  --bg: #121310;
+  --bg-card: #191a16;
+  --border: #353630;
+  --text: #e7e7dd;
+  --text-dim: #96978c;
+  --accent: #ff591d;
+  --accent2: #c3a78e;
+  --accent3: #ff8a53;
+  --nbp-color: #ff591d;
+  --gpt2-color: #c3a78e;
+  --mj-color: #b0b1a5;
+  --reddit-color: #ff591d;
+  --xiaohongshu-color: #d98b65;
 }
 * { margin:0; padding:0; box-sizing:border-box }
 body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.5 }
@@ -28,7 +28,7 @@ a:hover { text-decoration:underline }
 /* Header */
 .header {
   position:sticky; top:0; z-index:100;
-  background:rgba(13,17,23,0.92); backdrop-filter:blur(12px);
+  background:rgba(18,19,16,0.92); backdrop-filter:blur(12px);
   border-bottom:1px solid var(--border); padding:0 24px;
 }
 /* Top navigation menu */
@@ -79,17 +79,17 @@ a:hover { text-decoration:underline }
   white-space:nowrap
 }
 .btn:hover { border-color:var(--accent) }
-.btn.active { background:var(--accent); border-color:var(--accent); color:#fff }
+.btn.active { background:var(--accent); border-color:var(--accent); color:#121310 }
 .btn.nbp { border-color:var(--nbp-color); color:var(--nbp-color) }
-.btn.nbp.active { background:var(--nbp-color); color:#fff }
+.btn.nbp.active { background:var(--nbp-color); color:#121310 }
 .btn.gpt2 { border-color:var(--gpt2-color); color:var(--gpt2-color) }
-.btn.gpt2.active { background:var(--gpt2-color); color:#0d1117 }
+.btn.gpt2.active { background:var(--gpt2-color); color:#121310 }
 .btn.mj { border-color:var(--mj-color); color:var(--mj-color) }
-.btn.mj.active { background:var(--mj-color); color:#0d1117 }
+.btn.mj.active { background:var(--mj-color); color:#121310 }
 .btn.reddit { border-color:var(--reddit-color); color:var(--reddit-color) }
-.btn.reddit.active { background:var(--reddit-color); color:#fff }
+.btn.reddit.active { background:var(--reddit-color); color:#121310 }
 .btn.xiaohongshu { border-color:var(--xiaohongshu-color); color:var(--xiaohongshu-color) }
-.btn.xiaohongshu.active { background:var(--xiaohongshu-color); color:#fff }
+.btn.xiaohongshu.active { background:var(--xiaohongshu-color); color:#121310 }
 
 /* Sort group */
 .sort-group { display:inline-flex; align-items:center; gap:4px; margin-left:auto; justify-content:flex-end; padding-left:8px; border-left:1px solid var(--border) }
@@ -116,14 +116,14 @@ a:hover { text-decoration:underline }
 }
 .card:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,.4); border-color:var(--accent) }
 .card .img-wrap {
-  overflow:hidden; background:#0a0a14; min-height:160px;
+  overflow:hidden; background:#121310; min-height:160px;
   display:flex; align-items:center; justify-content:center; position:relative;
   line-height:0
 }
 /* Skeleton pulse while image loads */
 .card .img-wrap::before {
   content:''; position:absolute; inset:0;
-  background:linear-gradient(90deg, #0a0a14 25%, #1a1a2e 50%, #0a0a14 75%);
+  background:linear-gradient(90deg, #121310 25%, #25271f 50%, #121310 75%);
   background-size:200% 100%; animation:skeleton-pulse 1.5s ease-in-out infinite;
   z-index:0
 }
@@ -166,7 +166,7 @@ img.lazy-img { min-height:160px }
 .card .meta .card-stats { display:flex; gap:12px; margin-top:3px; font-size:.72em; color:var(--text-dim) }
 .card .meta .card-stats .stat { display:inline-flex; align-items:center; gap:3px }
 .card .meta .card-stats .stat .ic { font-size:1em; line-height:1 }
-.card .meta .card-stats .stat.likes { color:#f778ba }
+.card .meta .card-stats .stat.likes { color:#c3a78e }
 .card .meta .card-stats .stat.views { color:var(--text-dim) }
 .card .meta .card-stats .stat.replies { color:var(--accent) }
 
@@ -208,7 +208,7 @@ img.lazy-img { min-height:160px }
 .lb-info .lb-num { font-size:.75em; color:var(--text-dim); margin-bottom:12px }
 .lb-info .lb-stats { display:flex; gap:16px; margin-bottom:12px; font-size:.85em }
 .lb-info .lb-stats .stat { display:inline-flex; align-items:center; gap:4px }
-.lb-info .lb-stats .stat.likes { color:#f778ba }
+.lb-info .lb-stats .stat.likes { color:#c3a78e }
 .lb-info .lb-stats .stat.views { color:var(--text-dim) }
 .lb-info .lb-stats .stat.replies { color:var(--accent) }
 .lb-info .lb-links { display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap }
@@ -216,9 +216,9 @@ img.lazy-img { min-height:160px }
   font-size:.8em; padding:3px 10px; border:1px solid var(--border);
   border-radius:4px; color:var(--accent); text-decoration:none; transition:all .2s
 }
-.lb-info .lb-links a:hover { border-color:var(--accent); background:rgba(88,166,255,.1) }
+.lb-info .lb-links a:hover { border-color:var(--accent); background:rgba(255,89,29,.1) }
 .lb-info .lb-prompt {
-  background:#0d1117; border:1px solid var(--border); border-radius:6px;
+  background:#121310; border:1px solid var(--border); border-radius:6px;
   padding:12px 14px; font-size:.8em; line-height:1.5; white-space:pre-wrap;
   color:var(--text); font-family:"SF Mono","Fira Code",monospace;
   max-height:400px; overflow-y:auto; margin-bottom:12px
@@ -227,13 +227,13 @@ img.lazy-img { min-height:160px }
 .lb-info .copy-prompt-btn {
   display:flex; align-items:center; justify-content:center; gap:6px;
   flex:1; height:48px;
-  background:#161b22; color:#fff; border:1px solid #30363d; border-radius:6px;
+  background:#191a16; color:#fff; border:1px solid #353630; border-radius:6px;
   font-size:1em; font-weight:400; cursor:pointer;
   font-family:inherit; transition:all .2s; white-space:nowrap
 }
-.lb-info .copy-prompt-btn:hover { background:#1c2230; border-color:#58a6ff }
+.lb-info .copy-prompt-btn:hover { background:#25271f; border-color:#ff591d }
 .lb-info .copy-prompt-btn:active { transform:scale(.97) }
-.lb-info .copy-prompt-btn.copied { border-color:#3fb950; color:#3fb950 }
+.lb-info .copy-prompt-btn.copied { border-color:#c3a78e; color:#c3a78e }
 .lb-info .lb-images { display:grid; grid-template-columns:repeat(auto-fill,minmax(100px,1fr)); gap:8px; margin-top:14px }
 .lb-info .lb-images img {
   width:100%; aspect-ratio:1; object-fit:cover; border-radius:4px;
@@ -267,7 +267,7 @@ img.lazy-img { min-height:160px }
   position:sticky; top:98px; z-index:90;
   max-width:1800px; margin:0 auto; padding:10px 24px;
   display:flex; gap:6px; flex-wrap:wrap; align-items:center;
-  background:rgba(13,17,23,0.95); backdrop-filter:blur(8px);
+  background:rgba(18,19,16,0.95); backdrop-filter:blur(8px);
   border-bottom:1px solid var(--border)
 }
 .tag-bar .tag-label {
@@ -279,14 +279,14 @@ img.lazy-img { min-height:160px }
   transition:all .2s; white-space:nowrap
 }
 .tag-btn:hover { border-color:var(--accent); color:var(--text) }
-.tag-btn.active { background:var(--accent); border-color:var(--accent); color:#fff }
+.tag-btn.active { background:var(--accent); border-color:var(--accent); color:#121310 }
 .tag-btn .tag-count { opacity:.6; font-size:.85em; margin-left:2px }
 
 /* Back to top */
 #toTop {
   position:fixed; right:24px; bottom:24px; z-index:200;
   width:44px; height:44px; border-radius:50%;
-  background:var(--accent); color:#0d1117; border:none;
+  background:var(--accent); color:#121310; border:none;
   font-size:20px; line-height:44px; text-align:center;
   cursor:pointer; box-shadow:0 4px 16px rgba(0,0,0,.4);
   opacity:0; visibility:hidden; transform:translateY(12px);
@@ -298,7 +298,7 @@ img.lazy-img { min-height:160px }
 
 <style>
   /* Color Bends + DotField 动态背景（TrilightLab, 2026-08-24） */
-  html { background: #0d1117; color-scheme: dark; }
+  html { background: #121310; color-scheme: dark; }
   body { background: transparent; }
   #color-bends-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
   #color-bends-bg canvas { width: 100% !important; height: 100% !important; display: block; }
@@ -728,7 +728,7 @@ render();
   (function () {
     if (!window.THREE) { console.warn('[ColorBends] THREE 未加载，跳过背景'); return; }
     var CONFIG = {
-      colors: ['#A855F7'], rotation: 90, autoRotate: 0, speed: 0.2, scale: 1,
+      colors: ['#56321f'], rotation: 90, autoRotate: 0, speed: 0.2, scale: 1,
       frequency: 1, warpStrength: 1, mouseInfluence: 1, parallax: 0.5,
       noise: 0.15, iterations: 1, intensity: 1.3, bandWidth: 0.14, fadeTop: 0.3, transparent: true,
       maxPixelRatio: 2
@@ -855,7 +855,7 @@ render();
     if (!container) return;
     var CONFIG = { dotRadius:1.5, dotSpacing:14, cursorRadius:500, cursorForce:0.10,
       bulgeOnly:true, bulgeStrength:67, glowRadius:160, sparkle:false, waveAmplitude:0,
-      dotColor:'255,255,255', baseAlpha:0.16, glowColor:'#120F17', maxPixelRatio:2 };
+      dotColor:'231,231,221', baseAlpha:0.16, glowColor:'#121310', maxPixelRatio:2 };
     if (window.TRILIGHT_DOTFIELD) Object.assign(CONFIG, window.TRILIGHT_DOTFIELD);
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
