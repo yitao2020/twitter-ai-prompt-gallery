@@ -593,21 +593,8 @@ def ensure_text_cn(data):
 
 
 def build():
-    with open(DATA_FILE, "r", encoding="utf-8") as f:
-        data = json.load(f)
-    ensure_text_cn(data)
-    # Embed the snapshot so GitHub Pages needs no API, JSON fetch or CDN.
-    data["names"] = {key: translate_keyword(key) for key in data.get("series", {})}
-    for related in data.get("keyword_related", {}).values():
-        for item in related:
-            data["names"][item["term"]] = translate_term(item["term"])
-    models = {"gpt image 2", "midjourney", "nano banana pro", "stable diffusion", "flux", "dall-e", "dall-e 3"}
-    styles = {"cinematic", "photorealistic", "anime", "pixel art", "watercolor", "3d"}
-    tools = {"comfyui", "automatic1111", "photoshop"}
-    data["types"] = {key: ("model" if key.lower() in models else
-                            "style" if key.lower() in styles else
-                            "tool" if key.lower() in tools else "concept")
-                     for key in data.get("series", {})}
+    from ecosystem_focus import build_ecosystem
+    data = build_ecosystem(os.path.join(HERE, "gallery.html"))
     from prompt_focus import build_focus
     data["techniques"] = build_focus(os.path.join(HERE, "gallery.html"))
     from pathlib import Path

@@ -86,10 +86,11 @@ def pattern(aliases):
     return re.compile(r'(?<![a-z])(?:'+aliases+r')(?![a-z])', re.I)
 
 
-def build_focus(gallery_path):
+def build_focus(gallery_path, vocabulary=None, cinema_required=True):
+    vocabulary = FOCI if vocabulary is None else vocabulary
     source = Path(gallery_path).read_text(encoding='utf-8')
     entries = json.JSONDecoder().raw_decode(source.split('const ALL = ', 1)[1])[0]
-    rules = [(row, pattern(row[3])) for row in FOCI]
+    rules = [(row, pattern(row[3])) for row in vocabulary]
     seen_urls, seen_text = set(), set()
     eligible = []
     today = datetime.now(timezone.utc).date()
@@ -104,7 +105,9 @@ def build_focus(gallery_path):
         dates_in_archive.append(day)
         text = (entry.get('prompt') or '').strip()
         translated = (entry.get('prompt_zh') or '').strip()
-        if max(len(text), len(translated)) < 80 or not CINEMA.search(text+' '+translated):
+        if not cinema_required:
+            text = ((entry.get('title') or '')+'\n'+text).strip()
+        if max(len(text), len(translated)) < (80 if cinema_required else 10) or (cinema_required and not CINEMA.search(text+' '+translated)):
             continue
         url = entry.get('tweet_url', '')
         digest = hashlib.sha256(re.sub(r'\s+', '', text or translated).lower().encode()).hexdigest()
@@ -115,7 +118,7 @@ def build_focus(gallery_path):
     end = max(dates_in_archive, default=today)
     dates = [(end-timedelta(days=29-i)).isoformat() for i in range(30)]
     index = {day:i for i,day in enumerate(dates)}
-    series = {row[0]:[0]*30 for row in FOCI}
+    series = {row[0]:[0]*30 for row in vocabulary}
     pairs = defaultdict(lambda:[0]*30)
     examples = defaultdict(list)
     corpus = [0]*30
@@ -147,10 +150,10 @@ def build_focus(gallery_path):
     return {
         'mode':'technique', 'dates':dates, 'updated_at':f'{end.isoformat()} · 样本截至',
         'series':{key:values for key,values in series.items() if key in active},
-        'names':{row[0]:row[1] for row in FOCI},
-        'types':{row[0]:('shot' if row[0] in {'close-up','wide-shot','medium-shot','low-angle','overhead'} else 'composition' if row[2]=='framing' else row[2]) for row in FOCI},
-        'descriptions':{row[0]:row[4] for row in FOCI},
-        'aliases':{row[0]:row[3].replace('|',' / ') for row in FOCI},
+        'names':{row[0]:row[1] for row in vocabulary},
+        'types':{row[0]:('shot' if row[0] in {'close-up','wide-shot','medium-shot','low-angle','overhead'} else 'composition' if row[2]=='framing' else row[2]) for row in vocabulary},
+        'descriptions':{row[0]:row[4] for row in vocabulary},
+        'aliases':{row[0]:row[3].replace('|',' / ') for row in vocabulary},
         'keyword_related':{}, 'keyword_tweets':{},
         'graph_edges':[{'source':a,'target':b,'values':values} for (a,b),values in pairs.items() if sum(values)>=2],
         'examples':dict(examples), 'corpus':corpus, 'genre_covered':genre_covered,

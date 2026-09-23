@@ -7,6 +7,7 @@
   const svg = $('graph'), ns = 'http://www.w3.org/2000/svg';
   const typeNames = {genre:'题材 / GENRE',model:'模型 / MODEL', tool:'工具 / TOOL', style:'风格 / STYLE', concept:'概念 / IDEA', topic:'关联话题 / TOPIC',shot:'景别 / SHOT',composition:'构图 / FRAME',motion:'运镜 / MOTION',lighting:'光线 / LIGHT',color:'色彩质感 / COLOR',story:'叙事节奏 / RHYTHM',constraint:'画面约束 / CONTROL'};
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  Object.assign(typeNames,{image_model:'图像模型 / IMAGE',video_model:'视频模型 / VIDEO',assistant:'综合模型与助手 / AI',workflow:'工作流 / WORKFLOW'});
   const sum = values => values.reduce((a,b) => a + b, 0);
   const fmt = value => Number(value || 0).toLocaleString('zh-CN');
   let period = mode==='technique'?30:7, filter = 'all', query = '', selected = null, scale = 1, tx = 0, ty = 0;
@@ -22,7 +23,7 @@
     add({id:'k:'+keyword, key:keyword, name:data.names[keyword] || keyword, type:data.types[keyword] || 'concept', values:data.series[keyword], related:[], tweets:(data.keyword_tweets || {})[keyword] || []});
   }
   primary = nodes.slice();
-  if(mode==='technique') {
+  if(data.graph_edges) {
     for(const edge of data.graph_edges)edges.push({source:byId.get('k:'+edge.source),target:byId.get('k:'+edge.target),values:edge.values,count:0,enabled:false});
     return;
   }
@@ -52,7 +53,7 @@
       node.radius = 12 + Math.sqrt(node.total) * 1.18;
     }
     for (const node of nodes.filter(n=>n.type==='topic')) node.radius = 4 + Math.min(5, Math.sqrt(node.count)/2);
-    if(mode==='technique') {
+    if(data.graph_edges) {
       for(const node of primary)node.related=[];
       for(const edge of edges){edge.count=sum(edge.values.slice(-period));edge.enabled=false;}
       // Show the strongest three observed pairings per node, not a hairball.
@@ -161,7 +162,7 @@
   motionPreference.addEventListener('change',()=>{if(motionPreference.matches){pause();for(const node of nodes){node.vx=0;node.vy=0;}}else wake();});
   function shape(node) {
     const r=node.radius;
-    if(['model','topic','shot','lighting'].includes(node.type)) return el('circle',{r,class:'shape'});
+    if(['model','image_model','video_model','topic','shot','lighting'].includes(node.type)) return el('circle',{r,class:'shape'});
     if(['tool','motion','constraint'].includes(node.type)) return el('rect',{x:-r,y:-r,width:r*2,height:r*2,class:'shape'});
     const sides=['style','composition','color'].includes(node.type)?4:6, offset=sides===4?0:Math.PI/6;
     const points=Array.from({length:sides},(_,i)=>`${Math.sin(i/sides*Math.PI*2+offset)*r},${Math.cos(i/sides*Math.PI*2+offset)*r}`).join(' ');
@@ -176,7 +177,7 @@
     for(const edge of edges) {edge.element=el('line',{class:'edge'});$('edges').append(edge.element);}
     for(const node of nodes) {
       const group=el('g',{class:'node '+(node.type==='topic'?'topic':node.hot?'is-hot':node.last>0?'is-warm':''),role:'button',tabindex:0,'aria-label':`${node.name}，${typeNames[node.type]}，查看详情`});
-      group.classList.toggle('quiet-label',mode==='technique'&&!node.labelPriority);
+      group.classList.toggle('quiet-label',Boolean(data.graph_edges)&&!node.labelPriority);
       group.append(el('circle',{r:Math.max(node.radius+9,15),fill:'transparent'}));
       if(node.hot) group.append(el('circle',{r:node.radius+8,class:'halo'}));
       group.append(shape(node));
@@ -195,7 +196,7 @@
     for(const ring of $('regions').children){const node=byId.get(ring.dataset.parent);ring.setAttribute('cx',node.x);ring.setAttribute('cy',node.y);}
   }
   function applyFilter() {
-    visible=new Set(nodes.filter(n=>(mode!=='technique'||n.total>0)&&(filter==='all'||n.type===filter)&&(!query||(n.name+' '+n.key+' '+(data.aliases?.[n.key]||'')).toLowerCase().includes(query))).map(n=>n.id));
+    visible=new Set(nodes.filter(n=>(!data.graph_edges||n.total>0)&&(filter==='all'||n.type===filter)&&(!query||(n.name+' '+n.key+' '+(data.aliases?.[n.key]||'')).toLowerCase().includes(query))).map(n=>n.id));
     for(const node of nodes) {node.element.style.display=visible.has(node.id)?'':'none';node.element.classList.toggle('show-label',Boolean(query)||filter!=='all');}
     for(const edge of edges) edge.element.style.display=edge.enabled!==false&&visible.has(edge.source.id)&&visible.has(edge.target.id)?'':'none';
     for(const ring of $('regions').children) ring.style.display=visible.has(ring.dataset.parent)?'':'none';
@@ -224,7 +225,7 @@
     box.querySelectorAll('[data-genre]').forEach(button=>button.onclick=()=>select(button.dataset.genre));
   }
   function renderPanel(node) {
-    if(mode==='technique'){renderTechnique(node);return;}
+    if(data.graph_edges){renderTechnique(node);return;}
     const topic=node.type==='topic', values=(node.values||[]).slice(-period);
     const delta=node.delta===null?'—':`${node.delta>0?'+':''}${Math.round(node.delta)}%`;
     const related=topic?node.parents:node.related;
@@ -248,7 +249,7 @@
     const examples=(data.examples[node.key]||[]).filter(e=>e.date>=start&&e.date<=end).sort((a,b)=>b.date.localeCompare(a.date));
     const connections=edges.filter(e=>e.count>=2&&(e.source===node||e.target===node)).sort((a,b)=>b.count-a.count).slice(0,8);
     const max=Math.max(1,...values),points=values.map((v,i)=>`${i/Math.max(1,values.length-1)*280},${70-v/max*62}`).join(' ');
-    $('panel-content').innerHTML=`<div class="eyebrow">${typeNames[node.type]}</div><h2>${esc(node.name)}</h2><p class="technique-description">${esc(data.descriptions[node.key])}</p><div class="metrics"><div><b>${fmt(node.total)}</b><span>命中样本</span></div><div><b>${share}%</b><span>所选样本占比</span></div><div><b>${fmt(node.last)}</b><span>最新一天</span></div></div><div class="panel-label">SAMPLES / 按原文发布日期统计</div><svg class="spark" viewBox="0 0 280 80" role="img" aria-label="最近${values.length}天样本数：${values.join('、')}"><path d="M0 74H280" stroke="#454638"/><polyline points="${points}" fill="none" stroke="#ff591d" stroke-width="2"/></svg><div class="spark-labels"><span>${esc(start)}</span><span>${esc(end)}</span></div><div class="panel-label">PAIRS / 同一提示词中的搭配</div><div class="chips">`+
+    $('panel-content').innerHTML=`<div class="eyebrow">${typeNames[node.type]}</div><h2>${esc(node.name)}</h2><p class="technique-description">${esc(data.descriptions[node.key])}</p><div class="metrics"><div><b>${fmt(node.total)}</b><span>命中样本</span></div><div><b>${share}%</b><span>所选样本占比</span></div><div><b>${fmt(node.last)}</b><span>最新一天</span></div></div><div class="panel-label">SAMPLES / 按原文发布日期统计</div><svg class="spark" viewBox="0 0 280 80" role="img" aria-label="最近${values.length}天样本数：${values.join('、')}"><path d="M0 74H280" stroke="#454638"/><polyline points="${points}" fill="none" stroke="#ff591d" stroke-width="2"/></svg><div class="spark-labels"><span>${esc(start)}</span><span>${esc(end)}</span></div><div class="panel-label">PAIRS / 同一记录中的共现</div><div class="chips">`+
       (connections.map(edge=>{const other=edge.source===node?edge.target:edge.source;return `<button data-node="${esc(other.id)}">${esc(other.name)} · ${edge.count} 条 ↗</button>`;}).join('')||'<span class="note">当前区间内暂无重复出现的搭配。</span>')+
       `</div><div class="panel-label">EVIDENCE / 原文片段 · ${examples.length} 条中展示 ${Math.min(6,examples.length)} 条</div>`+
       examples.slice(0,6).map(example=>{
@@ -256,13 +257,13 @@
         const offset=example.excerpt.indexOf(example.matched);
         const excerpt=offset<0?esc(example.excerpt):esc(example.excerpt.slice(0,offset))+'<mark>'+esc(example.matched)+'</mark>'+esc(example.excerpt.slice(offset+example.matched.length));
         return `<article class="tweet"><div class="evidence-meta">${esc(example.source)} · ${esc(example.date)}</div><p class="evidence-title">${esc(example.title)}</p><blockquote>…${excerpt}…</blockquote>${url?`<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(example.author_name||'原作者')} · 查看完整原文 ↗</a>`:''}</article>`;
-      }).join('')+`<p class="note">技法说明为编辑整理；计数和片段来自本站收录文本，提及不代表采用或效果验证。稀少样本不宜解读为整体趋势。</p>`;
+      }).join('')+`<p class="note">节点说明为编辑整理；计数和片段来自本站收录文本，提及不代表采用或效果验证。稀少样本不宜解读为整体趋势。</p>`;
     for(const button of $('panel-content').querySelectorAll('[data-node]'))button.onclick=()=>{filter='all';query='';$('search').value='';syncFilters();applyFilter();select(button.dataset.node);$('panel').scrollTop=0;};
   }
   function configureView() {
     const technique=mode==='technique';
     document.body.classList.toggle('technique-view',technique);
-    const categories=technique?['genre','shot','composition','motion','lighting','color','story','constraint']:['model','tool','style','concept','topic'];
+    const categories=technique?['genre','shot','composition','motion','lighting','color','story','constraint']:['image_model','video_model','assistant','tool','workflow','style'];
     document.querySelector('.filters').innerHTML='<button data-filter="all" aria-pressed="true">全部</button>'+categories.map(key=>`<button data-filter="${key}" aria-pressed="false">${typeNames[key].split(' / ')[0]}</button>`).join('');
     document.querySelectorAll('[data-filter]').forEach(button=>button.onclick=()=>{filter=button.dataset.filter;syncFilters();applyFilter();});
     $('view-mode').value=mode;$('range').value=String(period);
@@ -274,6 +275,15 @@
     $('about-date').textContent=technique?'统计截至最近收录记录的发布日期：'+data.dates.at(-1):'最近采集更新：'+(data.updated_at||'未知');
     $('methodology').innerHTML=technique?`<p>${esc(data.method)}</p><p>按原文发布日期划分最近 7 / 30 天；节点大小表示命中样本数，橙色表示最后一天的样本数高于前一天，不代表全平台热度上升。</p><p>同一条文本中的技法构成共现关系，至少 2 条样本才建立连线；图中保留每个节点最强的 3 组搭配，详情列出更多。节点、占比、连线和证据均随时间范围变化。</p><p>技法分类由人工整理的规则识别，可能漏掉隐含表达；中英文近义表达合并。已去重但不同描述的转载仍可能保留，采样存在来源和收录偏差。</p>`:'<p>节点大小表示所选区间的采样提及次数，橙色表示最新一天高于前一天。</p><p>连线表示关键词与关联热词在推文中的共现；关联热词按整批采集数据统计，不随时间筛选变化。</p><p>来自最近一次采集，不是实时或全平台热榜。</p>';
     document.querySelector('.legend').innerHTML=technique?'<span><i class="orange"></i>单日提及增加</span><span>大小 = 样本数</span><span>连线 = 同文共现 ≥ 2</span><span>悬停显示名称</span>':'<span><i class="orange"></i>热度上升</span><span><i class="warm"></i>持续讨论</span><span>○ 模型</span><span>□ 工具</span><span>◇ 风格</span><span>⬡ 概念</span><span>· 关联话题</span>';
+    if(!technique) {
+      $('map-description').textContent='图像与视频模型、创作工具和工作流，追踪样本中的提及。';
+      $('edition').textContent='ARCHIVE / MODEL ECOSYSTEM';
+      $('search').placeholder='搜索模型 / 工具 / 工作流';
+      $('updated').textContent=data.updated_at;
+      $('about-date').textContent='统计截至最近收录记录的发布日期：'+data.dates.at(-1);
+      $('methodology').innerHTML=`<p>${esc(data.method)}</p><p>这是本站案例的提及统计，不是平台全量热度。标题、转载和宣传描述也可能包含模型名称；提及不等于实际使用或效果验证。</p><p>7 / 30 天按原文发布日期划分。节点、搭配与证据均随时间范围变化；一条记录对同一关键词只计一次，占比以去重后的全部收录样本为分母。</p><p>连线表示同条记录中共同提及，至少 2 条才建立；图中显示每个节点最强的 3 组连接。不代表模型之间兼容或有官方合作。</p>`;
+      document.querySelector('.legend').innerHTML='<span><i class="orange"></i>单日提及增加</span><span>大小 = 样本数</span><span>连线 = 同文共现 ≥ 2</span><span>版本合并统计</span>';
+    }
   }
   function closePanel(focus=true) {
     const previous=selected;selected=null;$('panel').hidden=true;
@@ -300,7 +310,7 @@
   document.querySelectorAll('[data-filter]').forEach(button=>button.onclick=()=>{filter=button.dataset.filter;syncFilters();applyFilter();});
   $('search').addEventListener('input',e=>{query=e.target.value.trim().toLowerCase();applyFilter();});
   $('clear').onclick=()=>{filter='all';query='';$('search').value='';syncFilters();applyFilter();};
-  function updatePeriod(){metrics();layout();draw();const dates=data.dates.slice(-period);$('date-range').textContent=dates.length?`${dates[0].slice(5)} — ${dates.at(-1).slice(5)} · UTC`: '暂无数据';$('sample-count').textContent=mode==='technique'?`本站样本 ${fmt(sum(data.corpus.slice(-period)))} 条 · 去重后按原文日期统计`:'';if(selected)select(selected);}
+  function updatePeriod(){metrics();layout();draw();const dates=data.dates.slice(-period);$('date-range').textContent=dates.length?`${dates[0].slice(5)} — ${dates.at(-1).slice(5)} · UTC`: '暂无数据';$('sample-count').textContent=data.corpus?`本站样本 ${fmt(sum(data.corpus.slice(-period)))} 条 · 去重后按原文日期统计`:'';if(selected)select(selected);}
   $('range').onchange=e=>{period=Number(e.target.value);updatePeriod();};
   $('view-mode').onchange=e=>{pause();closePanel(false);pointer=null;mode=e.target.value;data=mode==='technique'?snapshots.techniques:snapshots;filter='all';query='';$('search').value='';scale=1;tx=ty=0;transform();loadNodes();configureView();updatePeriod();};
   $('about').onclick=()=>$('about-dialog').showModal();$('close-about').onclick=()=>$('about-dialog').close();
