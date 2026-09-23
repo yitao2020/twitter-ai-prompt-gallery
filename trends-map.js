@@ -8,8 +8,10 @@
   const sum = values => values.reduce((a,b) => a + b, 0);
   const fmt = value => Number(value || 0).toLocaleString('zh-CN');
   let period = 7, filter = 'all', query = '', selected = null, scale = 1, tx = 0, ty = 0;
-  let width = 1440, height = 800, pointer = null, moved = false, visible = new Set();
+  let width = 1440, height = 800, mobileLayout = false, pointer = null, moved = false, visible = new Set();
   const nodes = [], edges = [], byId = new Map();
+  const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
+  let animationFrame = 0, lastFrame = 0, accumulator = 0, quietFrames = 0;
   const add = node => { nodes.push(node); byId.set(node.id, node); return node; };
   for (const keyword of Object.keys(data.series || {})) {
     add({id:'k:'+keyword, key:keyword, name:data.names[keyword] || keyword, type:data.types[keyword] || 'concept', values:data.series[keyword], related:[], tweets:(data.keyword_tweets || {})[keyword] || []});
@@ -43,6 +45,7 @@
   }
   function layout() {
     const mobile = $('stage').clientWidth < 760;
+    mobileLayout=mobile;
     width = mobile ? 760 : $('stage').clientWidth; height = mobile ? 1050 : $('stage').clientHeight;
     svg.setAttribute('viewBox',`0 0 ${width} ${height}`);
     primary.forEach((node,i) => {
@@ -74,7 +77,66 @@
         a.y=Math.max(top,Math.min(height-65,a.y));
       }
     }
+    for(const node of nodes) {node.vx=0;node.vy=0;node.anchorX=node.x;node.anchorY=node.y;}
+    for(const edge of edges) edge.restLength=Math.max(100,Math.min(220,Math.hypot(edge.source.x-edge.target.x,edge.source.y-edge.target.y)*.85));
   }
+  // Springs, repulsion and damping run at a fixed 60 Hz on every display.
+  // Keep the existing layout as a gentle anchor so clusters remain readable.
+  function physicsStep() {
+    const active=nodes.filter(node=>visible.has(node.id));
+    for(let i=0;i<active.length;i++) {
+      const a=active[i];
+      for(let j=i+1;j<active.length;j++) {
+        const b=active[j];let dx=b.x-a.x,dy=b.y-a.y;
+        if(Math.abs(dx)+Math.abs(dy)<.001){dx=.1;dy=.1;}
+        const distance=Math.hypot(dx,dy),gap=a.radius+b.radius+28;
+        const force=Math.min(2,210/(distance*distance))+Math.max(0,gap-distance)*.075;
+        const fx=dx/distance*force,fy=dy/distance*force;
+        a.vx-=fx;a.vy-=fy;b.vx+=fx;b.vy+=fy;
+      }
+    }
+    for(const edge of edges) {
+      const a=edge.source,b=edge.target;
+      if(!visible.has(a.id)||!visible.has(b.id))continue;
+      const dx=b.x-a.x,dy=b.y-a.y,distance=Math.hypot(dx,dy)||1;
+      const force=(distance-edge.restLength)*.006;
+      const fx=dx/distance*force,fy=dy/distance*force;
+      a.vx+=fx;a.vy+=fy;b.vx-=fx;b.vy-=fy;
+    }
+    let speed=0;
+    for(const node of active) {
+      if(pointer?.node===node){node.vx=0;node.vy=0;continue;}
+      const anchor=node.type==='topic'?.003:.008;
+      node.vx+=(node.anchorX-node.x)*anchor;
+      node.vy+=(node.anchorY-node.y)*anchor;
+      const top=mobileLayout?310:node.x<380?210:95;
+      node.vx+=(Math.max(55,node.x)-node.x+Math.min(width-55,node.x)-node.x)*.08;
+      node.vy+=(Math.max(top,node.y)-node.y+Math.min(height-65,node.y)-node.y)*.08;
+      node.vx*=.82;node.vy*=.82;
+      const velocity=Math.hypot(node.vx,node.vy);
+      if(velocity>10){node.vx*=10/velocity;node.vy*=10/velocity;}
+      node.x+=node.vx;node.y+=node.vy;
+      speed=Math.max(speed,Math.abs(node.vx),Math.abs(node.vy));
+    }
+    quietFrames=speed<.035&&!pointer?.node?quietFrames+1:0;
+  }
+  function animate(time) {
+    animationFrame=0;
+    if(document.hidden||motionPreference.matches)return;
+    accumulator+=lastFrame?Math.min(time-lastFrame,50):1000/60;lastFrame=time;
+    while(accumulator>=1000/60){physicsStep();accumulator-=1000/60;}
+    positions();
+    if(quietFrames<45)animationFrame=requestAnimationFrame(animate);
+    else {lastFrame=0;for(const node of nodes){node.vx=0;node.vy=0;}}
+  }
+  function wake() {
+    quietFrames=0;
+    if(animationFrame||document.hidden||motionPreference.matches)return;
+    lastFrame=0;accumulator=0;animationFrame=requestAnimationFrame(animate);
+  }
+  function pause() {cancelAnimationFrame(animationFrame);animationFrame=0;lastFrame=0;accumulator=0;}
+  document.addEventListener('visibilitychange',()=>document.hidden?pause():wake());
+  motionPreference.addEventListener('change',()=>{if(motionPreference.matches){pause();for(const node of nodes){node.vx=0;node.vy=0;}}else wake();});
   function shape(node) {
     const r=node.radius;
     if(node.type==='model'||node.type==='topic') return el('circle',{r,class:'shape'});
@@ -117,6 +179,7 @@
     $('node-count').textContent=visible.size;$('hot-count').textContent=primary.filter(n=>n.hot&&visible.has(n.id)).length;
     $('empty').hidden=visible.size>0;
     if(selected&&!visible.has(selected)) closePanel(false);
+    wake();
   }
   function select(id) {
     selected=id;const node=byId.get(id);
@@ -152,14 +215,16 @@
   function transform(){ $('scene').setAttribute('transform',`translate(${tx},${ty}) scale(${scale})`);$('zoom-label').textContent=Math.round(scale*100)+'%';}
   function zoom(factor,x=width/2,y=height/2){const next=Math.max(.45,Math.min(3,scale*factor));tx=x-(x-tx)*next/scale;ty=y-(y-ty)*next/scale;scale=next;transform();}
   function point(e){return new DOMPoint(e.clientX,e.clientY).matrixTransform(svg.getScreenCTM().inverse());}
-  function start(e,node=null){if(e.button!==0)return;e.stopPropagation();moved=false;const p=point(e);pointer={id:e.pointerId,node,x:p.x,y:p.y,startX:p.x,startY:p.y};svg.setPointerCapture(e.pointerId);svg.classList.add('dragging');}
+  function start(e,node=null){if(e.button!==0||pointer)return;e.stopPropagation();moved=false;const p=point(e);pointer={id:e.pointerId,node,x:p.x,y:p.y,startX:p.x,startY:p.y};svg.setPointerCapture(e.pointerId);svg.classList.add('dragging');if(node){node.vx=0;node.vy=0;wake();}}
   svg.addEventListener('pointerdown',e=>start(e));
   svg.addEventListener('pointermove',e=>{if(!pointer||pointer.id!==e.pointerId)return;const p=point(e),dx=p.x-pointer.x,dy=p.y-pointer.y;if(Math.hypot(p.x-pointer.startX,p.y-pointer.startY)>4)moved=true;if(moved){if(pointer.node){pointer.node.x+=dx/scale;pointer.node.y+=dy/scale;positions();}else{tx+=dx;ty+=dy;transform();}}pointer.x=p.x;pointer.y=p.y;});
-  svg.addEventListener('pointerup',e=>{if(!pointer||pointer.id!==e.pointerId)return;const node=pointer.node;pointer=null;svg.classList.remove('dragging');svg.releasePointerCapture(e.pointerId);if(!moved&&node)select(node.id);else if(!moved)closePanel(false);});
-  svg.addEventListener('pointercancel',()=>{pointer=null;svg.classList.remove('dragging');});
+  svg.addEventListener('pointerup',e=>{if(!pointer||pointer.id!==e.pointerId)return;const node=pointer.node;pointer=null;svg.classList.remove('dragging');svg.releasePointerCapture(e.pointerId);if(node)wake();if(!moved&&node)select(node.id);else if(!moved)closePanel(false);});
+  function cancelDrag(){pointer=null;svg.classList.remove('dragging');wake();}
+  svg.addEventListener('pointercancel',cancelDrag);
+  svg.addEventListener('lostpointercapture',()=>{if(pointer)cancelDrag();});
   svg.addEventListener('wheel',e=>{e.preventDefault();const p=point(e);zoom(Math.exp(-e.deltaY*.001),p.x,p.y);},{passive:false});
   $('zoom-in').onclick=()=>zoom(1.2);$('zoom-out').onclick=()=>zoom(1/1.2);
-  $('reset').onclick=()=>{scale=1;tx=ty=0;layout();positions();transform();};
+  $('reset').onclick=()=>{scale=1;tx=ty=0;layout();positions();transform();wake();};
   $('close').onclick=()=>closePanel();
   document.querySelectorAll('[data-filter]').forEach(button=>button.onclick=()=>{filter=button.dataset.filter;syncFilters();applyFilter();});
   $('search').addEventListener('input',e=>{query=e.target.value.trim().toLowerCase();applyFilter();});
@@ -170,6 +235,6 @@
   $('about-date').textContent='最近采集更新：'+(data.updated_at||'未知');
   $('about').onclick=()=>$('about-dialog').showModal();$('close-about').onclick=()=>$('about-dialog').close();
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('about-dialog').open)closePanel();if(e.key==='/'&&!['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)){e.preventDefault();$('search').focus();}});
-  let resizeTimer;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>{layout();positions();scale=1;tx=ty=0;transform();},120);});
+  let resizeTimer;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>{layout();positions();scale=1;tx=ty=0;transform();wake();},120);});
   updatePeriod();
 })();
