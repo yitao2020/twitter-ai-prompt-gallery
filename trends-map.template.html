@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#121310">
+<title>AI 热点图谱 · TrilightLab</title>
+<style>/* MAP_STYLES */</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="gallery.html"><span class="brand-icon">⊕</span> TRILIGHTLAB <span class="brand-suffix">/ AI MAP</span></a>
+  <span class="tagline">AI 创作热点，循线发现灵感</span>
+  <nav aria-label="站点导航"><a href="gallery.html">提示词画廊 ↗</a><a href="news.html">资讯 ↗</a><a href="reddit.html">Reddit ↗</a></nav>
+  <span class="edition">X / TWITTER SIGNALS</span>
+</header>
+<main>
+  <section class="toolbar" aria-label="图谱筛选">
+    <div class="filters" role="group" aria-label="节点类型">
+      <button data-filter="all" aria-pressed="true">全部 <small>ALL</small></button>
+      <button data-filter="model" aria-pressed="false">模型 <small>MODEL</small></button>
+      <button data-filter="tool" aria-pressed="false">工具 <small>TOOL</small></button>
+      <button data-filter="style" aria-pressed="false">风格 <small>STYLE</small></button>
+      <button data-filter="concept" aria-pressed="false">概念 <small>IDEA</small></button>
+      <button data-filter="topic" aria-pressed="false">关联话题 <small>TOPIC</small></button>
+    </div>
+    <label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="搜索关键词 / 关联话题" aria-label="搜索节点" autocomplete="off"><kbd>/</kbd></label>
+  </section>
+  <section id="stage" aria-label="AI 热点交互图谱">
+    <div class="intro"><div class="eyebrow"><span class="live-dot"></span> THE CREATIVE SIGNAL</div><h1>灵感有迹可循<span>。</span></h1><p>从热门模型到创作技法，探索话题之间的连接。</p><div class="range"><select id="range" aria-label="统计时间范围"><option value="7">最近 7 天</option><option value="30">最近 30 天</option></select><span id="date-range"></span></div></div>
+    <div class="map-stats"><span><b id="node-count">0</b> NODES</span><span class="hot">↗ <b id="hot-count">0</b> RISING</span><span id="updated"></span></div>
+    <svg id="graph" role="group" aria-label="关键词关系网络"><g id="scene"><g id="regions"></g><g id="edges"></g><g id="nodes"></g></g></svg>
+    <div id="empty" hidden>没有找到相关节点<span>试试其他关键词，或切换到「全部」</span><button id="clear">重置筛选</button></div>
+    <div class="map-caption"><span class="crosshair">＋</span> 话题共现网络 <span>/ CO-OCCURRENCE MAP</span></div>
+    <div class="controls" aria-label="图谱视图控制"><button id="zoom-in" aria-label="放大">＋</button><button id="zoom-out" aria-label="缩小">−</button><button id="reset" aria-label="重置视图">⌖</button><span id="zoom-label">100%</span></div>
+    <aside id="panel" hidden aria-label="节点详情"><button id="close" aria-label="关闭详情">×</button><div id="panel-content"></div></aside>
+  </section>
+</main>
+<footer><div class="legend"><span><i class="orange"></i>热度上升</span><span><i class="warm"></i>持续讨论</span><span>○ 模型</span><span>□ 工具</span><span>◇ 风格</span><span>⬡ 概念</span><span>· 关联话题</span></div><span class="help">拖拽节点 / 平移画布 · 滚轮缩放 · 点击查看</span><button id="about">数据说明 ↗</button></footer>
+<dialog id="about-dialog"><button id="close-about" aria-label="关闭数据说明">×</button><span class="eyebrow">ABOUT THE MAP</span><h2>看见热度，也看见连接。</h2><p>节点大小表示所选区间内的采样提及次数；橙色表示最新一天比前一天增长。缺少前一天数据时不标记增长。</p><p>连线表示关键词与关联热词在采集推文中的共现关系，不代表因果关系。关联热词按整批采集数据统计，不随时间筛选变化。</p><p>图谱使用最近一次采集的数据，不是实时热榜。采样量仅反映相对趋势，不等于 X 平台全量讨论量。</p><p id="about-date"></p></dialog>
+<script id="map-data" type="application/json">/* MAP_DATA */</script>
+<script>/* MAP_SCRIPT */</script>
+</body>
+</html>
