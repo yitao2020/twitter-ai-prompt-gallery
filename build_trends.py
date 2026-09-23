@@ -608,6 +608,8 @@ def build():
                             "style" if key.lower() in styles else
                             "tool" if key.lower() in tools else "concept")
                      for key in data.get("series", {})}
+    from prompt_focus import build_focus
+    data["techniques"] = build_focus(os.path.join(HERE, "gallery.html"))
     from pathlib import Path
     root = Path(HERE)
     html = (root / "trends-map.template.html").read_text(encoding="utf-8")
